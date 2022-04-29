@@ -5,6 +5,7 @@ env.py
 .env
 node_modules/
 cloudinary_python.txt
+Project_Idea.md
 
 **/migrations/*
 !**/migrations/__init__.py
