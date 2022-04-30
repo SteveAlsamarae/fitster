@@ -45,6 +45,7 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     "users.apps.UsersConfig",
+    "store.products",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -111,9 +112,9 @@ TEMPLATES = [
 
 
 # URLS
-ROOT_URLCONF = "RestaurantBookingApp.urls"
+ROOT_URLCONF = "core.urls"
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
-WSGI_APPLICATION = "RestaurantBookingApp.wsgi.application"
+WSGI_APPLICATION = "core.wsgi.application"
 
 
 # Internationalization
