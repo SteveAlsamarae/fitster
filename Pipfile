@@ -11,4 +11,4 @@ name = "pypi"
 python_version = "3.9"
 
 [scripts]
-
+genenv = "python utils/scripts/autoenv.py"
