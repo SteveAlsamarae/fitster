@@ -12,6 +12,7 @@ class UserUpdateForm(forms.ModelForm):
 
 class UserProfileUpdateForm(forms.ModelForm):
     """Fronend form for updating user profile"""
+
     class Meta:
         model = UserProfile
         fields = ["avatar", "name", "phone"]
