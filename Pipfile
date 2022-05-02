@@ -12,3 +12,7 @@ python_version = "3.9"
 
 [scripts]
 genenv = "python utils/scripts/autoenv.py"
+dev = "python manage.py runserver"
+mmg = "python manage.py makemigrations"
+mg = "python manage.py migrate"
+suser = "python manage.py createsuperuser"
