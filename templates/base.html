@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Fitster - A fitness subscription application">
+    <meta name="author" content="SteveAlsamarae">
+    <title>
+        {% block title %} {% endblock title %}
+    </title>
+
+    {% include '_includes/statics.html' %}
+
+</head>
+
+    <body>
+        <!-- include header -->
+        {% include '_includes/header.html' %}
+        <!-- main block -->
+        {% block content %} {% endblock content %}
+        <!-- include footer -->
+        {% include '_includes/footer.html' %}
+    </body>
+
+</html>
