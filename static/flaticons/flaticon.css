@@ -1,0 +1,76 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "flaticon";
+  src: url("./flaticon.ttf?bbc09c133595bfd037dcb7a8a0366de3") format("truetype"), url("./flaticon.woff?bbc09c133595bfd037dcb7a8a0366de3") format("woff"), url("./flaticon.woff2?bbc09c133595bfd037dcb7a8a0366de3") format("woff2"), url("./flaticon.eot?bbc09c133595bfd037dcb7a8a0366de3#iefix") format("embedded-opentype"), url("./flaticon.svg?bbc09c133595bfd037dcb7a8a0366de3#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+  font-family: flaticon !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-muscle:before {
+  content: "";
+}
+
+.flaticon-customer:before {
+  content: "";
+}
+
+.flaticon-apple:before {
+  content: "";
+}
+
+.flaticon-lawn-mower:before {
+  content: "";
+}
+
+.flaticon-pin:before {
+  content: "";
+}
+
+.flaticon-support:before {
+  content: "";
+}
+
+.flaticon-email:before {
+  content: "";
+}
+
+.flaticon-contact:before {
+  content: "";
+}
+
+.flaticon-medal:before {
+  content: "";
+}
+
+.flaticon-dumbbell:before {
+  content: "";
+}
+
+.flaticon-hand-grip:before {
+  content: "";
+}
+
+.flaticon-feedback:before {
+  content: "";
+}
+
+.flaticon-kettlebells:before {
+  content: "";
+}
+
+.flaticon-shirt:before {
+  content: "";
+}
+
+.flaticon-support-1:before {
+  content: "";
+}
