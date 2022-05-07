@@ -1,3 +1,18 @@
 from django.contrib import admin
+from mptt.admin import MPTTModelAdmin
 
-# Register your models here.
+from .models import ProductCategory, Product, ProductImage
+
+
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
+
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    inlines = [
+        ProductImageInline,
+    ]
+
+
+admin.site.register(ProductCategory, MPTTModelAdmin)
