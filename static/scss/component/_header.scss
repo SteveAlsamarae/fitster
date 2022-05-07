@@ -1,0 +1,387 @@
+@use '../abstract' as *;
+
+/*  Header Style */
+
+.top-nav {
+    position: absolute;
+    z-index: 222;
+    width: 100%;
+}
+
+.topbar-info{
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    padding-top: 25px;
+    padding-bottom: 30px;
+}
+
+.contact-item{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    &::before{
+        @media #{$custome1} {
+            right: -10%;
+        }
+        position: absolute;
+        content: '';
+        background: #51545d;
+        width: 1px;
+        height: 100%;
+        right: -24%;
+    }
+    &:last-child{
+        &::before{
+            display: none;
+        }
+    }
+    & i{
+        font-size: 45px;
+        color: $white;
+        margin-right: 10px;
+    }
+    .flaticon-contact{
+        animation: phone-icon-animate 1.5s ease-in-out infinite;
+        display: inline-block;
+        line-height: 1;
+    }
+    & p{
+        font-size: 18px;
+        line-height: 1.2;
+        color: $primary-color;
+        font-family: $teko;
+        margin-bottom: 0;
+    }
+    & .content{
+        & a{
+            font-size: 20px;
+            line-height: 1.2;
+            color: $white;
+            font-family: $teko;
+        }
+    }
+}
+
+.menu-area{
+    @media #{$md,$sm,$xs} {
+        background-color: #ffffff38;
+    }
+}
+
+.menu-content{
+    @media #{$md,$sm,$xs} {
+        padding: 15px 0;
+        background: none;
+    }
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff38;
+    box-shadow: 0px 0px 20px 0px rgba(0, 6, 91, 0.06);
+}
+
+.main-menu{
+    & ul{
+        & li{
+            @media #{$xl} {
+                margin-right: 50px;
+            }
+            @media #{$lg} {
+                margin-right: 20px;
+            } 
+            display: inline-block;
+            margin-right: 55px;
+            position: relative;
+            &:last-child{
+                margin-right: 0;
+            }
+            &  a{
+                font-size: 18px;
+                font-weight: 500;
+                text-transform: uppercase;
+                line-height: 1.1;
+                color: $white;
+                font-family: $teko;
+                padding: 30px 0;
+                display: block;
+                transition: .3s;
+                & i{
+                    font-size: 10px;
+                    font-weight: 500;
+                    top: -2px;
+                    position: relative;
+                }
+            }
+            & .active {
+                color: $primary-color;
+            }
+            &:hover > a{
+                color: $primary-color;
+            }
+            &:hover .sub-menu {
+                visibility: visible;
+                opacity: 1;
+                top: 100%;
+            }
+        }
+    }
+    & .sub-menu{
+        position: absolute;
+        left: 0;
+        top: 110%;
+        min-width: 220px;
+        background-color: #ffffff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 99;
+        -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
+        -moz-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
+        padding: 20px 0px 15px;
+        transition: 0.3s;
+        text-align: left;
+        border-top: 4px solid $primary-color;
+        & li{
+            margin: 0;
+            padding: 0;
+            display: inline;
+            & a{
+                font-size: 18px;
+                font-weight: 500;
+                display: block;
+                padding: 5px 25px;
+                transition: 0.3s;
+                color: #000;
+            }
+            & .active {
+                color: $primary-color;
+            }
+        }
+    }
+}
+
+.header-action-btn{
+    & a{
+        font-size: 20px;
+        color: $white;
+        margin-right: 30px;
+        display: inline-block;
+        position: relative;
+        &:last-child{
+            margin-right: 0;
+        }
+        & span{
+            background: $primary-color;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 20px;
+            color: $white;
+            font-family: $roboto;
+            font-weight: 400;
+            position: absolute;
+            top: -5px;
+            left: 15px;
+        }
+    }
+}
+
+//header-sticky
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 11;
+    animation: sticky 2s;
+    box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.15);
+    background: #152136;
+}
+.sticky .menu-content{
+    padding-left: 0;
+    background: #152136;
+}
+
+// sidebar
+.sidebar{
+    &__area{
+        position: fixed;
+        right: -485px;
+        top: 0;
+        width: 465px;
+        height: 100%;
+        background: $white  none repeat scroll 0 0;
+        overflow-y: scroll;
+        @include box-shadow(-5px 0 20px -5px rgba(0, 0, 0, 0.5));
+        -webkit-transition: all .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        -moz-transition: all .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        transition: all .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        z-index: 9999;
+  
+        @media #{$xs}{
+            width: 290px;
+        }
+  
+        &.sidebar-opened{
+            right: 0px;
+        }
+    }
+    &__wrapper{
+        position: relative;
+        padding: 45px;
+        background: #152136;
+        @media #{$xs}{
+           padding: 20px;
+        }
+    }
+    &__close{
+        position: absolute;
+        top: 48px;
+        right: 45px;
+        @media #{$xs}{
+            top: 22px;
+            right: 20px;
+         }
+        &-btn{
+            display: inline-block;
+            font-size: 16px;
+            height: 45px;
+            width: 45px;
+            line-height: 49px;
+            background: #000;
+            color: #fff;
+            border-radius: 50%;
+            &:hover{
+                background: $primary-color;
+            }
+        }
+      &-btn-3{
+        background: #666;
+        &:hover{
+          background: #666;
+        }
+      }
+    }
+    &__logo{
+        padding-bottom: 20px;
+        border-bottom: 1px solid $border;
+    }
+    &__text{
+        & p{
+            margin-bottom: 25px;
+        }
+    }
+    &__contact{
+        & h4{
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: $white;
+        }
+        & ul{
+            & li{
+                &:not(:last-child){
+                    margin-bottom: 20px;
+                }
+                &:hover{
+                    & i{
+                        background: $primary-color;
+                        color: $white;
+                        border-color: $primary-color;
+                    }
+                    & a{
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+        &-icon{
+            & i{
+                display: inline-block;
+                color: $white;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                border: 1px solid $border;
+                @include border-radius(7px);
+            }
+        }
+        &-text{
+            & a{
+                font-size: 18px;
+                font-weight: 400;
+                color: $white;
+                font-family: $roboto;
+            }
+        }
+    }
+    &__contact-3{
+      & h4{
+        color: #666;
+      }
+      & ul{
+        & li{
+            &:hover{
+                & i{
+                    background: #666;
+                    color: $white;
+                    border-color: #666;
+                }
+                & a{
+                    color: $primary-color;
+                }
+            }
+        }
+      }
+    }
+    &__map{
+        & iframe{
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+    }
+    &__social{
+        & ul{
+            & li{
+                display: inline-block;
+                &:not(:last-child){
+                    margin-right: 5px;
+                }
+                & a{
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    line-height: 42px;
+                    text-align: center;
+                    background: $primary-color;
+                    color: $white;
+                    @include border-radius(5px);
+                    &:hover{
+                        background: $heading-color;
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+    &__social-3{
+      & ul{
+        & li{
+            & a{
+                background: $grey;
+                color: #666;
+                &:hover{
+                    background: #666;
+                    color: $white;
+                }
+            }
+        }
+    }
+    }
+}
