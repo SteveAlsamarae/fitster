@@ -46,6 +46,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "users.apps.UsersConfig",
     "store.products",
+    "store.cart",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

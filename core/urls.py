@@ -10,6 +10,8 @@ urlpatterns = [
     # 3rd parties
     path("accounts/", include("allauth.urls")),
     # local
+    path("shop/", include("store.products.urls")),
+    path("cart/", include("store.cart.urls")),
    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
