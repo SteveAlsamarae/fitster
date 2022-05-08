@@ -57,6 +57,7 @@ class Product(models.Model):
         verbose_name=_("Product Title"),
         help_text=_("Required"),
         max_length=200,
+        db_index=True,
     )
     description = models.TextField(
         verbose_name=_("Product Description"), help_text=_("Optional"), blank=True
