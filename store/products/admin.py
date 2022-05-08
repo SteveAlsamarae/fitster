@@ -13,6 +13,7 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [
         ProductImageInline,
     ]
+    exclude = ["users_wishlist"]
 
 
 admin.site.register(ProductCategory, MPTTModelAdmin)
