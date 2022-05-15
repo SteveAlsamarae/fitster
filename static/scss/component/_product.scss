@@ -95,6 +95,12 @@
         color: $primary-color;
         display: block;
     }
+    & .product_discount{
+        font-size: 1.35em;
+        text-decoration: line-through;
+        padding-right: 10px;
+        color: #925156e0;
+    }
 }
 
 .shop_button{
