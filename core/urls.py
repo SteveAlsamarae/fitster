@@ -1,8 +1,7 @@
-from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path, include
-
+from django.contrib import admin
+from django.urls import include, path
 
 urlpatterns = [
     # core
@@ -12,7 +11,6 @@ urlpatterns = [
     # local
     path("shop/", include("store.products.urls")),
     path("cart/", include("store.cart.urls")),
-   
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
