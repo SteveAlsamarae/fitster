@@ -161,15 +161,27 @@
                   "
                 >
                   <ul>
+                    {% if page_obj.has_previous %}
                     <li>
-                        <a href="#"><span aria-current="page" class="page-numbers current">1</span></a>
+                      <a class="next page-numbers" href="?page={{ page_obj.previous_page_number }}"><i class="fal fa-long-arrow-left"></i> </a>
                     </li>
+                    {% endif %}
+                    {% for num in page_obj.paginator.page_range %}
+                      {% if page_obj.number == num %} 
+                      <li>
+                          <a href="?page={{ num }}"><span aria-current="page" class="page-numbers current">{{ num }}</span></a>
+                      </li>
+                      {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                      <li>
+                          <a class="page-numbers" href="?page={{ num }}">{{ num }}</a>
+                      </li>
+                      {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
                     <li>
-                        <a class="page-numbers" href="#">2</a>
+                        <a class="next page-numbers" href="?page={{ page_obj.next_page_number }}"><i class="fal fa-long-arrow-right"></i> </a>
                     </li>
-                    <li>
-                        <a class="next page-numbers" href="#"><i class="fal fa-long-arrow-right"></i> </a>
-                    </li>
+                    {% endif %}
                   </ul>
                 </div>
               </div>
