@@ -1,8 +1,9 @@
-from django.db import models
-from django.utils.translation import gettext_lazy as _
-from django.utils.text import slugify
-from django.contrib.auth.models import User
+import uuid
 
+from django.contrib.auth.models import User
+from django.db import models
+from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 
 
@@ -50,6 +51,9 @@ class Product(models.Model):
     Product model with product necessary fields.
     """
 
+    SALE_TAGS = (("SALE", "SALE"), ("NEW", "NEW"), ("HOT", "HOT"))
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     categories = models.ForeignKey(
         ProductCategory, verbose_name=_("Product Categories"), on_delete=models.RESTRICT
     )
@@ -72,8 +76,10 @@ class Product(models.Model):
         verbose_name=_("Discount price"),
         max_digits=6,
         decimal_places=2,
+        blank=True,
     )
     stocks = models.IntegerField(verbose_name=_("Stocks"), default=0)
+    sale_tag = models.CharField(verbose_name=_("Sale Tag"), max_length=10, choices=SALE_TAGS, blank=True)
     is_active = models.BooleanField(
         verbose_name=_("Product visibility"),
         help_text=_("Change product visibility"),
@@ -95,17 +101,28 @@ class Product(models.Model):
             self.slug = slugify(self.title, allow_unicode=True)
         return super(Product, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return self.title
+
     def get_product_images(self):
         return self.product_images.all()
 
     @property
-    def get_discount_percentage(self):
-        return (
-            f"{int(round((1 - (self.discount_price / self.regular_price)) * 100, 0))}%"
-        )
+    def get_first_product_img(self):
+        return self.product_images.first().image.url
 
-    def __str__(self):
-        return self.title
+    @property
+    def get_product_price(self):
+        if self.discount_price:
+            return self.discount_price
+        return self.regular_price
+
+    @property
+    def get_discount_percentage(self):
+        if self.discount_price:
+            return f"{int(round((1 - (self.discount_price / self.regular_price)) * 100, 0))}%"
+        else:
+            return _("No discount")
 
 
 class ProductImage(models.Model):
