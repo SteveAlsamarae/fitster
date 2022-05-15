@@ -2,11 +2,7 @@
 {% load static %}
 
 {% block content %}
-{% comment %} 
-# TODO
-Make template with backend data 
-{% endcomment %}
-<main>
+<main class="pt-120">
     <div class="product_area pt-120 pb-110">
       <div class="container custome-container">
         <div class="row">
@@ -27,7 +23,7 @@ Make template with backend data
                 </div>
               </div>
               <div class="product_sidebar-widget mb-30">
-                <h5 class="classes_widget_title mb-25">
+                <h5 class="products_widget_title mb-25">
                   <i class="far fa-circle"></i> Category
                 </h5>
                 <ul class="product-catagory_list">
@@ -42,7 +38,7 @@ Make template with backend data
                 </ul>
               </div>
               <div class="product_sidebar-widget mb-30">
-                <h5 class="classes_widget_title mb-25">
+                <h5 class="products_widget_title mb-25">
                   <i class="far fa-circle"></i> Price Filter
                 </h5>
                 <div class="price__slider">
@@ -94,126 +90,63 @@ Make template with backend data
             </div>
             <div class="product">
               <div class="row">
+                {% if products %}
+                {% for product in products %}
                 <div class="col-lg-6 col-md-6">
                   <div class="product-item mb-40">
                     <div class="prouct-wrapper">
                       <div class="product_thum product_thum-new mb-30">
                         <div class="fix">
-                          <a href="shop-details.html"
-                            ><img
-                              src="assets/img/product/product-5.jpg"
+                          <a href="#">
+                            <img
+                              src="{{ product.get_first_product_img }}"
                               class="img-fluid"
-                              alt="product-img"
-                          /></a>
+                              alt="{{ product.title }}"
+                            />
+                        </a>
                         </div>
                         <div class="product-item-action">
                           <a href="#"><i class="far fa-heart"></i></a>
                           <a
-                            href="assets/img/product/product-5.jpg"
+                            href="{{ product.get_first_product_img }}"
                             class="image-popups"
-                            ><i class="fas fa-compress"></i
-                          ></a>
+                            >
+                            <i class="fas fa-compress"></i>
+                          </a>
                           <a href="#"><i class="far fa-exchange"></i></a>
                         </div>
+                        {% if product.sale_tag %}
                         <div class="sale-tag">
-                          <span class="new">new</span>
+                          <span class="{{ product.sale_tag |lower }}">{{ product.sale_tag }}</span>
                         </div>
+                        {% endif %}
                       </div>
                       <div class="product-content">
                         <div class="product-info">
                           <h5 class="product_name">
-                            <a href="shop-details.html">Hand Dumbell</a>
+                            <a href="#">{{ product.title }}</a>
                           </h5>
-                          <span class="product_price">$508.00</span>
+                          <div class="d-flex">
+                          {% if product.discount_price %}
+                          <s><span class="product_price product_discount">${{ product.regular_price }}</span></s>
+                          {% endif %}
+                          <span class="product_price">${{ product.get_product_price }}</span>
+                          </div>
                         </div>
                         <div class="product-button">
-                          <a href="shop-details.html" class="tp-btn-round-product"
-                            >buy now <i class="fal fa-chevron-double-right"></i
-                          ></a>
+                          <a href="#" class="tp-btn-round-product">
+                            buy now 
+                            <i class="fal fa-chevron-double-right"></i>
+                          </a>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                  <div class="product-item mb-40">
-                    <div class="prouct-wrapper">
-                      <div class="product_thum mb-30">
-                        <div class="fix">
-                          <a href="shop-details.html"
-                            ><img
-                              src="assets/img/product/product-6.jpg"
-                              class="img-fluid"
-                              alt="product-img"
-                          /></a>
-                        </div>
-                        <div class="product-item-action">
-                          <a href="#"><i class="far fa-heart"></i></a>
-                          <a
-                            href="assets/img/product/product-6.jpg"
-                            class="image-popups"
-                            ><i class="fas fa-compress"></i
-                          ></a>
-                          <a href="#"><i class="far fa-exchange"></i></a>
-                        </div>
-                      </div>
-                      <div class="product-content">
-                        <div class="product-info">
-                          <h5 class="product_name">
-                            <a href="shop-details.html">Fitness Grip</a>
-                          </h5>
-                          <span class="product_price">$408.00</span>
-                        </div>
-                        <div class="product-button">
-                          <a href="shop-details.html" class="tp-btn-round-product"
-                            >buy now <i class="fal fa-chevron-double-right"></i
-                          ></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                  <div class="product-item mb-40">
-                    <div class="prouct-wrapper">
-                      <div class="product_thum product_thum-new mb-30">
-                        <div class="fix">
-                          <a href="shop-details.html"
-                            ><img
-                              src="assets/img/product/product-7.jpg"
-                              class="img-fluid"
-                              alt="product-img"
-                          /></a>
-                        </div>
-                        <div class="product-item-action">
-                          <a href="#"><i class="far fa-heart"></i></a>
-                          <a
-                            href="assets/img/product/product-7.jpg"
-                            class="image-popups"
-                            ><i class="fas fa-compress"></i
-                          ></a>
-                          <a href="#"><i class="far fa-exchange"></i></a>
-                        </div>
-                        <div class="sale-tag">
-                          <span class="new">new</span>
-                        </div>
-                      </div>
-                      <div class="product-content">
-                        <div class="product-info">
-                          <h5 class="product_name">
-                            <a href="shop-details.html">Boxing Glove</a>
-                          </h5>
-                          <span class="product_price">$608.00</span>
-                        </div>
-                        <div class="product-button">
-                          <a href="shop-details.html" class="tp-btn-round-product"
-                            >buy now <i class="fal fa-chevron-double-right"></i
-                          ></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {% endfor %}
+                {% else %}
+                <h2>Sorry! We don't have any active products now.</h2>
+                {% endif %}
               </div>
             </div>
             <div class="row mt-40">
