@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}Fitster Shop{% endblock title %}
 
 {% block content %}
 <main class="pt-120">
@@ -97,7 +98,7 @@
                     <div class="prouct-wrapper">
                       <div class="product_thum product_thum-new mb-30">
                         <div class="fix">
-                          <a href="#">
+                          <a href="{{ product.get_absolute_url }}">
                             <img
                               src="{{ product.get_first_product_img }}"
                               class="img-fluid"
@@ -124,7 +125,7 @@
                       <div class="product-content">
                         <div class="product-info">
                           <h5 class="product_name">
-                            <a href="#">{{ product.title }}</a>
+                            <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
                           </h5>
                           <div class="d-flex">
                           {% if product.discount_price %}
@@ -134,7 +135,7 @@
                           </div>
                         </div>
                         <div class="product-button">
-                          <a href="#" class="tp-btn-round-product">
+                          <a href="{{ product.get_absolute_url }}" class="tp-btn-round-product">
                             buy now 
                             <i class="fal fa-chevron-double-right"></i>
                           </a>

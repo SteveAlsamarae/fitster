@@ -1,6 +1,6 @@
 {% load static %}
 <header class="top-nav">
-<div class="top-address d-none d-lg-block">
+<div class="top-address d-none d-lg-block bg-secondary">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-xxl-7 col-xl-5 col-lg-4 col-md-3">
@@ -36,7 +36,7 @@
         </div>
     </div>
 </div>
-<div class="menu-area" id="header-sticky">
+<div class="menu-area bg-dark" id="header-sticky">
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-xxl-12 col-xl-12 col-lg-12">
@@ -48,7 +48,7 @@
                     <nav id="mobile-menu">
                         <ul>
                         <li><a href="#" class="active">Home </a></li>
-                        <li><a href="#">Shop </a></li>
+                        <li><a href="{% url 'products:store' %}">Shop </a></li>
                         <li><a href="#">Classes </a></li>
                         <li><a href="#">Pricing </a></li>
                         <li><a href="#">Blog </a></li>
@@ -67,8 +67,14 @@
                     <a href="javascript:void(0)" class="info-toggle-btn f-right sidebar-toggle-btn"><i class="fal fa-bars"></i></a>
                 </div>
                 <div class="header-action-btn f-right d-none d-lg-block">
-                    <a href="cart.html"><i class="fas fa-shopping-basket"></i>
+                    <a href="{% url 'cart:summary' %}"><i class="fas fa-shopping-basket"></i>
+                        {% with request.user.cart as cart %}
+                        {% if cart %}
+                        <span>{{ cart.get_cart_items_count }}</span>
+                        {% else %}
                         <span>0</span>
+                        {% endif %}
+                        {% endwith %}
                     </a>
                     <a href="#" class="main-menu"><i class="fas fa-user-circle"></i>
                 </div>
