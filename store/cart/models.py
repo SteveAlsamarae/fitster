@@ -22,6 +22,11 @@ class Cart(models.Model):
 
         return self.cart_items.all()
 
+    def get_cart_items_count(self) -> int:
+        """Get total quantity of all products in cart."""
+
+        return sum([item.quantity for item in self.cart_items.all()])
+
     def get_total_quantity(self) -> int:
         """Get total quantity of all products in cart."""
 
@@ -38,21 +43,21 @@ class Cart(models.Model):
             total_price += item.get_product_regular_price()
         return total_price
 
-    def get_total_discount_price(self) -> float:
-        """Get total discount price of all products in cart."""
-
-        total_price = 0
-        for item in self.cart_items.all():
-            total_price += item.get_product_discount_price()
-        return total_price
-
     def get_total_discount(self) -> float:
         """Get total discount of all products in cart."""
 
         total_discount = 0
         for item in self.cart_items.all():
-            total_discount += item.get_product_discount()
+            total_discount += item.get_product_total_discount()
         return total_discount
+
+    def get_final_price(self) -> float:
+        """Get final price of all products in cart."""
+
+        total_price = 0
+        for item in self.cart_items.all():
+            total_price += item.get_product_discount_price()
+        return total_price
 
 
 class CartItem(models.Model):
@@ -67,7 +72,7 @@ class CartItem(models.Model):
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, verbose_name=_("Product")
     )
-    quantity = models.PositiveIntegerField(default=1)
+    quantity = models.PositiveIntegerField(default=0)
     item_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
