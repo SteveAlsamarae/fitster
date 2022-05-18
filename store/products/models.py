@@ -2,6 +2,7 @@ import uuid
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.shortcuts import reverse
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
@@ -63,8 +64,14 @@ class Product(models.Model):
         max_length=200,
         db_index=True,
     )
+    short_description = models.TextField(
+        verbose_name=_("Short Description"), max_length=500, blank=True
+    )
     description = models.TextField(
         verbose_name=_("Product Description"), help_text=_("Optional"), blank=True
+    )
+    additional_information = models.TextField(
+        verbose_name=_("Additional Product Information"), blank=True
     )
     slug = models.SlugField(max_length=300, unique=True)
     regular_price = models.DecimalField(
@@ -79,7 +86,9 @@ class Product(models.Model):
         blank=True,
     )
     stocks = models.IntegerField(verbose_name=_("Stocks"), default=0)
-    sale_tag = models.CharField(verbose_name=_("Sale Tag"), max_length=10, choices=SALE_TAGS, blank=True)
+    sale_tag = models.CharField(
+        verbose_name=_("Sale Tag"), max_length=10, choices=SALE_TAGS, blank=True
+    )
     is_active = models.BooleanField(
         verbose_name=_("Product visibility"),
         help_text=_("Change product visibility"),
@@ -104,12 +113,21 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse("products:product_detail", kwargs={"slug": self.slug})
+
     def get_product_images(self):
         return self.product_images.all()
 
     @property
     def get_first_product_img(self):
         return self.product_images.first().image.url
+
+    @property
+    def get_featured_img(self):
+        for img in self.product_images.all():
+            if img.is_feature:
+                return img.image.url
 
     @property
     def get_product_price(self):
