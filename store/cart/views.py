@@ -90,10 +90,12 @@ def clear_cart_view(request: HttpRequest) -> HttpResponse:
     """
 
     if request.method == "POST":
-        if request.user.cart:
-            cart = request.user.cart
-        else:
+        try:
+            if request.user.cart:
+                cart = request.user.cart
+        except ObjectDoesNotExist:
             cart = Cart.objects.create(user=request.user)
+
         cart.cart_items.all().delete()
         return redirect("cart:summary")
     else:
@@ -111,15 +113,18 @@ def update_cart_view(request: HttpRequest) -> HttpResponse:
     """
 
     if request.method == "POST":
-        if request.user.cart:
-            cart = request.user.cart
-        else:
+        try:
+            if request.user.cart:
+                cart = request.user.cart
+        except ObjectDoesNotExist:
             cart = Cart.objects.create(user=request.user)
-        product_id = request.POST.get("product_id")
-        quantity = request.POST.get("quantity")
-        cart_item = CartItem.objects.get(cart=cart, product_id=product_id)
-        cart_item.quantity = quantity
-        cart_item.save()
+
+        for i, item in enumerate(cart.cart_items.all()):
+            product_id = request.POST.get(str(item.product.id))
+            quantity = request.POST.get("quantity_" + str(i + 1))
+            cart_item = CartItem.objects.get(cart=cart, product_id=product_id)
+            cart_item.quantity = quantity
+            cart_item.save()
         return redirect("cart:summary")
     else:
         return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
