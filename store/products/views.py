@@ -26,7 +26,13 @@ def store_view(request: HttpRequest) -> HttpResponse:
 
 def product_detail_view(request: HttpRequest, slug: str = None) -> HttpResponse:
     product = get_object_or_404(Product, slug=slug, is_active=True)
-    return render(request, "products/product_details.html", {"product": product})
+    return render(
+        request,
+        "store/product_details.html",
+        {
+            "product": product,
+        },
+    )
 
 
 def products_in_category_view(
