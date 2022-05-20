@@ -47,6 +47,7 @@ LOCAL_APPS = [
     "store.products",
     "store.cart",
     "store.orders",
+    "store.checkout",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

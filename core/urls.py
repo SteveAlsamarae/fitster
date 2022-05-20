@@ -11,6 +11,7 @@ urlpatterns = [
     # local
     path("shop/", include("store.products.urls")),
     path("shop/cart/", include("store.cart.urls")),
+    path("shop/cart/checkout/", include("store.checkout.urls")),
     path("shop/cart/checkout/order/", include("store.orders.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
