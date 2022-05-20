@@ -1,5 +1,4 @@
 import stripe
-from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
@@ -12,8 +11,7 @@ from users.models import DeliveryAddress
 
 from .forms import AddressForm
 
-User = get_user_model()
-
+SHIPPING_FEE: float = 7.00
 stripe.api_key = djstripe_settings.djstripe_settings.STRIPE_SECRET_KEY
 
 
@@ -35,7 +33,7 @@ def checkout_view(request: HttpRequest) -> HttpResponse:
         user_address = None
 
     if cart.cart_items.count():
-        shipping_fee: float = 7.00
+        shipping_fee: float = SHIPPING_FEE
         sub_total: float = round((float(cart.get_final_price()) + shipping_fee), 2)
 
         form = AddressForm()

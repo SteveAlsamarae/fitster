@@ -7,6 +7,7 @@ from djstripe import settings as djstripe_settings
 from store.cart.models import Cart
 
 from .models import Order, OrderItem
+from store.checkout.views import SHIPPING_FEE
 
 stripe.api_key = djstripe_settings.djstripe_settings.STRIPE_SECRET_KEY
 
@@ -25,7 +26,7 @@ def create_order_view(request: HttpRequest) -> HttpResponse:
     data = session["data"][0]
     payment_status = data["payment_status"]
 
-    stripe_ses_id_in_db = Order.objects.filter(stripe_session_id=session["id"])
+    stripe_ses_id_in_db = Order.objects.filter(stripe_session_id=data["id"])
 
     if stripe_ses_id_in_db.exists():
         return redirect("products:store")
@@ -36,6 +37,9 @@ def create_order_view(request: HttpRequest) -> HttpResponse:
                 cart = request.user.cart
         except ObjectDoesNotExist:
             cart = Cart.objects.create(user=request.user)
+
+        shipping_fee: float = SHIPPING_FEE
+        sub_total: float = round((float(cart.get_final_price()) + shipping_fee), 2)
 
         if cart.cart_items.count():
             order = Order.objects.create(user=request.user)
@@ -53,6 +57,8 @@ def create_order_view(request: HttpRequest) -> HttpResponse:
         else:
             return redirect("products:store")
 
-        return render(request, "store/success.html", {"order": order})
+        return render(
+            request, "store/success.html", {"order": order, "sub_total": sub_total}
+        )
 
     return redirect("products:store")
