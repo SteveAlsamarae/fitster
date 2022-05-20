@@ -55,24 +55,24 @@ def checkout_view(request: HttpRequest) -> HttpResponse:
     return redirect("products:store")
 
 
-def checkout_session_veiw(request):
-    success_url = request.build_absolute_uri(reverse("orders:create_success"))
-    cancel_url = request.build_absolute_uri(reverse("products:store"))
+def checkout_session_veiw(request: HttpRequest) -> HttpResponse:
+    success_url: str = request.build_absolute_uri(reverse("orders:create_success"))
+    cancel_url: str = request.build_absolute_uri(reverse("products:store"))
 
     if request.method == "POST":
-        total_price = request.POST.get("total_price")
-        total_price = int(float(total_price) * 100)
+        total_price: str = request.POST.get("total_price")
+        total_price: int = int(float(total_price) * 100)
 
-        name = request.POST.get("full_name")
-        phone = request.POST.get("phone")
-        city = request.POST.get("city")
-        d_address = request.POST.get("address")
-        area = request.POST.get("area")
-        post_code = request.POST.get("post_code")
-        has_shipping_address = request.POST.get("has_shipping_address")
+        name: str = request.POST.get("full_name")
+        phone: str = request.POST.get("phone")
+        city: str = request.POST.get("city")
+        d_address: str = request.POST.get("address")
+        area: str = request.POST.get("area")
+        post_code: str = request.POST.get("post_code")
+        has_shipping_address: str = request.POST.get("has_shipping_address")
 
         try:
-            address = DeliveryAddress.objects.filter(
+            address: object = DeliveryAddress.objects.filter(
                 customer=request.user, is_default=True
             ).first()
             if address:
@@ -84,7 +84,7 @@ def checkout_session_veiw(request):
                 address.postcode = post_code
                 address.save()
             else:
-                address = DeliveryAddress.objects.create(
+                address: object = DeliveryAddress.objects.create(
                     customer=request.user,
                     name=name,
                     phone=phone,
@@ -94,24 +94,24 @@ def checkout_session_veiw(request):
                     postcode=post_code,
                 )
         except ObjectDoesNotExist:
-            print("ObjectDoesNotExist")
+            print("DeliveryAddress ObjectDoesNotExist")
 
         if has_shipping_address == "on":
             address.is_shipping_address = False
             address.save()
 
-            shipping_addresses = DeliveryAddress.objects.filter(
+            shipping_addresses: object = DeliveryAddress.objects.filter(
                 is_shipping_address=True, customer=request.user
             )
             if shipping_addresses:
                 shipping_addresses.delete()
 
-            s_name = request.POST.get("s_name")
-            s_phone = request.POST.get("s_phone")
-            s_city = request.POST.get("s_city")
-            s_address = request.POST.get("s_address")
-            s_area = request.POST.get("s_area")
-            s_post_code = request.POST.get("s_post_code")
+            s_name: str = request.POST.get("s_name")
+            s_phone: str = request.POST.get("s_phone")
+            s_city: str = request.POST.get("s_city")
+            s_address: str = request.POST.get("s_address")
+            s_area: str = request.POST.get("s_area")
+            s_post_code: str = request.POST.get("s_post_code")
 
             DeliveryAddress.objects.create(
                 name=s_name,
@@ -126,9 +126,7 @@ def checkout_session_veiw(request):
             )
 
         try:
-            customer = models.Customer.objects.get(subscriber=request.user)
-
-            print("Customer Object in DB.")
+            customer: object = models.Customer.objects.get(subscriber=request.user)
 
             session = stripe.checkout.Session.create(
                 payment_method_types=["card"],
@@ -152,7 +150,6 @@ def checkout_session_veiw(request):
             )
 
         except models.Customer.DoesNotExist:
-            print("Customer Object not in DB.")
 
             session = stripe.checkout.Session.create(
                 payment_method_types=["card"],

@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Checkout</title>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var stripe = Stripe("{{STRIPE_PUBLIC_KEY}}");
+      stripe.redirectToCheckout({
+            sessionId: '{{CHECKOUT_SESSION_ID}}'
+        })
+        .then(function (result) {
+            if (result.error) {
+                alert(result.error.message);
+            }
+        })
+        .catch(function (error) {
+          console.error("Error:", error);
+       });
+    </script>
+  </body>
+</html>

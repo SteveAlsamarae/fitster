@@ -41,6 +41,7 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "crispy_forms",
     "crispy_bootstrap5",
+    "djstripe",
 ]
 LOCAL_APPS = [
     "users.apps.UsersConfig",
@@ -181,3 +182,24 @@ LOGGING = {
         }
     },
 }
+
+# Stripe settings
+try:
+    STRIPE_LIVE_MODE_KEY = env("STRIPE_LIVE_MODE_KEY")
+    STRIPE_TEST_MODE_KEY = env("STRIPE_TEST_MODE_KEY")
+    STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
+    DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
+    STRIPE_LIVE_MODE = env("STRIPE_LIVE_MODE")
+    DJSTRIPE_FOREIGN_KEY_TO_FIELD = env("DJSTRIPE_FOREIGN_KEY_TO_FIELD")
+
+except Exception as excep:
+    STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", "")
+    STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", "")
+    STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "")
+    DJSTRIPE_WEBHOOK_SECRET = os.environ.get("DJSTRIPE_WEBHOOK_SECRET", "wh_secret")
+    STRIPE_LIVE_MODE = os.environ.get("STRIPE_LIVE_MODE", "False")
+    DJSTRIPE_FOREIGN_KEY_TO_FIELD = os.environ.get(
+        "DJSTRIPE_FOREIGN_KEY_TO_FIELD", "id"
+    )
+
+    print("Stripe keys not found using environment variables.", excep)

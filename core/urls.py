@@ -8,6 +8,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # 3rd parties
     path("accounts/", include("allauth.urls")),
+    path("stripe/", include("djstripe.urls", namespace="djstripe")),
     # local
     path("shop/", include("store.products.urls")),
     path("shop/cart/", include("store.cart.urls")),
