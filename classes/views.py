@@ -98,3 +98,101 @@ def fitness_subscription_pricing_view(request: HttpRequest) -> HttpResponse:
     plans: list[object] = FitnessSubscriptionPlan.objects.all()
 
     return render(request, "classes/pricing.html", {"fitness_plans": plans})
+
+
+@login_required
+def fitness_subscription_checkout(request: HttpRequest) -> HttpResponse:
+    """Fitness subscription checkout.
+
+    Args:
+        request (HttpRequest): The request object.
+
+    Returns:
+        HttpResponse: Django response object.
+    """
+
+    customer_subscription: list[object] = FintnessSubscription.objects.filter(
+        customer=request.user
+    )
+
+    if customer_subscription.exists() and customer_subscription.first().is_active:
+        return redirect("classes:index")
+
+    success_url: str = request.build_absolute_uri(
+        reverse("classes:subscription_success")
+    )
+    cancel_url: str = request.build_absolute_uri(reverse("classes:index"))
+
+    if request.method == "POST":
+        price_id: str = request.POST.get("price_id")
+
+        session: dict = stripe.checkout.Session.create(
+            payment_method_types=["card"],
+            line_items=[
+                {
+                    "price": price_id,
+                    "quantity": 1,
+                },
+            ],
+            mode="subscription",
+            success_url=success_url + "?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url=cancel_url,
+        )
+
+    return render(
+        request,
+        "classes/checkout_session.html",
+        {
+            "CHECKOUT_SESSION_ID": session.id,
+            "STRIPE_PUBLIC_KEY": djstripe_settings.djstripe_settings.STRIPE_PUBLIC_KEY,
+        },
+    )
+
+
+@login_required
+def subscription_success(request: HttpRequest) -> HttpResponse:
+    """Fitness subscription checkout success.
+
+    Args:
+        request (HttpRequest): The request object.
+
+    Returns:
+        HttpResponse: Django response object.
+    """
+
+    session: dict = stripe.checkout.Session.list(limit=1)
+    data: dict = session["data"][0]
+    payment_status: str = data["payment_status"]
+
+    stripe_ses_id_in_db: list[object] = FintnessSubscription.objects.filter(
+        stripe_session_key=data["id"]
+    )
+
+    if stripe_ses_id_in_db.exists():
+        return redirect("classes:index")
+
+    customer_subscription: list[object] = FintnessSubscription.objects.filter(
+        customer=request.user
+    )
+
+    if customer_subscription.exists():
+        if customer_subscription.first().is_active:
+            return redirect("classes:index")
+
+    if payment_status == "paid":
+        sub: object = stripe.SubscriptionItem.list(subscription=data["subscription"])
+        price_id: str = sub["data"][0]["plan"]["id"]
+        fitness_plan: object = FitnessSubscriptionPlan.objects.get(
+            stripe_price_id=price_id
+        )
+
+        subscription = FintnessSubscription.objects.create(
+            fitness_plan=fitness_plan,
+            customer=request.user,
+            stripe_session_key=data["id"],
+            stripe_sub_key=data["subscription"],
+        )
+        subscription.is_active = True
+        subscription.save()
+
+    return render(request, "classes/subscription_success.html")
