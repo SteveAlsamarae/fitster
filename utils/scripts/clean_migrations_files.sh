@@ -1,5 +1,7 @@
 #! /bin/bash
 
+. ./utils/scripts/clean_media.sh
+
 function clean_mgs(){
     # Description:
     #   Clean the migrations files.
@@ -23,6 +25,8 @@ function clean_mgs(){
     find $root_dir -path "*/*/migrations/*.pyc"  -delete
 
     find $root_dir -path "*/db.sqlite3" -delete
+
+    clean_media
 
     DJANGO_SUPERUSER_PASSWORD="admin"
     export DJANGO_SUPERUSER_PASSWORD
