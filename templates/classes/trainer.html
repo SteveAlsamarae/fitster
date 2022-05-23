@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} All fitness classes | Fitster {% endblock title %}
+
+{% block content %}
+<main class="pt-120">
+    <div class="trainer_details_area pt-120 pb-120">
+       <div class="container custome-container">
+          <div class="row align-items-center">
+             <div class="col-lg-6">
+                <div class="trainer_details_image mb-40">
+                   <img src="{{ trainer.avater.url }}" alt="{{ trainer.name }}">
+                </div>
+             </div>
+             <div class="col-lg-6">
+                <div class="trainer_main_info mb-40">
+                   <h4 class="trainer_dtitle">{{ trainer.name }}</h4>
+                   <span class="trainer_d-degination mb-25">{{ trainer.title }}</span>
+                   <p class="mb-30">
+                        {{ trainer.introduction }}
+                   </p>
+                   <div class="trainer_contact-info mb-40">
+                      <ul>
+                         <li class="d-flex align-items-start mb-30">
+                            <div class="trainer_contact-icon mr-20">
+                               <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="trainer_contact-text">
+                               <a href="tel:+{{ trainer.phone }}">+{{ trainer.phone_number }}</a>
+                            </div>
+                         </li>
+                         <li class="d-flex align-items-start pt-5 mb-30">
+                            <div class="trainer_contact-icon mr-20">
+                               <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="trainer_contact-text">
+                               <a target="_blank" href="#">{{ trainer.address }}</a>
+                            </div>
+                         </li>
+                         <li class="d-flex align-items-start mb-30">
+                            <div class="trainer_contact-icon mr-20">
+                               <i class="fas fa-envelope-open"></i>
+                            </div>
+                            <div class="trainer_contact-text">
+                               <a href="mailto:{{ trainer.email }}">{{ trainer.email }}</a>
+                            </div>
+                         </li>
+                      </ul>
+                   </div>
+                   <div class="trainer-social_icon">
+                      <a href="#"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#"><i class="fab fa-twitter"></i></a>
+                      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                   </div>
+                </div>
+             </div>
+          </div>
+          <h5 class="trainer_ds-title mb-15">Personal Summery</h5>
+          <p class="mb-35">
+                {{ trainer.personal_summery }}
+          </p>
+          <div class="row">
+             <div class="col-lg-6">
+                <h5 class="trainer_ds-title mb-15">Professional Skills</h5>
+                <div class="tp-skill--content">
+                {% for t_skill in trainer.get_trainer_skills %}
+                    {% if forloop.first %}
+                    <div class="tp-skill__wrapper tp-skill__wrapper-s mb-25 fix">
+                    {% else %}
+                    <div class="tp-skill__wrapper mb-30 fix">
+                    {% endif %}
+                    <div class="tp-skill--title__wrapper">
+                        <h5 class="tp-skill--title">{{ t_skill.skill }}</h5>
+                    </div>
+                    <div class="progress progress-two">
+                        <div 
+                            class="progress-bar progress-bar-two wow slideInLeft" 
+                            data-wow-duration="1s" data-wow-delay=".3s" 
+                            role="progressbar" 
+                            data-width="{{ t_skill.efficiency }}%" 
+                            aria-valuenow="{{ t_skill.efficiency }}" 
+                            aria-valuemin="0" aria-valuemax="100"
+                        >
+                            <span>{{ t_skill.efficiency }}%</span>
+                        </div>
+                    </div>
+                   </div>
+                {% endfor %}
+                </div>
+             </div>
+             <div class="col-lg-6">
+                <h5 class="trainer_ds-title mb-20">Get In Touch</h5>
+                <div class="tp-trainer-form">
+                   <div class="row">
+                      <div class="col-md-12 custom-pad-20">
+                            <div class="tp-trainer-form-field mb-30">
+                               <textarea placeholder="Your Message"></textarea>
+                            </div>
+                      </div>
+                       <div class="col-md-6">
+                           <div class="tp-trainer-form-field mb-30">
+                               <input type="text" placeholder="Full name">
+                           </div>
+                       </div>
+                       <div class="col-md-6">
+                           <div class="tp-trainer-form-field mb-35">
+                               <input type="email" placeholder="Email Address">
+                           </div>
+                       </div>
+                       <div class="col-md-12">
+                           <div class="tp-trainer-form-field">
+                               <button type="submit" class="tp-btn-trainer-round">Send Message <i class="fal fa-chevron-double-right"></i> </button>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </main>
+{% endblock %}
