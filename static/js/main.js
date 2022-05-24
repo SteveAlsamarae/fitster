@@ -123,4 +123,54 @@
       .find(".hover__active")
       .removeClass("active");
   });
+
+  $("[data-background").each(function () {
+    $(this).css(
+      "background-image",
+      "url( " + $(this).attr("data-background") + "  )"
+    );
+  });
+
+  $("[data-width]").each(function () {
+		$(this).css("width", $(this).attr("data-width"));
+	});
+
+  // Testimonial
+  if (jQuery(".testimonial_active").length > 0) {
+    let testimonialTwo = new Swiper(".testimonial_active", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: {
+        delay: 6000,
+      },
+
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".ts-button-next",
+        prevEl: ".ts-button-prev",
+      },
+
+      scrollbar: {
+        el: ".swiper-scrollbar",
+      },
+      breakpoints: {
+        550: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 1,
+        },
+        1200: {
+          slidesPerView: 1,
+        },
+        1400: {
+          slidesPerView: 1,
+        },
+      },
+    });
+  }
 })(jQuery);
