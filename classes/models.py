@@ -26,7 +26,7 @@ class Trainer(models.Model):
     name = models.CharField(max_length=50, verbose_name=_("Name"))
     slug = models.SlugField(verbose_name=_("Slug"), unique=True, blank=True, null=True)
     title = models.CharField(max_length=50, verbose_name=_("Trainer title"))
-    avater = models.ImageField(upload_to="avaters", verbose_name=_("Avater"))
+    avatar = models.ImageField(upload_to="avatars", verbose_name=_("avatar"))
     introduction = models.TextField(verbose_name=_("Introduction"))
     personal_summery = models.TextField(verbose_name=_("Personal summery"))
     email = models.EmailField(verbose_name=_("Email"))

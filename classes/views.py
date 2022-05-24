@@ -141,7 +141,7 @@ def fitness_subscription_checkout(request: HttpRequest) -> HttpResponse:
 
     return render(
         request,
-        "classes/checkout_session.html",
+        "store/checkout_session.html",
         {
             "CHECKOUT_SESSION_ID": session.id,
             "STRIPE_PUBLIC_KEY": djstripe_settings.djstripe_settings.STRIPE_PUBLIC_KEY,
