@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import UserProfile, DeliveryAddress
+from .models import DeliveryAddress, UserProfile
 
 
 class UserUpdateForm(forms.ModelForm):
@@ -23,7 +23,7 @@ class DeliveryAddressForm(forms.ModelForm):
 
     class Meta:
         model = DeliveryAddress
-        fields = ["name", "phone", "city", "postcode", "area", "address"]
+        fields = ["name", "phone", "city", "postcode", "area", "address", "is_shipping_address"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
