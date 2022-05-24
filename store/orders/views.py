@@ -5,9 +5,9 @@ from django.shortcuts import redirect, render
 from djstripe import settings as djstripe_settings
 
 from store.cart.models import Cart
+from store.checkout.views import SHIPPING_FEE
 
 from .models import Order, OrderItem
-from store.checkout.views import SHIPPING_FEE
 
 stripe.api_key = djstripe_settings.djstripe_settings.STRIPE_SECRET_KEY
 
