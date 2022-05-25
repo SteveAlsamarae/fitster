@@ -1,9 +1,18 @@
+{% load thumbnail %}
+
 {% if cart.get_all_cart_item %}
 {% for item in cart.get_all_cart_item %}
 <tr>
     <td class="product-thumbnail">
     <a href="{{ item.product.get_absolute_url }}">
-        <img src="{{ item.product.get_featured_img }}" alt="{{ item.product.title }}">
+        {% thumbnail item.product.get_featured_img "125x125" crop="center" as img %}
+            <img
+                src="{{ img.url }}"
+                width="{{ img.width }}"
+                height="{{ img.height }}"
+                alt="{{ product_img_obj.product.title }}"
+            />
+        {% endthumbnail %}
     </a>
     </td>
     <td class="product-name">

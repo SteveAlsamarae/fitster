@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block title %} {{ product.title }} {% endblock title %}
 
@@ -16,13 +17,27 @@
                 {% if product_img_obj.is_feature %}
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="pro-{{ product_img_obj.pk }}-tab" data-bs-toggle="tab" data-bs-target="#pro-{{ product_img_obj.pk }}" type="button" role="tab" aria-controls="pro-{{ product_img_obj.pk }}" aria-selected="true">
-                    <img src="{{ product_img_obj.image.url }}" alt="{{ product_img_obj.product.title }}">
+                    {% thumbnail product_img_obj.image "165x165" crop="center" as img %}
+                        <img
+                          src="{{ img.url }}"
+                          width="{{ img.width }}"
+                          height="{{ img.height }}"
+                          alt="{{ product_img_obj.product.title }}"
+                        />
+                    {% endthumbnail %}
                     </button>
                 </li>
                 {% else %}
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="pro-{{ product_img_obj.pk }}-tab" data-bs-toggle="tab" data-bs-target="#pro-{{ product_img_obj.pk }}" type="button" role="tab" aria-controls="pro-{{ product_img_obj.pk }}" aria-selected="true">
-                    <img src="{{ product_img_obj.image.url }}" alt="{{ product_img_obj.product.title }}">
+                    {% thumbnail product_img_obj.image "165x165" crop="center" as img %}
+                        <img
+                          src="{{ img.url }}"
+                          width="{{ img.width }}"
+                          height="{{ img.height }}"
+                          alt="{{ product_img_obj.product.title }}"
+                        />
+                    {% endthumbnail %}
                     </button>
                 </li>
                 {% endif %}
@@ -36,11 +51,27 @@
                     {% for product_img_obj in product.get_product_images %}
                     {% if product_img_obj.is_feature %}
                     <div class="tab-pane fade show active" id="pro-{{ product_img_obj.pk }}" role="tabpanel" aria-labelledby="pro-{{ product_img_obj.pk }}-tab">
-                        <img class="active" src="{{ product_img_obj.image.url }}" alt="{{ product_img_obj.product.title }}">
+                        {% thumbnail product_img_obj.image "555x610" crop="center" as img %}
+                            <img
+                            src="{{ img.url }}"
+                            class="active"
+                            width="{{ img.width }}"
+                            height="{{ img.height }}"
+                            alt="{{ product_img_obj.product.title }}"
+                            />
+                        {% endthumbnail %}
                     </div>
                     {% else %}
                     <div class="tab-pane fade" id="pro-{{ product_img_obj.pk }}" role="tabpanel" aria-labelledby="pro-{{ product_img_obj.pk }}-tab">
-                        <img class="active" src="{{ product_img_obj.image.url }}" alt="{{ product_img_obj.product.title }}">
+                        {% thumbnail product_img_obj.image "555x610" crop="center" as img %}
+                            <img
+                            src="{{ img.url }}"
+                            class="active"
+                            width="{{ img.width }}"
+                            height="{{ img.height }}"
+                            alt="{{ product_img_obj.product.title }}"
+                            />
+                        {% endthumbnail %}
                     </div>
                     {% endif %}
                     {% endfor %}

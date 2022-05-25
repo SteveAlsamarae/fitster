@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load thumbnail %}
+
 {% block title %}Fitster Shop{% endblock title %}
 
 {% block content %}
@@ -92,18 +94,22 @@
             <div class="product">
               <div class="row">
                 {% if products %}
-                {% for product in products %}
+                {% for product in page_obj %}
                 <div class="col-lg-6 col-md-6">
                   <div class="product-item mb-40">
                     <div class="prouct-wrapper">
                       <div class="product_thum product_thum-new mb-30">
                         <div class="fix">
                           <a href="{{ product.get_absolute_url }}">
-                            <img
-                              src="{{ product.get_first_product_img }}"
-                              class="img-fluid"
-                              alt="{{ product.title }}"
-                            />
+                            {% thumbnail product.get_first_product_img "360x400" crop="center" as img %}
+                                <img
+                                  src="{{ img.url }}"
+                                  class="img-fluid"
+                                  width="{{ img.width }}"
+                                  height="{{ img.height }}"
+                                  alt="{{ product.title }}"
+                                />
+                            {% endthumbnail %}
                         </a>
                         </div>
                         <div class="product-item-action">
