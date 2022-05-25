@@ -41,10 +41,21 @@ class Trainer(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-            super().save(Trainer, *args, **kwargs)
-        return
+        if not self.id and not self.slug:
+            slug = slugify(self.name)
+            slug_exists = True
+            counter = 1
+            self.slug = slug
+            while slug_exists:
+                try:
+                    slug_exits = Trainer.objects.get(slug=slug)
+                    if slug_exits:
+                        slug = self.slug + '_' + str(counter)
+                        counter += 1
+                except Trainer.DoesNotExist:
+                    self.slug = slug
+                    break
+        super(Trainer, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse("classes:trainer", kwargs={"slug": self.slug})
@@ -102,10 +113,21 @@ class FitnessClass(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-            super().save(FitnessClass, *args, **kwargs)
-        return
+        if not self.id and not self.slug:
+            slug = slugify(self.name)
+            slug_exists = True
+            counter = 1
+            self.slug = slug
+            while slug_exists:
+                try:
+                    slug_exits = FitnessClass.objects.get(slug=slug)
+                    if slug_exits:
+                        slug = self.slug + '_' + str(counter)
+                        counter += 1
+                except FitnessClass.DoesNotExist:
+                    self.slug = slug
+                    break
+        super(FitnessClass, self).save(*args, **kwargs)
 
     def get_absolute_url(self) -> str:
         return reverse("classes:details", kwargs={"slug": self.slug})
@@ -205,7 +227,7 @@ class FintnessSubscription(models.Model):
     is_active = models.BooleanField(default=False, verbose_name=_("Is active"))
 
     def __str__(self) -> str:
-        return self.name
+        return self.fitness_plan.name
 
     class Meta:
         verbose_name = _("Fitness subscription")
