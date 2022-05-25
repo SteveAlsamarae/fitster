@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block title %} Pricing | Fitster {% endblock title %}
 
@@ -26,14 +27,28 @@
                       <div class="price_item mb-30 wow fadeInUp" data-wow-delay=".6s">
                         {% if forloop.counter == 2 %}
                         <div class="priceing_image priceing_image-active mb-10 ">
-                            <img src="{{ plan.thumbnail.url }}" alt="{{ plan.name }}" class="img-fluid">
+                            {% thumbnail plan.thumbnail "350x220" crop="center" as img %}
+                              <img
+                              src="{{ img.url }}"
+                              width="{{ img.width }}"
+                              height="{{ img.height }}"
+                              alt="{{ plan.name }}"
+                              />
+                           {% endthumbnail %}
                             <div class="price__popular">
                                 <span>popular</span>
                              </div>
                          </div>
                          {% else %}
                          <div class="priceing_image mb-10">
-                            <img src="{{ plan.thumbnail.url }}" alt="{{ plan.name }}" class="img-fluid">
+                            {% thumbnail plan.thumbnail "350x220" crop="center" as img %}
+                              <img
+                              src="{{ img.url }}"
+                              width="{{ img.width }}"
+                              height="{{ img.height }}"
+                              alt="{{ plan.name }}"
+                              />
+                           {% endthumbnail %}
                          </div>
                         {% endif %}
                          {% if forloop.counter == 2 %}
