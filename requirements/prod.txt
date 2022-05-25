@@ -13,3 +13,4 @@ django-resized
 Pillow
 whitenoise
 django-mptt
+django-htmx

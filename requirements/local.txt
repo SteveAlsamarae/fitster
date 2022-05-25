@@ -15,3 +15,4 @@ django-debug-toolbar
 Werkzeug
 flake8
 black
+django-htmx
