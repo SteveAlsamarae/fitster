@@ -14,3 +14,4 @@ Pillow
 whitenoise
 django-mptt
 django-htmx
+sorl-thumbnail==12.8.0

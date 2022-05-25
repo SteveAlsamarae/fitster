@@ -43,6 +43,7 @@ THIRD_PARTY_APPS = [
     "crispy_bootstrap5",
     "djstripe",
     "django_htmx",
+    "sorl.thumbnail",
 ]
 LOCAL_APPS = [
     "users.apps.UsersConfig",
@@ -50,7 +51,7 @@ LOCAL_APPS = [
     "store.cart",
     "store.orders",
     "store.checkout",
-    "classes"
+    "classes",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

@@ -16,3 +16,4 @@ Werkzeug
 flake8
 black
 django-htmx
+sorl-thumbnail==12.8.0
