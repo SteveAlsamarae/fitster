@@ -1,11 +1,10 @@
-from django.db import models
-from django.contrib.auth.models import User
-from django.core.validators import RegexValidator
-from django.utils.translation import gettext_lazy as _
-
-from django_resized import ResizedImageField
 import uuid
 
+from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+from django_resized import ResizedImageField
 
 PHONE_NUMBER_VALIDATOR = RegexValidator(r"^[0-9]{11}$", "Enter a valid phone number.")
 NAME_VALIDATOR = RegexValidator(
@@ -35,7 +34,7 @@ class UserProfile(models.Model):
     def __str__(self):
         return f"{self.user.username}'s profile"
 
-    # delete user's avater when user is deleted
+    # delete user's avatar when user is deleted
     def delete(self, *args, **kwargs):
         self.avatar.delete()
 
@@ -49,16 +48,21 @@ class DeliveryAddress(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     customer = models.ForeignKey(
-        UserProfile, verbose_name=_("Customer"), on_delete=models.CASCADE
+        User,
+        verbose_name=_("Customer"),
+        on_delete=models.CASCADE,
+        related_name="addresses",
     )
     name = models.CharField(_("Full Name"), max_length=150)
     phone = models.CharField(_("Contact Number"), max_length=50)
     city = models.CharField(_("City/State"), max_length=150)
     postcode = models.CharField(_("Postcode"), max_length=50)
     area = models.CharField(_("Area"), max_length=255)
-    address = models.CharField(_("Address"), max_length=255, blank=True)
+    address = models.CharField(_("Address"), max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(_("Created at"), auto_now_add=True)
     updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
+    is_default = models.BooleanField(default=True)
+    is_shipping_address = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "Address"

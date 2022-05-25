@@ -49,6 +49,7 @@ LOCAL_APPS = [
     "store.cart",
     "store.orders",
     "store.checkout",
+    "classes"
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -75,7 +76,7 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = "products:store"
 ACCOUNT_EMAIL_REQUIRED = True
 
 # SOCIALACCOUNT_PROVIDERS = {
@@ -185,21 +186,23 @@ LOGGING = {
 
 # Stripe settings
 try:
-    STRIPE_LIVE_MODE_KEY = env("STRIPE_LIVE_MODE_KEY")
-    STRIPE_TEST_MODE_KEY = env("STRIPE_TEST_MODE_KEY")
+    STRIPE_LIVE_SECRET_KEY = env("STRIPE_LIVE_SECRET_KEY")
+    STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
     STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
     DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
-    STRIPE_LIVE_MODE = env("STRIPE_LIVE_MODE")
+    STRIPE_LIVE_MODE = bool(env("STRIPE_LIVE_MODE"))
     DJSTRIPE_FOREIGN_KEY_TO_FIELD = env("DJSTRIPE_FOREIGN_KEY_TO_FIELD")
+    DJSTRIPE_USE_NATIVE_JSONFIELD = True
 
 except Exception as excep:
     STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", "")
     STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", "")
     STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "")
     DJSTRIPE_WEBHOOK_SECRET = os.environ.get("DJSTRIPE_WEBHOOK_SECRET", "wh_secret")
-    STRIPE_LIVE_MODE = os.environ.get("STRIPE_LIVE_MODE", "False")
+    STRIPE_LIVE_MODE = os.environ.get("STRIPE_LIVE_MODE", False)
     DJSTRIPE_FOREIGN_KEY_TO_FIELD = os.environ.get(
         "DJSTRIPE_FOREIGN_KEY_TO_FIELD", "id"
     )
+    DJSTRIPE_USE_NATIVE_JSONFIELD = True
 
-    print("Stripe keys not found using environment variables.", excep)
+    print("Stripe keys not found using django-environ", excep)

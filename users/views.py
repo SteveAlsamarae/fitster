@@ -1,13 +1,9 @@
-from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.contrib import messages
+from django.shortcuts import redirect, render
 
-from .forms import (
-    UserUpdateForm,
-    UserProfileUpdateForm,
-    DeliveryAddressForm,
-)
+from .forms import DeliveryAddressForm, UserProfileUpdateForm, UserUpdateForm
 from .models import DeliveryAddress
 
 # TODO:
