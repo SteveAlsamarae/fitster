@@ -105,4 +105,22 @@
     $button.parent().find("input").val(newVal);
     $("#quantity_val").val(newVal);
   });
+
+  $("#ship-box").on("click", function () {
+    $("#ship-box-info").slideToggle(1000);
+  });
+
+  $(".counter").counterUp({
+    delay: 10,
+    time: 1000,
+  });
+
+  $(".hover__active").on("mouseenter", function () {
+    $(this)
+      .addClass("active")
+      .parent()
+      .siblings()
+      .find(".hover__active")
+      .removeClass("active");
+  });
 })(jQuery);
