@@ -132,8 +132,8 @@
   });
 
   $("[data-width]").each(function () {
-		$(this).css("width", $(this).attr("data-width"));
-	});
+    $(this).css("width", $(this).attr("data-width"));
+  });
 
   // Testimonial
   if (jQuery(".testimonial_active").length > 0) {
@@ -171,6 +171,68 @@
           slidesPerView: 1,
         },
       },
+    });
+  }
+
+  var total = 0;
+  var cart_qty_val = document.getElementsByClassName("cart-item-qty");
+
+  for (var i = 0; i < cart_qty_val.length; i++) {
+    total += parseInt(cart_qty_val[i].value);
+  }
+  $(".qtybutton").on("click", function () {
+    var $button = $(this);
+    var oldValue = total;
+    if ($button.text() == "+") {
+      var newVal = oldValue + 1;
+    } else {
+      if (oldValue > 0) {
+        var newVal = oldValue - 1;
+      } else {
+        newVal = 0;
+      }
+    }
+    total = newVal;
+  });
+
+  var qtybutton = document.querySelectorAll(".qtybutton");
+  for (var i = 0; i < qtybutton.length; i++) {
+    qtybutton[i].addEventListener("click", function (e) {
+      var get_qty_elem = this.parentElement.querySelector("input");
+      let id_counter = get_qty_elem.id.split("_")[1];
+      let set_qty_elem = document.getElementById(
+        "cart_item_qt_hid" + id_counter
+      );
+      set_qty_elem.value = get_qty_elem.value;
+    });
+  }
+
+  var cart_clear_btn = document.getElementById("cart_clear_btn");
+  cart_clear_btn.addEventListener("click", function (e) {
+    var cart_count = document.getElementById("cart_items_counts");
+    cart_count.innerHTML = "0";
+  });
+
+  var cart_update_btn = document.getElementById("cart_update_btn");
+  cart_update_btn.addEventListener("click", function (e) {
+    var cart_count = document.getElementById("cart_items_counts");
+    cart_count.innerHTML = total;
+  });
+
+  var delete_item_btns = document.getElementsByClassName("delete_item_btn");
+  for (var i = 0; i < delete_item_btns.length; i++) {
+    delete_item_btns[i].addEventListener("click", function (e) {
+      var item_count =
+        this.parentElement.parentNode.parentElement.querySelector(
+          ".cart-item-qty"
+        ).value;
+      if (total > 0) {
+        total -= parseInt(item_count);
+      } else {
+        total = 0;
+      }
+      var cart_count = document.getElementById("cart_items_counts");
+      cart_count.innerHTML = total;
     });
   }
 })(jQuery);
