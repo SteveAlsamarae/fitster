@@ -57,4 +57,52 @@
   }
   // Nice Select Js
   $("select").niceSelect();
+
+  // magnificPopup img view
+  $(".image-popups").magnificPopup({
+    type: "image",
+    gallery: {
+      enabled: true,
+    },
+  });
+
+  // Wow Js
+  new WOW().init();
+
+  // Cart Quantity Js
+  $(".cart-minus").click(function () {
+    var $input = $(this).parent().find("input");
+    var count = parseInt($input.val()) - 1;
+    count = count < 1 ? 1 : count;
+    $input.val(count);
+    $input.change();
+    return false;
+  });
+  $(".cart-plus").click(function () {
+    var $input = $(this).parent().find("input");
+    $input.val(parseInt($input.val()) + 1);
+    $input.change();
+    return false;
+  });
+
+  // Cart Plus Minus Js
+  $(".cart-plus-minus").append(
+    '<div class="dec qtybutton">-</div><div class="inc qtybutton">+</div>'
+  );
+  $(".qtybutton").on("click", function () {
+    var $button = $(this);
+    var oldValue = $button.parent().find("input").val();
+    if ($button.text() == "+") {
+      var newVal = parseFloat(oldValue) + 1;
+    } else {
+      // Don't allow decrementing below zero
+      if (oldValue > 0) {
+        var newVal = parseFloat(oldValue) - 1;
+      } else {
+        newVal = 0;
+      }
+    }
+    $button.parent().find("input").val(newVal);
+    $("#quantity_val").val(newVal);
+  });
 })(jQuery);

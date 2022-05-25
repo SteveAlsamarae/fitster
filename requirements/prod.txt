@@ -12,3 +12,4 @@ sqlparse==0.4.2
 django-resized
 Pillow
 whitenoise
+django-mptt

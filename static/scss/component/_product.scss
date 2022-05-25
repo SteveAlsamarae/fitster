@@ -95,6 +95,20 @@
         color: $primary-color;
         display: block;
     }
+    & .product_discount{
+        font-size: 1.35em;
+        text-decoration: line-through;
+        padding-right: 10px;
+        color: #925156e0;
+    }
+}
+.product-dt-price{
+    & .product_discount{
+        font-size: 1.5rem;
+        text-decoration: line-through;
+        padding-right: 10px;
+        color: rgb(163 68 75 / 88%);
+    }
 }
 
 .shop_button{

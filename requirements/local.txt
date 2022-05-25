@@ -7,6 +7,7 @@ sqlparse==0.4.2
 Pillow
 django-resized
 django-crispy-forms
+django-mptt
 crispy-bootstrap5
 pylint_django
 django-extensions

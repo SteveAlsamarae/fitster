@@ -1,9 +1,8 @@
-from pathlib import Path
-import environ
 import os
+from pathlib import Path
 
+import environ
 from django.core.exceptions import ImproperlyConfigured
-
 
 # Build paths : BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -46,6 +45,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "users.apps.UsersConfig",
     "store.products",
+    "store.cart",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

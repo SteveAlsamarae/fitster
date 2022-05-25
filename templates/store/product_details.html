@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ product.title }} {% endblock title %}
+
+{% block content %}
+<main class="pt-120">
+{% if product %}
+<div class="shop-details_area pt-120 pb-110">
+<div class="container custome-container">
+    <div class="row "> 
+        <div class="col-lg-2 col-md-3 col-sm-3">
+            <div class="product-details-nav mb-30">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                {% for product_img_obj in product.get_product_images %}
+                {% if product_img_obj.is_feature %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pro-{{ product_img_obj.pk }}-tab" data-bs-toggle="tab" data-bs-target="#pro-{{ product_img_obj.pk }}" type="button" role="tab" aria-controls="pro-{{ product_img_obj.pk }}" aria-selected="true">
+                    <img src="{{ product_img_obj.image.url }}" alt="{{ product_img_obj.product.title }}">
+                    </button>
+                </li>
+                {% else %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pro-{{ product_img_obj.pk }}-tab" data-bs-toggle="tab" data-bs-target="#pro-{{ product_img_obj.pk }}" type="button" role="tab" aria-controls="pro-{{ product_img_obj.pk }}" aria-selected="true">
+                    <img src="{{ product_img_obj.image.url }}" alt="{{ product_img_obj.product.title }}">
+                    </button>
+                </li>
+                {% endif %}
+                {% endfor %}
+                </ul>
+        </div>
+        </div>
+        <div class="col-lg-6 col-md-9 col-sm-9 order-first order-sm-1">
+            <div class="product-details-tab">
+                <div class="tab-content" id="productDetailsTab">
+                    {% for product_img_obj in product.get_product_images %}
+                    {% if product_img_obj.is_feature %}
+                    <div class="tab-pane fade show active" id="pro-{{ product_img_obj.pk }}" role="tabpanel" aria-labelledby="pro-{{ product_img_obj.pk }}-tab">
+                        <img class="active" src="{{ product_img_obj.image.url }}" alt="{{ product_img_obj.product.title }}">
+                    </div>
+                    {% else %}
+                    <div class="tab-pane fade" id="pro-{{ product_img_obj.pk }}" role="tabpanel" aria-labelledby="pro-{{ product_img_obj.pk }}-tab">
+                        <img class="active" src="{{ product_img_obj.image.url }}" alt="{{ product_img_obj.product.title }}">
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12 order-last">
+            <div class="product-side-info mb-30">
+            <div class="producttop-info mb-15">
+                <div class="product_rating">
+                    <a href="#"><i class="fas fa-star"></i></a>
+                    <a href="#"><i class="fas fa-star"></i></a>
+                    <a href="#"><i class="fas fa-star"></i></a>
+                    <a href="#"><i class="fas fa-star"></i></a>
+                    <a href="#"><i class="far fa-star"></i></a>
+                </div>
+                <span>(10 customer review)</span>
+            </div>
+            <h6 class="product-site-title">{{ product.title }}</h6>
+            <h6 class="product-dt-price">
+                {% if product.discount_price %}
+                <span class="product_discount">${{ product.regular_price }}</span>
+                {% endif %}
+                ${{ product.get_product_price }}
+            </h6>
+            <p class="mb-30">
+                {{ product.short_description }}
+            </p>
+            <div class="product__modal-form">
+                <form action="{% url 'cart:add_to_cart' product_id=product.id %}" method=post>
+                    {% csrf_token %}
+                    <div class="pro-quan-area">
+                        <div class="product-quantity mr-20 mb-30">
+                            <div class="cart-plus-minus p-relative">
+                                <input name="quantities" type="quantity" value="1">
+                            </div>
+                        </div>
+                        <div class="pro-cart-btn mb-30">
+                            <button class="tp-btn-round-cart" type="submit">Add to cart</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="quick-info mt-30">
+                <h6 class="quick-info-title mb-15">Add to Wishlist</h6>
+                <p class="mb-10"><span class="mr-10">Category :</span>
+                    {{ product.categories }}
+                </p>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="product_info-faq-area pb-40">
+<div class="container custome-container">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link show active" id="nav-general-tab" data-bs-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-payment" aria-selected="true">Description</a>
+            <a class="nav-item nav-link" id="nav-payment-tab" data-bs-toggle="tab" href="#nav-payment" role="tab" aria-controls="nav-payment" aria-selected="false">Additional information </a>
+            <a class="nav-item nav-link" id="nav-seller-tab" data-bs-toggle="tab" href="#nav-seller" role="tab" aria-controls="nav-seller" aria-selected="false">Reviews</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade active show" id="nav-general" role="tabpanel">
+            <div class="tabs-wrapper mt-35">
+            <div class="product__details-des">
+                <p>
+                    {{ product.description }}
+                </p>
+            </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-payment" role="tabpanel">
+            <div class="tabs-wrapper mt-35">
+            <div class="product__details-info">
+                <ul>
+                    <li>
+                        <h6>Weight</h6>
+                        <span>2 lbs</span>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-seller" role="tabpanel">
+            <div class="tabs-wrapper mt-35">
+            <div class="product__details-comment ">
+                <div class="comment-title mb-20">
+                    <h3>Add a review</h3>
+                    <p>Your email address will not be published. Required fields are marked *</p>
+                </div>
+                <div class="comment-rating mb-20">
+                    <span>Overall ratings</span>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-star"></i></a></li>
+                        <li><a href="#"><i class="fas fa-star"></i></a></li>
+                        <li><a href="#"><i class="fas fa-star"></i></a></li>
+                        <li><a href="#"><i class="fas fa-star"></i></a></li>
+                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                    </ul>
+                </div>
+                <div class="comment-input-box">
+                    <form action="#">
+                        <div class="row">
+                        <div class="col-xxl-12">
+                                <textarea placeholder=" Your review" class="comment-input comment-textarea"></textarea>
+                        </div>
+                        <div class="col-xxl-6">
+                            <div class="comment-input">
+                                <input type="text" placeholder="Your Name*">
+                            </div>
+                        </div>
+                        <div class="col-xxl-6">
+                            <div class="comment-input">
+                                <input type="email" placeholder="Your Email*">
+                            </div>
+                        </div>
+                        <div class="col-xxl-12">
+                            <div class="comment-agree d-flex align-items-center mb-25">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                    Save my name, email, and website in this browser for the next time I comment.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-12">
+                            <div class="comment-submit">
+                                <button type="submit" class="tp-btn-round">Submit</button>
+                            </div>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endif %}
+</main>
+{% endblock %}
