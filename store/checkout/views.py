@@ -124,11 +124,8 @@ def checkout_session_veiw(request: HttpRequest) -> HttpResponse:
             )
 
         try:
-            customer: object = models.Customer.objects.get(subscriber=request.user)
-
             session = stripe.checkout.Session.create(
                 payment_method_types=["card"],
-                customer=customer.id,
                 payment_intent_data={
                     "setup_future_usage": "off_session",
                 },
