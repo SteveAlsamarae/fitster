@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block title %} All fitness classes | Fitster {% endblock title %}
 
@@ -10,7 +11,14 @@
           <div class="row align-items-center">
              <div class="col-lg-6">
                 <div class="trainer_details_image mb-40">
-                   <img src="{{ trainer.avatar.url }}" alt="{{ trainer.name }}">
+                   {% thumbnail trainer.avatar "520x540" crop="center" as img %}
+                     <img
+                        src="{{ img.url }}"
+                        width="{{ img.width }}"
+                        height="{{ img.height }}"
+                        alt="{{ ftrainer.name }}"
+                     />
+                  {% endthumbnail %}
                 </div>
              </div>
              <div class="col-lg-6">
