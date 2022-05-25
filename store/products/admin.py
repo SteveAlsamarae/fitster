@@ -7,8 +7,10 @@ from .models import Product, ProductCategory, ProductImage
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
 
+
 # TODO
 # add a default description for the product
+
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
