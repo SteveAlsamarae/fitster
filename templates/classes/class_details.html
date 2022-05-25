@@ -68,14 +68,14 @@
                      <div class="col-xl-6 col-lg-6 col-md-6">
                         <div class="trainer-single mb-30">
                            <div class="trainer-image trainer-image_cs_details">
-                              <a href="#"><img src="{{ trainer.avater.url }}" alt="{{ trainer.name }}"></a>
+                              <a href="{{ trainer.get_absolute_url }}"><img src="{{ trainer.avatar.url }}" alt="{{ trainer.name }}"></a>
                            </div>
                            <div class="trainer-info">
-                              <h5 class="trainer-name"><a href="#">{{ trainer.name }}</a></h5>
+                              <h5 class="trainer-name"><a href="{{ trainer.get_absolute_url }}">{{ trainer.name }}</a></h5>
                               <p class="mb-20">{{ trainer.title }}</p>
                            </div>
                            <div class="trainer-btn">
-                              <a href="#" class="tp-btn-square"><i class="fal fa-chevron-double-right"></i></a>
+                              <a href="{{ trainer.get_absolute_url }}" class="tp-btn-square"><i class="fal fa-chevron-double-right"></i></a>
                            </div>
                         </div>
                      </div>
