@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block title %} All fitness classes | Fitster {% endblock title %}
 
@@ -24,7 +25,15 @@
                 <div class="single-class mb-40">
                    <div class="class-iamge">
                       <a href="{{ fit_class.get_absolute_url }}">
-                        <img src="{{ fit_class.thumbnail.url }}" class="img-fluid" alt="{{ fit_class.name }}"></a>
+                        {% thumbnail fit_class.thumbnail "360x340" crop="center" as img %}
+                           <img
+                           src="{{ img.url }}"
+                           class="img-fluid"
+                           width="{{ img.width }}"
+                           height="{{ img.height }}"
+                           alt="{{ fit_class.name }}"
+                           />
+                        {% endthumbnail %}
                    </div>
                    <div class="class-info text-center">
                       <div class="class_icon mb-10">
