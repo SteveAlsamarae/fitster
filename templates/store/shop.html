@@ -35,14 +35,20 @@
                   <i class="far fa-circle"></i> Category
                 </h5>
                 <ul class="product-catagory_list">
+                  {% for cat in categories %}
                   <li>
-                    <a href="#">Cardio Therapy</a>
-                    <a href="#">(07)</a>
+                    <button
+                      hx-get="{% url 'products:category_products' category_slug=cat.slug %}"
+                      hx-target="#product_list"
+                      hx-indicator=".htmx-indicator"
+                      hx-swap="outerHTML swap:.4s"
+                      hx-push-url="true"
+                      >
+                      <strong>{{ cat.name }}</strong>
+                    </button>
+                    <span class="lead">({{ cat.get_products_count }})</span>
                   </li>
-                  <li>
-                    <a href="#">Beauty & Spa</a>
-                    <a href="#">(12)</a>
-                  </li>
+                  {% endfor %}
                 </ul>
               </div>
               <div class="product_sidebar-widget mb-30">

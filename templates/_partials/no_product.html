@@ -16,7 +16,16 @@
 {% if query %}
 <div id="product_list">
   <h2 class="display-3 pt-4">
-    Sorry! No product found for <span class="text-primary">{{ query }}</span>
+    Sorry! No products found for <span class="text-primary">{{ query }}</span>
+  </h2>
+</div>
+<div id="product_meta_bar" class="product-meta mb-20" hx-swap-oob="true"></div>
+{% endif %}
+
+{% if category %}
+<div id="product_list">
+  <h2 class="display-3 pt-4">
+    Sorry! No products found in <span class="text-primary">{{ category }}</span> category
   </h2>
 </div>
 <div id="product_meta_bar" class="product-meta mb-20" hx-swap-oob="true"></div>
