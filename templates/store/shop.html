@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load thumbnail %}
 
 {% block title %}Fitster Shop{% endblock title %}
 
@@ -14,9 +13,15 @@
               <div class="product_sidebar-widget mb-30">
                 <div class="product_sidebar-inner">
                   <div class="sidebar__search-2">
-                    <form action="#">
+                    <form 
+                      hx-get="{% url 'products:search' %}"
+                      hx-target="#product_list"
+                      hx-indicator=".htmx-indicator"
+                      hx-swap="outerHTML swap:.2s"
+                      hx-push-url="true"
+                    >
                       <div class="sidebar__search-input-2">
-                        <input type="text" placeholder="Search..." />
+                        <input type="search" placeholder="Search..." name="q" />
                         <button type="submit">
                           <i class="far fa-search"></i>
                         </button>
@@ -91,107 +96,8 @@
                 </select>
               </div>
             </div>
-            <div class="product">
-              <div class="row">
-                {% if products %}
-                {% for product in page_obj %}
-                <div class="col-lg-6 col-md-6">
-                  <div class="product-item mb-40">
-                    <div class="prouct-wrapper">
-                      <div class="product_thum product_thum-new mb-30">
-                        <div class="fix">
-                          <a href="{{ product.get_absolute_url }}">
-                            {% thumbnail product.get_first_product_img "360x400" crop="center" as img %}
-                                <img
-                                  src="{{ img.url }}"
-                                  class="img-fluid"
-                                  width="{{ img.width }}"
-                                  height="{{ img.height }}"
-                                  alt="{{ product.title }}"
-                                />
-                            {% endthumbnail %}
-                        </a>
-                        </div>
-                        <div class="product-item-action">
-                          <a href="#"><i class="far fa-heart"></i></a>
-                          <a
-                            href="{{ product.get_first_product_img }}"
-                            class="image-popups"
-                            >
-                            <i class="fas fa-compress"></i>
-                          </a>
-                          <a href="#"><i class="far fa-exchange"></i></a>
-                        </div>
-                        {% if product.sale_tag %}
-                        <div class="sale-tag">
-                          <span class="{{ product.sale_tag |lower }}">{{ product.sale_tag }}</span>
-                        </div>
-                        {% endif %}
-                      </div>
-                      <div class="product-content">
-                        <div class="product-info">
-                          <h5 class="product_name">
-                            <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
-                          </h5>
-                          <div class="d-flex">
-                          {% if product.discount_price %}
-                          <s><span class="product_price product_discount">${{ product.regular_price }}</span></s>
-                          {% endif %}
-                          <span class="product_price">${{ product.get_product_price }}</span>
-                          </div>
-                        </div>
-                        <div class="product-button">
-                          <a href="{{ product.get_absolute_url }}" class="tp-btn-round-product">
-                            buy now 
-                            <i class="fal fa-chevron-double-right"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {% endfor %}
-                {% else %}
-                <h2>Sorry! We don't have any active products now.</h2>
-                {% endif %}
-              </div>
-            </div>
-            <div class="row mt-40">
-              <div class="col-12">
-                <div
-                  class="basic-pagination-two mt-10 wow fadeInUp"
-                  data-wow-delay=".5s"
-                  style="
-                    visibility: visible;
-                    animation-delay: 0.5s;
-                    animation-name: fadeInUp;
-                  "
-                >
-                  <ul>
-                    {% if page_obj.has_previous %}
-                    <li>
-                      <a class="next page-numbers" href="?page={{ page_obj.previous_page_number }}"><i class="fal fa-long-arrow-left"></i> </a>
-                    </li>
-                    {% endif %}
-                    {% for num in page_obj.paginator.page_range %}
-                      {% if page_obj.number == num %} 
-                      <li>
-                          <a href="?page={{ num }}"><span aria-current="page" class="page-numbers current">{{ num }}</span></a>
-                      </li>
-                      {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                      <li>
-                          <a class="page-numbers" href="?page={{ num }}">{{ num }}</a>
-                      </li>
-                      {% endif %}
-                    {% endfor %}
-                    {% if page_obj.has_next %}
-                    <li>
-                        <a class="next page-numbers" href="?page={{ page_obj.next_page_number }}"><i class="fal fa-long-arrow-right"></i> </a>
-                    </li>
-                    {% endif %}
-                  </ul>
-                </div>
-              </div>
+            <div id="product_list">
+              {% include "_partials/product_list.html" %}
             </div>
           </div>
         </div>
