@@ -95,14 +95,23 @@
           <div class="col-lg-8">
             <div id="product_meta_bar" class="product-meta mb-20">
               <div class="search_result">Showing {{ page_obj.start_index }}–{{ page_obj.end_index }} of {{ products.count }} products</div>
-              <div class="selection">
+              <div class="selection d-flex align-items-center">
+                <span class="lead px-2 pb-3">Sort by:</span>
                 <select
-                  name="Short by popularity"
-                  id="transport"
-                  style="display: none"
+                  name="sort_by_popularity"
+                  id="sort_select"
+                  style="display: none;"
+                  class="sort-select"
+                  hx-get="{% url 'products:sorting' %}"
+                  hx-target="#product_list"
+                  hx-indicator=".htmx-indicator"
+                  hx-swap="outerHTML swap:.5s"
+                  hx-trigger="change"
                 >
-                  <option value="01">Short by popularity</option>
-                  <option value="01">Price</option>
+                  <option value="1">Popularity</option>
+                  <option value="2">Date</option>
+                  <option value="3">Price low to high</option>
+                  <option value="4">Price high to low</option>
                 </select>
               </div>
             </div>
@@ -113,5 +122,5 @@
         </div>
       </div>
     </div>
-  </main>  
+  </main> 
 {% endblock content %}

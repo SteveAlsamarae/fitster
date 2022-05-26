@@ -150,3 +150,45 @@ def product_price_filter_view(request: HttpRequest) -> HttpResponse:
             "categories": categories,
         },
     )
+
+
+def product_sort_by_popularity_view(request: HttpRequest) -> HttpResponse:
+    products = Product.objects.prefetch_related("product_images").filter(is_active=True)
+    categories = ProductCategory.objects.all()
+
+    if request.htmx:
+        sorting_value = request.GET.get("sort_by_popularity", None)
+
+        if sorting_value == "1":
+            products = products.filter(is_active=True).order_by("sale_tag")
+        elif sorting_value == "2":
+            products = products.filter(is_active=True).order_by("-updated_at")
+        elif sorting_value == "3":
+            products = products.filter(is_active=True).order_by("regular_price")
+        elif sorting_value == "4":
+            products = products.filter(is_active=True).order_by("-regular_price")
+
+        page_obj = paginate(request, products, 10)
+
+        if products:
+            return render(
+                request,
+                "_partials/product_list.html",
+                {
+                    "products": products,
+                    "page_obj": page_obj,
+                },
+            )
+        else:
+            return render(request, "_partials/no_product.html")
+
+    page_obj = paginate(request, products, 10)
+    return render(
+        request,
+        "store/shop.html",
+        {
+            "products": products,
+            "page_obj": page_obj,
+            "categories": categories,
+        },
+    )

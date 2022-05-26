@@ -236,16 +236,15 @@
         @media #{$xs} {
             width: 100px;
         } 
-        width: 210px;
-        padding: 12px 20px;
-        height: 60px;
+        width: 175px;
+        padding: 6px 12px;
+        height: 52px;
         color: #7f8080;
-        font-size: 16px;
+        font-size: 15px;
         outline: none;
-        border: 1px solid $border;
+        border: 1.5px solid $border;
         margin-bottom: 20px;
         font-family: $roboto;
-        border-radius: 0;
         &::after{
             width: 7px;
             height: 7px;
