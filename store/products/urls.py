@@ -1,7 +1,12 @@
 from django.urls import path
 
-from .views import (index, product_detail_view, products_in_category_view,
-                    store_view)
+from .views import (
+    index,
+    product_detail_view,
+    products_in_category_view,
+    store_view,
+    product_search_view,
+)
 
 app_name = "products"
 
@@ -14,4 +19,5 @@ urlpatterns = [
         products_in_category_view,
         name="category_products",
     ),
+    path("search/", product_search_view, name="search"),
 ]

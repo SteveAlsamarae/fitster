@@ -49,3 +49,26 @@ def products_in_category_view(
         "products/category_product.html",
         {"category": category, "products": products},
     )
+
+
+def product_search_view(request: HttpRequest) -> HttpResponse:
+    products = Product.objects.prefetch_related("product_images").filter(is_active=True)
+
+    if request.htmx:
+        query = request.GET.get("q")
+
+        if query:
+            products = Product.objects.filter(title__icontains=query, is_active=True)
+
+        page_obj = paginate(request, products, 10)
+
+        return render(
+            request,
+            "_partials/product_list.html",
+            {"products": products, "query": query, "page_obj": page_obj},
+        )
+    else:
+        page_obj = paginate(request, products, 10)
+        return render(
+            request, "store/shop.html", {"products": products, "page_obj": page_obj}
+        )

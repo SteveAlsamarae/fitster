@@ -121,13 +121,13 @@ class Product(models.Model):
 
     @property
     def get_first_product_img(self):
-        return self.product_images.first().image.url
+        return self.product_images.first().image
 
     @property
     def get_featured_img(self):
         for img in self.product_images.all():
             if img.is_feature:
-                return img.image.url
+                return img.image
 
     @property
     def get_product_price(self):
