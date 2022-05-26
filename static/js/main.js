@@ -41,9 +41,9 @@
   if (jQuery("#slider-range").length > 0) {
     $("#slider-range").slider({
       range: true,
-      min: 20,
-      max: 280,
-      values: [75, 300],
+      min: 10,
+      max: 999,
+      values: [10, 999],
       slide: function (event, ui) {
         $("#amount").val("$" + ui.values[0] + " To $" + ui.values[1]);
       },

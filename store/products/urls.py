@@ -6,6 +6,7 @@ from .views import (
     products_in_category_view,
     store_view,
     product_search_view,
+    product_price_filter_view,
 )
 
 app_name = "products"
@@ -20,4 +21,5 @@ urlpatterns = [
         name="category_products",
     ),
     path("search/", product_search_view, name="search"),
+    path("filter/", product_price_filter_view, name="filter"),
 ]

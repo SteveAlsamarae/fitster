@@ -1,9 +1,21 @@
 .htmx-indicator{
     display:none;
+    animation: display 2s ease-in-out;
 }
 .htmx-request .htmx-indicator{
     display:block;
 }
 .htmx-request.htmx-indicator{
     display:block;
+}
+
+@keyframes display {
+    100% {
+        opacity: 0;
+        display: none;
+    }
+    50% {
+        opacity: .4;
+        display: block;
+    }
 }
