@@ -13,6 +13,12 @@
         Showing results for <span class="text-primary">"{{ query }}"</span>
       </h2>
     {% endif %}
+    {% if has_filter %}
+    <h2 class="display-6 pt-0 pb-3" style="margin-top: -15px;">
+      Showing products between <span class="text-primary">${{ min_price }}</span>
+      and <span class="text-primary">${{ max_price }}</span>
+    </h2>
+    {% endif %}
     {% for product in page_obj %}
     <div class="col-lg-6 col-md-6">
       <div class="product-item mb-40">
@@ -73,13 +79,16 @@
         </div>
       </div>
     </div>
-    {% endfor %} 
+    {% endfor %}
     {% else %}
-    <h2>Sorry! We don't have any active products now.</h2>
+    <h2 class="display-4">
+      Sorry! We don't have any active products at the moment.
+    </h2>
     {% endif %}
   </div>
-
 </div>
+
+{% if products %}
 <div class="row mt-40">
   <div class="col-12">
     <div
@@ -87,7 +96,7 @@
       data-wow-delay=".5s"
       style="
         visibility: visible;
-        animation-delay: 0.5s;
+        animation-delay: 0.3s;
         animation-name: fadeInUp;
       "
       >
@@ -117,4 +126,16 @@
     </div>
   </div>
 </div>
+{% endif %}
 </div>
+
+{% if has_filter %}
+  <input
+    id="search_box"
+    type="search" 
+    placeholder="Search..." 
+    name="q" 
+    value="" 
+    hx-swap-oob="true"
+  />
+{% endif %}
