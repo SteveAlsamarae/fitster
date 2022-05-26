@@ -12,6 +12,7 @@ def index(request):
 
 def store_view(request: HttpRequest) -> HttpResponse:
     products = Product.objects.prefetch_related("product_images").filter(is_active=True)
+    categories = ProductCategory.objects.all()
     page_obj = paginate(request, products, 10)
 
     return render(
@@ -19,6 +20,7 @@ def store_view(request: HttpRequest) -> HttpResponse:
         "store/shop.html",
         {
             "products": products,
+            "categories": categories,
             "page_obj": page_obj,
         },
     )
@@ -35,24 +37,44 @@ def product_detail_view(request: HttpRequest, slug: str = None) -> HttpResponse:
     )
 
 
-def products_in_category_view(
-    request: HttpRequest, category_slug: str = None
-) -> HttpResponse:
-    category = get_object_or_404(ProductCategory, slug=category_slug)
-    products = Product.objects.filter(
-        categories__in=ProductCategory.objects.get(name=category_slug).get_descendants(
-            include_self=True
-        )
-    )
+def products_in_category_view(request: HttpRequest, category_slug: str) -> HttpResponse:
+
+    products = Product.objects.prefetch_related("product_images").filter(is_active=True)
+    page_obj = paginate(request, products, 10)
+    categories = ProductCategory.objects.all()
+
+    if request.htmx:
+        category = get_object_or_404(ProductCategory, slug=category_slug)
+        products = category.get_all_products()
+        page_obj = paginate(request, products, 10)
+
+        if products:
+            return render(
+                request,
+                "_partials/product_list.html",
+                {
+                    "products": products,
+                    "page_obj": page_obj,
+                    "category": category,
+                },
+            )
+        else:
+            return render(request, "_partials/no_product.html", {"category": category})
+
     return render(
         request,
-        "products/category_product.html",
-        {"category": category, "products": products},
+        "store/shop.html",
+        {
+            "products": products,
+            "page_obj": page_obj,
+            "categories": categories,
+        },
     )
 
 
 def product_search_view(request: HttpRequest) -> HttpResponse:
     products = Product.objects.prefetch_related("product_images").filter(is_active=True)
+    categories = ProductCategory.objects.all()
 
     if request.htmx:
         query = request.GET.get("q")
@@ -65,19 +87,30 @@ def product_search_view(request: HttpRequest) -> HttpResponse:
             return render(
                 request,
                 "_partials/product_list.html",
-                {"products": products, "query": query, "page_obj": page_obj},
+                {
+                    "products": products,
+                    "query": query,
+                    "page_obj": page_obj,
+                },
             )
         else:
             return render(request, "_partials/no_product.html", {"query": query})
     else:
         page_obj = paginate(request, products, 10)
         return render(
-            request, "store/shop.html", {"products": products, "page_obj": page_obj}
+            request,
+            "store/shop.html",
+            {
+                "products": products,
+                "page_obj": page_obj,
+                "categories": categories,
+            },
         )
 
 
 def product_price_filter_view(request: HttpRequest) -> HttpResponse:
     products = Product.objects.prefetch_related("product_images").filter(is_active=True)
+    categories = ProductCategory.objects.all()
 
     if request.htmx:
         price_range = request.GET.get("price_range", None)
@@ -109,5 +142,11 @@ def product_price_filter_view(request: HttpRequest) -> HttpResponse:
     page_obj = paginate(request, products, 10)
 
     return render(
-        request, "store/shop.html", {"products": products, "page_obj": page_obj}
+        request,
+        "store/shop.html",
+        {
+            "products": products,
+            "page_obj": page_obj,
+            "categories": categories,
+        },
     )

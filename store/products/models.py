@@ -46,6 +46,26 @@ class ProductCategory(MPTTModel):
     def __str__(self):
         return self.name
 
+    def get_all_products(self) -> list[object]:
+        products = self.products.all()
+
+        if self.parent:
+            products = self.parent.get_all_products()
+
+        return products
+
+    def get_products_count(self) -> int:
+        products_count = self.products.count()
+
+        if self.parent:
+            products_count += self.parent.get_products_count()
+
+        if products_count > 0 and products_count < 10:
+            return f"0{products_count}"
+        elif products_count > 10:
+            return products_count
+        return 0
+
 
 class Product(models.Model):
     """
@@ -56,7 +76,10 @@ class Product(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     categories = models.ForeignKey(
-        ProductCategory, verbose_name=_("Product Categories"), on_delete=models.RESTRICT
+        ProductCategory,
+        verbose_name=_("Product Categories"),
+        on_delete=models.RESTRICT,
+        related_name="products",
     )
     title = models.CharField(
         verbose_name=_("Product Title"),
