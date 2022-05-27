@@ -8,6 +8,9 @@
 <main class="pt-120">
 {% if product %}
 <div class="shop-details_area pt-120 pb-110">
+<div class="mx-4 text-lg text-dark" style="margin-top: -20px;padding-left: 30px;font-size: 1.3em;font-weight: lighter;font-family: 'Roboto';">
+    <a href="{% url 'products:store' %}"><i class="fas fa-arrow-left"></i> Back to shop</a>
+</div>
 <div class="container custome-container">
     <div class="row "> 
         <div class="col-lg-2 col-md-3 col-sm-3">
@@ -106,8 +109,12 @@
                 {{ product.short_description }}
             </p>
             <div class="product__modal-form">
-                <form action="{% url 'cart:add_to_cart' product_id=product.id %}" method=post>
-                    {% csrf_token %}
+                <form 
+                    hx-post="{% url 'cart:add_to_cart' product_id=product.id %}"
+                    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                    hx-target="#cart_items_counts"
+                    hx-swap="outerHTML swap:.4s"
+                >
                     <div class="pro-quan-area">
                         <div class="product-quantity mr-20 mb-30">
                             <div class="cart-plus-minus p-relative">

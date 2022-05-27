@@ -48,7 +48,7 @@ def add_to_cart(request: HttpRequest, product_id: str) -> HttpResponse:
 
     product = Product.objects.get(id=product_id)
 
-    if request.method == "POST":
+    if request.htmx:
         if product.stocks > 0:
             try:
                 cart_item = CartItem.objects.get(cart=cart, product=product)
@@ -58,6 +58,8 @@ def add_to_cart(request: HttpRequest, product_id: str) -> HttpResponse:
             quantities = request.POST.get("quantities", 1)
             cart_item.quantity += int(quantities)
             cart_item.save()
+
+        return render(request, "_partials/cart_items_count.html", {"cart": cart})
 
     return redirect("products:product_detail", slug=product.slug)
 
