@@ -91,7 +91,13 @@
               <a href="{{ product.get_first_product_img.url }}" class="image-popups">
                 <i class="fas fa-compress"></i>
               </a>
-              <a href="#"><i class="far fa-exchange"></i></a>
+              <a
+                href="#"
+                hx-post="{% url 'cart:add_to_cart' product_id=product.id %}"
+                hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                hx-target="#cart_items_counts"
+                hx-swap="outerHTML swap:.2s"
+              ><i class="far fa-cart-plus"></i></a>
             </div>
             {% if product.sale_tag %}
             <div class="sale-tag">
