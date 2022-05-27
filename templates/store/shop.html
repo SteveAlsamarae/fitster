@@ -36,7 +36,7 @@
                 </h5>
                 <ul class="product-catagory_list">
                   {% for cat in categories %}
-                  <li>
+                  <li style="font-family: 'Roboto';">
                     <button
                       hx-get="{% url 'products:category_products' category_slug=cat.slug %}"
                       hx-target="#product_list"
@@ -44,9 +44,9 @@
                       hx-swap="outerHTML swap:.4s"
                       hx-push-url="true"
                       >
-                      <strong>{{ cat.name }}</strong>
+                      <strong>{{ cat.name | title }}</strong>
                     </button>
-                    <span class="lead">({{ cat.get_products_count }})</span>
+                    <span>({{ cat.get_products_count }})</span>
                   </li>
                   {% endfor %}
                 </ul>

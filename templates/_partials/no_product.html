@@ -1,3 +1,9 @@
+{% load static %}
+
+<div class="text-center htmx-indicator">
+  <img src="{% static 'img/loader.svg' %}" alt="searching...." height="120px"> 
+</div>
+
 {% if has_filter %}
 <div id="product_list">
   <h2 class="display-3" pt-4>Sorry! No product found for the price range!</h2>

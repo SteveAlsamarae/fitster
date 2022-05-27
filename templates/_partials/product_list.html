@@ -9,6 +9,28 @@
   <div class="row" id="product_listing">
     {% if products %}
     {% if query %}
+    <div id="product_meta_bar" class="product-meta mb-20" hx-swap-oob="true">
+      <div class="search_result">Showing {{ page_obj.start_index }}–{{ page_obj.end_index }} of {{ products.count }} products</div>
+      <div class="selection d-flex align-items-center">
+        <span class="lead px-2 pb-3">Sort by:</span>
+        <select
+          name="sort_by_popularity"
+          id="sort_select"
+          style="display: none;"
+          class="sort-select"
+          hx-get="{% url 'products:sorting' %}"
+          hx-target="#product_list"
+          hx-indicator=".htmx-indicator"
+          hx-swap="outerHTML swap:.5s"
+          hx-trigger="change"
+        >
+          <option value="1">Popularity</option>
+          <option value="2">Date</option>
+          <option value="3">Price low to high</option>
+          <option value="4">Price high to low</option>
+        </select>
+      </div>
+    </div>
       <h2 class="display-6 pt-0 pb-3" style="margin-top: -15px;">
         Showing results for <span class="text-primary">"{{ query }}"</span>
       </h2>
@@ -20,6 +42,28 @@
       </h2>
     {% endif %}
     {% if category %}
+    <div id="product_meta_bar" class="product-meta mb-20" hx-swap-oob="true">
+      <div class="search_result">Showing {{ page_obj.start_index }}–{{ page_obj.end_index }} of {{ products.count }} products</div>
+      <div class="selection d-flex align-items-center">
+        <span class="lead px-2 pb-3">Sort by:</span>
+        <select
+          name="sort_by_popularity"
+          id="sort_select"
+          style="display: none;"
+          class="sort-select"
+          hx-get="{% url 'products:sorting' %}"
+          hx-target="#product_list"
+          hx-indicator=".htmx-indicator"
+          hx-swap="outerHTML swap:.5s"
+          hx-trigger="change"
+        >
+          <option value="1">Popularity</option>
+          <option value="2">Date</option>
+          <option value="3">Price low to high</option>
+          <option value="4">Price high to low</option>
+        </select>
+      </div>
+    </div>
       <h2 class="display-6 pt-0 pb-3" style="margin-top: -15px;">
         Showing products in <span class="text-primary">{{ category }}</span> category
       </h2>
@@ -44,7 +88,7 @@
             </div>
             <div class="product-item-action">
               <a href="#"><i class="far fa-heart"></i></a>
-              <a href="{{ product.get_first_product_img }}" class="image-popups">
+              <a href="{{ product.get_first_product_img.url }}" class="image-popups">
                 <i class="fas fa-compress"></i>
               </a>
               <a href="#"><i class="far fa-exchange"></i></a>
@@ -143,4 +187,28 @@
     value="" 
     hx-swap-oob="true"
   />
+  <div id="product_meta_bar" class="product-meta mb-20" hx-swap-oob="true">
+    <div class="search_result">Showing {{ page_obj.start_index }}–{{ page_obj.end_index }} of {{ products.count }} products</div>
+    <div class="selection d-flex align-items-center">
+      <span class="lead px-2 pb-3">Sort by:</span>
+      <select
+        name="sort_by_popularity"
+        id="sort_select"
+        style="display: none;"
+        class="sort-select"
+        hx-get="{% url 'products:sorting' %}"
+        hx-target="#product_list"
+        hx-indicator=".htmx-indicator"
+        hx-swap="outerHTML swap:.5s"
+        hx-trigger="change"
+      >
+        <option value="1">Popularity</option>
+        <option value="2">Date</option>
+        <option value="3">Price low to high</option>
+        <option value="4">Price high to low</option>
+      </select>
+    </div>
+  </div>
 {% endif %}
+
+<script src="{% static 'js/main.js' %}"></script>
