@@ -1,5 +1,4 @@
 from django.contrib import admin
-from mptt.admin import MPTTModelAdmin
 
 from .models import Product, ProductCategory, ProductImage
 
@@ -8,8 +7,23 @@ class ProductImageInline(admin.TabularInline):
     model = ProductImage
 
 
-# TODO
-# add a default description for the product
+default_desc = """
+Weight -
+
+Dimensions -
+
+Color -
+
+Size -
+
+Model -
+
+Shipping -
+
+Standard shipping(cost) - $
+
+Brand -
+"""
 
 
 @admin.register(Product)
@@ -17,12 +31,11 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [
         ProductImageInline,
     ]
-    exclude = ["users_wishlist"]
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(ProductAdmin, self).get_form(request, obj, **kwargs)
-        form.base_fields["description"].initial = "default_description"
+        form.base_fields["additional_information"].initial = default_desc
         return form
 
 
-admin.site.register(ProductCategory, MPTTModelAdmin)
+admin.site.register(ProductCategory)
