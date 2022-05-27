@@ -1,0 +1,73 @@
+{% load thumbnail %}
+
+<div class="testimonial-box" id="review_box">
+    <div class="box-top">
+        <div class="profile">
+            <div class="profile-img">
+                {% if review.customer.profile.avatar %}
+                {% thumbnail review.customer.profile.avatar "60x60" crop="center" as img %}
+                    <img 
+                        src="{{ img.url }}" 
+                        width="{{ img.width }}"
+                        height="{{ img.height }}"
+                    />
+                {% endthumbnail %}
+                {% else %}
+                <img src="https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png" />
+                {% endif %}
+            </div>
+            <div class="name-user">
+                <strong>{{ review.customer.profile.name }}</strong>
+                <span class="lead">@{{ review.customer.username }}</span>
+            </div>
+        </div>
+        <div class="reviews">
+            {% for rating in review.get_rating_range %}
+                <i class="fas fa-star"></i>
+            {% endfor %}
+            {% for blank in review.get_blank_rating_range %}
+                <i class="far fa-star"></i>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="client-comment">
+        <p>
+            {{ review.text }}
+        </p>
+    </div>
+    <p class="text-secondary text-right">{{ review.created_at | timesince }} ago</p>
+</div>
+
+<textarea 
+    placeholder="Your review here" 
+    class="comment-input comment-textarea p-2"
+    name="review"
+    id="review_text_area"
+    value=""
+    required
+    hx-swap-oob="true"
+></textarea>
+
+<div class="rating-container" id="rating_box" hx-swap-oob="true">
+    <input type="radio" name="rating" value="5" id="star-5"> <label for="star-5">&#9733;</label>
+    <input type="radio" name="rating" value="4" id="star-4"> <label for="star-4">&#9733;</label>
+    <input type="radio" name="rating" value="3" id="star-3"> <label for="star-3">&#9733;</label>
+    <input type="radio" name="rating" value="2" id="star-2"> <label for="star-2">&#9733;</label>
+    <input type="radio" name="rating" value="1" id="star-1"> <label for="star-1">&#9733;</label>
+</div>
+
+<div class="producttop-info mb-15" id="avg_rating" hx-swap-oob="true">
+    {% if product.reviews %}
+    <div class="product_rating">
+        {% for _ in product.get_avarage_rating %}
+            <a href="#nav-review-sec"><i class="fas fa-star"></i></a>
+        {% endfor %}
+        {% for _ in product.get_blank_rating_avg %}
+            <a href="#nav-review-sec"><i class="far fa-star"></i></a>
+        {% endfor %}
+    </div>
+        <span>({{ product.get_reviews_count }} customer review)</span>
+        {% else %}
+        <span>(0 customer review)</span>
+    {% endif %}
+</div>
