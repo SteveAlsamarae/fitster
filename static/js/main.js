@@ -5,11 +5,6 @@
 
   var windowOn = $(window);
 
-  // PreLoader
-  $(window).on("load", function (event) {
-    $("#preloader").delay(500).fadeOut(500);
-  });
-
   // Mobile Menu
   $("#mobile-menu").meanmenu({
     meanMenuContainer: ".mobile-menu",
