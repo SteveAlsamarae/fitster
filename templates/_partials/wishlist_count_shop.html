@@ -1,0 +1,9 @@
+<span id="wishlist_product_count">{{ count }}</span>
+
+<a
+  id="add_to_wishlist_btn"
+  href="{% url 'wishlist:summary' %}"
+  hx-swap-oob="true"
+>
+  <i id="wishlist_icon" class="far fa-heart" style="font-weight: bold"></i>
+</a>
