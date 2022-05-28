@@ -1,0 +1,51 @@
+{% load thumbnail %}
+
+<tbody id="wishlist_items">
+{% if wishlist.get_all_wishlist_item %}
+{% for item in wishlist.get_all_wishlist_item %}
+<tr>
+    <td class="product-thumbnail">
+        <a href="{{ item.product.get_absolute_url }}">
+            {% thumbnail item.product.get_featured_img "125x125" crop="center" as img %}
+                <img
+                    src="{{ img.url }}"
+                    width="{{ img.width }}"
+                    height="{{ img.height }}"
+                    alt="{{ product_img_obj.product.title }}"
+                />
+            {% endthumbnail %}
+        </a>
+    </td>
+    <td class="product-name">
+        <a href="{{ item.product.get_absolute_url }}">{{ item.product.title }} </a>
+    </td>
+    <td class="product-price">
+        <span class="amount text-dark">${{ item.get_product_regular_price }}</span>
+    </td>
+    <td class="product-price">
+        <span class="amount text-dark">${{ item.get_product_discount_price }}
+            <span class="text-danger">(Save {{item.get_product_total_discount}}%)</span>
+        </span>
+    </td>
+    <td class="product-action">
+        <button class="btn btn-danger btn-md">Add to cart</button>
+    </td>
+    <td class="product-remove">
+        <form hx-post="{% url 'wishlist:remove_from_wishlist' product_id=item.product.id %}"
+            hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+            hx-target="#wishlist_items"
+            hx-swap="outerHTML swap:.2s"
+        >
+            <button class="delete_item_btn" type="submit" ><i class="fa fa-times"></i></button>
+        </form>
+</td>
+</tr>
+{% endfor %}
+{% else %}
+<tr>
+<td colspan="6">
+    <p class="alert alert-secondary">There is no item in your wishlist.</p>
+</td>
+</tr>
+{% endif %}
+</tbody>
