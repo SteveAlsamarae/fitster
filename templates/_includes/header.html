@@ -67,13 +67,31 @@
                     <a href="javascript:void(0)" class="info-toggle-btn f-right sidebar-toggle-btn"><i class="fal fa-bars"></i></a>
                 </div>
                 <div class="header-action-btn f-right d-none d-lg-block">
-                    <a href="{% url 'cart:summary' %}"><i class="fas fa-shopping-basket"></i>
+                    <a href="{% url 'wishlist:summary' %}">
+                        <i class="fal fa-heart"></i>
+                        {% with request.user.wishlist as wishlist %}
+                            {% if wishlist %}
+                            <span 
+                                id="wishlist_product_count" 
+                                class="wishlist-count"
+                                hx-get="{% url 'wishlist:get_count' %}"
+                                hx-trigger="update from:body"
+                                hx-swap="outerHTML"
+                            >
+                                {{ wishlist.get_wishlist_items_count }}
+                            </span>
+                            {% else %}
+                            <span id="wishlist_product_count">0</span>
+                            {% endif %}
+                        {% endwith %}
+                    </a>
+                    <a href="{% url 'cart:summary' %}"><i class="fas fa-shopping-cart"></i>
                         {% with request.user.cart as cart %}
-                        {% if cart %}
-                        <span id="cart_items_counts">{{ cart.get_cart_items_count }}</span>
-                        {% else %}
-                        <span id="cart_items_counts">0</span>
-                        {% endif %}
+                            {% if cart %}
+                            <span id="cart_items_counts">{{ cart.get_cart_items_count }}</span>
+                            {% else %}
+                            <span id="cart_items_counts">0</span>
+                            {% endif %}
                         {% endwith %}
                     </a>
                     <a href="#" class="main-menu"><i class="fas fa-user-circle"></i>
