@@ -1,1 +1,9 @@
-<span id="cart_items_counts">{{ cart.get_cart_items_count }}</span>
+<span
+  id="cart_items_counts"
+  class="cart-count"
+  hx-get="{% url 'wishlist:get_cart_count' %}"
+  hx-trigger="update_cart from:body"
+  hx-swap="outerHTML"
+>
+  {{ cart.get_cart_items_count }}
+</span>
