@@ -88,7 +88,7 @@
             </div>
             <div class="product-item-action">
               {% if user.is_authenticated %}
-                {% if item_exits %}
+                {% if product.wishlist.count %}
                 <a 
                   id="add_to_wishlist_btn"
                   href="{% url 'wishlist:summary' %}"
@@ -98,7 +98,7 @@
                 {% else %}
                 <a 
                   href="#"
-                  id="add_to_wishlist_btn"
+                  id="pro_{{ product.pk }}"
                   hx-post="{% url 'wishlist:add_to_wishlist' product_id=product.id %}"
                   hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
                   hx-target="#wishlist_product_count"
