@@ -41,7 +41,7 @@ class WishlistItem(models.Model):
         on_delete=models.CASCADE,
     )
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, verbose_name=_("Product")
+        Product, on_delete=models.CASCADE, verbose_name=_("Product"), related_name="wishlist"
     )
     item_added = models.DateTimeField(auto_now_add=True)
 
