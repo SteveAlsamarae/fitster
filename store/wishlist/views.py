@@ -72,11 +72,13 @@ def add_to_wishlist(request: HttpRequest, product_id: str) -> HttpResponse:
         wishlist = Wishlist.objects.create(user=request.user)
 
     product = Product.objects.get(id=product_id)
+    wishlist_item = WishlistItem.objects.filter(wishlist=wishlist, product=product)
+    wishlist_item_exists = True if wishlist_item.exists() else False
 
     if request.htmx:
-        wishlist_item = WishlistItem.objects.filter(wishlist=wishlist, product=product)
 
         if wishlist_item.exists():
+            wishlist_item_exists = True
             return render(
                 request,
                 "_partials/wishlist_items_count.html",
@@ -86,8 +88,8 @@ def add_to_wishlist(request: HttpRequest, product_id: str) -> HttpResponse:
             WishlistItem.objects.create(wishlist=wishlist, product=product)
             return render(
                 request,
-                "_partials/wishlist_items_count.html",
-                {"count": wishlist.get_wishlist_items_count},
+                "_partials/wishlist_count_shop.html",
+                {"count": wishlist.get_wishlist_items_count, "pro_pk": product.pk},
             )
     else:
         wishlist_item = WishlistItem.objects.filter(wishlist=wishlist, product=product)
