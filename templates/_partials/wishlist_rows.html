@@ -28,10 +28,19 @@
         </span>
     </td>
     <td class="product-action">
-        <button class="btn btn-danger btn-md">Add to cart</button>
+        <button 
+            class="btn btn-danger btn-md"
+            hx-post="{% url 'wishlist:add_to_cart' product_id=item.product.id %}"
+            hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+            hx-target="#wishlist_items"
+            hx-swap="outerHTML swap:.2s"
+        >
+            Add to cart
+        </button>
     </td>
     <td class="product-remove">
-        <form hx-post="{% url 'wishlist:remove_from_wishlist' product_id=item.product.id %}"
+        <form 
+            hx-post="{% url 'wishlist:remove_from_wishlist' product_id=item.product.id %}"
             hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
             hx-target="#wishlist_items"
             hx-swap="outerHTML swap:.2s"
