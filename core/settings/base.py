@@ -52,6 +52,7 @@ LOCAL_APPS = [
     "store.orders",
     "store.checkout",
     "store.reviews",
+    "store.wishlist",
     "classes",
 ]
 
