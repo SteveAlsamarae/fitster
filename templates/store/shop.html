@@ -4,123 +4,123 @@
 {% block title %}Fitster Shop{% endblock title %}
 
 {% block content %}
-<main class="pt-120">
-    <div class="product_area pt-120 pb-110">
-      <div class="container custome-container">
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="product_sidebar">
-              <div class="product_sidebar-widget mb-30">
-                <div class="product_sidebar-inner">
-                  <div class="sidebar__search-2">
-                    <form 
-                      hx-get="{% url 'products:search' %}"
-                      hx-target="#product_list"
-                      hx-indicator=".htmx-indicator"
-                      hx-swap="outerHTML swap:.5s"
-                      hx-push-url="true"
-                    >
-                      <div class="sidebar__search-input-2">
-                        <input id="search_box" type="search" placeholder="Search..." name="q" />
-                        <button type="submit">
-                          <i class="far fa-search"></i>
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <div class="product_sidebar-widget mb-30">
-                <h5 class="products_widget_title mb-25">
-                  <i class="far fa-circle"></i> Category
-                </h5>
-                <ul class="product-catagory_list">
-                  {% for cat in categories %}
-                  <li style="font-family: 'Roboto';">
-                    <button
-                      hx-get="{% url 'products:category_products' category_slug=cat.slug %}"
-                      hx-target="#product_list"
-                      hx-indicator=".htmx-indicator"
-                      hx-swap="outerHTML swap:.4s"
-                      hx-push-url="true"
-                      >
-                      <strong>{{ cat.name | title }}</strong>
-                    </button>
-                    <span>({{ cat.get_products_count }})</span>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
-              <div class="product_sidebar-widget mb-30">
-                <h5 class="products_widget_title mb-25">
-                  <i class="far fa-circle"></i> Price Filter
-                </h5>
-                <div class="price__slider">
-                  <div
-                    id="slider-range"
-                    class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
-                    <div
-                      class="ui-slider-range ui-corner-all ui-widget-header"
-                      style="left: 0%; width: 100%">
+    <main class="pt-120">
+        <div class="product_area pt-120 pb-110">
+            <div class="container custome-container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="product_sidebar">
+                            <div class="product_sidebar-widget mb-30">
+                                <div class="product_sidebar-inner">
+                                    <div class="sidebar__search-2">
+                                        <form
+                                            hx-get="{% url 'products:search' %}"
+                                            hx-target="#product_list"
+                                            hx-indicator=".htmx-indicator"
+                                            hx-swap="outerHTML swap:.5s"
+                                            hx-push-url="true"
+                                        >
+                                            <div class="sidebar__search-input-2">
+                                                <input id="search_box" type="search" placeholder="Search..." name="q" />
+                                                <button type="submit">
+                                                    <i class="far fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_sidebar-widget mb-30">
+                                <h5 class="products_widget_title mb-25">
+                                    <i class="far fa-circle"></i> Category
+                                </h5>
+                                <ul class="product-catagory_list">
+                                    {% for cat in categories %}
+                                        <li style="font-family: 'Roboto';">
+                                            <button
+                                                hx-get="{% url 'products:category_products' category_slug=cat.slug %}"
+                                                hx-target="#product_list"
+                                                hx-indicator=".htmx-indicator"
+                                                hx-swap="outerHTML swap:.4s"
+                                                hx-push-url="true"
+                                            >
+                                                <strong>{{ cat.name | title }}</strong>
+                                            </button>
+                                            <span>({{ cat.get_products_count }})</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="product_sidebar-widget mb-30">
+                                <h5 class="products_widget_title mb-25">
+                                    <i class="far fa-circle"></i> Price Filter
+                                </h5>
+                                <div class="price__slider">
+                                    <div
+                                        id="slider-range"
+                                        class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                        <div
+                                            class="ui-slider-range ui-corner-all ui-widget-header"
+                                            style="left: 0%; width: 100%">
+                                        </div>
+                                        <span
+                                            tabindex="0"
+                                            class="ui-slider-handle ui-corner-all ui-state-default"
+                                            style="left: 0%">
+                                        </span>
+                                        <span
+                                            tabindex="0"
+                                            class="ui-slider-handle ui-corner-all ui-state-default"
+                                            style="left: 100%">
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <form
+                                            hx-get="{% url 'products:filter' %}"
+                                            hx-target="#product_list"
+                                            hx-indicator=".htmx-indicator"
+                                            hx-swap="outerHTML"
+                                            hx-push-url="/shop/"
+                                        >
+                                            <input type="text" name="price_range" id="amount" readonly="" />
+                                            <button type="submit" class="tp-btn-square-lg">
+                                                Filter <i class="fal fa-chevron-double-right"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <span
-                      tabindex="0"
-                      class="ui-slider-handle ui-corner-all ui-state-default"
-                      style="left: 0%">
-                    </span>
-                    <span
-                      tabindex="0"
-                      class="ui-slider-handle ui-corner-all ui-state-default"
-                      style="left: 100%">
-                    </span>
-                  </div>
-                  <div>
-                    <form 
-                      hx-get="{% url 'products:filter' %}"
-                      hx-target="#product_list"
-                      hx-indicator=".htmx-indicator"
-                      hx-swap="outerHTML"
-                      hx-push-url="/shop/"
-                    >
-                      <input type="text" name="price_range" id="amount" readonly="" />
-                      <button type="submit" class="tp-btn-square-lg">
-                        Filter <i class="fal fa-chevron-double-right"></i>
-                      </button>
-                    </form>
-                  </div>
+                    <div class="col-lg-8">
+                        <div id="product_meta_bar" class="product-meta mb-20">
+                            <div class="search_result">Showing {{ page_obj.start_index }}–{{ page_obj.end_index }} of {{ products.count }} products</div>
+                            <div class="selection d-flex align-items-center">
+                                <span class="lead px-2 pb-3">Sort by:</span>
+                                <select
+                                    name="sort_by_popularity"
+                                    id="sort_select"
+                                    style="display: none;"
+                                    class="sort-select"
+                                    hx-get="{% url 'products:sorting' %}"
+                                    hx-target="#product_list"
+                                    hx-indicator=".htmx-indicator"
+                                    hx-swap="outerHTML swap:.5s"
+                                    hx-trigger="change"
+                                >
+                                    <option value="1">Popularity</option>
+                                    <option value="2">Date</option>
+                                    <option value="3">Price low to high</option>
+                                    <option value="4">Price high to low</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="product_list">
+                            {% include "_partials/product_list.html" %}
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <div class="col-lg-8">
-            <div id="product_meta_bar" class="product-meta mb-20">
-              <div class="search_result">Showing {{ page_obj.start_index }}–{{ page_obj.end_index }} of {{ products.count }} products</div>
-              <div class="selection d-flex align-items-center">
-                <span class="lead px-2 pb-3">Sort by:</span>
-                <select
-                  name="sort_by_popularity"
-                  id="sort_select"
-                  style="display: none;"
-                  class="sort-select"
-                  hx-get="{% url 'products:sorting' %}"
-                  hx-target="#product_list"
-                  hx-indicator=".htmx-indicator"
-                  hx-swap="outerHTML swap:.5s"
-                  hx-trigger="change"
-                >
-                  <option value="1">Popularity</option>
-                  <option value="2">Date</option>
-                  <option value="3">Price low to high</option>
-                  <option value="4">Price high to low</option>
-                </select>
-              </div>
-            </div>
-            <div id="product_list">
-              {% include "_partials/product_list.html" %}
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </main> 
+    </main>
 {% endblock content %}
