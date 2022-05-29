@@ -42,14 +42,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Make sure to use production ready smtp server for sending emails
 # Set the email backend to 'django.core.mail.backends.smtp.EmailBackend'
 # Set the following environ variales for the email server
-# EMAIL_HOST = os.environ.get("EMAIL_HOST")
-# EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-# EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-# EMAIL_PORT = os.environ.get("EMAIL_PORT")
-# EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS")
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.gmail.com")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = os.environ.get("EMAIL_PORT", 587)
+EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", True)
+
 
 # This is just for test purpose to avoid sending emails
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
