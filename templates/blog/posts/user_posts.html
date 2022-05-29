@@ -1,0 +1,31 @@
+{% extends 'blog/_blog_base.html' %}
+{% load static %}
+
+{% block title %} Blog | Fitster {% endblock title %}
+
+{% block content %}
+  <main class="pt-110">
+    <div class="blog_area pt-30 pb-100">
+      <div class="container custome-container">
+        <div class="row justify-center">
+          <div class="col-lg-8">
+            <div class="main-blog" id="main_blog_section">
+              <h1 class="display-4 text-dark">
+                  My posts
+              </h1>
+              <hr>
+              <div id="user_post_rows_area">
+                {% include "_partials/blog/user_post_rows.html" %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    document.body.addEventListener('htmx:configRequest', function(evt) {
+      evt.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    });
+  </script>
+{% endblock %}
