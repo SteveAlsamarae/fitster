@@ -44,6 +44,7 @@ THIRD_PARTY_APPS = [
     "djstripe",
     "django_htmx",
     "sorl.thumbnail",
+    "markdownx",
 ]
 LOCAL_APPS = [
     "users.apps.UsersConfig",
@@ -54,6 +55,7 @@ LOCAL_APPS = [
     "store.reviews",
     "store.wishlist",
     "classes",
+    "blog",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
