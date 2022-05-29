@@ -1,16 +1,14 @@
 import uuid
 
-from django.contrib.auth.models import User
 from django.db import models
 from django.shortcuts import reverse
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
-from mptt.models import MPTTModel, TreeForeignKey
 
 
-class ProductCategory(MPTTModel):
+class ProductCategory(models.Model):
     """
-    Product category model implimented with MPTT.
+    Product category model to categorize products.
     """
 
     name = models.CharField(
@@ -20,18 +18,8 @@ class ProductCategory(MPTTModel):
         unique=True,
     )
     slug = models.SlugField(verbose_name=_("Slug for url"), max_length=250, unique=True)
-    parent = TreeForeignKey(
-        "self",
-        verbose_name=_("Parent Category"),
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-        related_name="subcategories",
-    )
-    is_active = models.BooleanField(default=True)
 
-    class MPTTMeta:
-        order_insertion_by = ["name"]
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = _("Category")
@@ -46,6 +34,20 @@ class ProductCategory(MPTTModel):
     def __str__(self):
         return self.name
 
+    def get_all_products(self) -> list[object]:
+        products = self.products.all()
+
+        return products
+
+    def get_products_count(self) -> int:
+        products_count = self.products.count()
+
+        if products_count > 0 and products_count < 10:
+            return f"0{products_count}"
+        elif products_count > 10:
+            return products_count
+        return 0
+
 
 class Product(models.Model):
     """
@@ -56,7 +58,10 @@ class Product(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     categories = models.ForeignKey(
-        ProductCategory, verbose_name=_("Product Categories"), on_delete=models.RESTRICT
+        ProductCategory,
+        verbose_name=_("Product Categories"),
+        on_delete=models.RESTRICT,
+        related_name="products",
     )
     title = models.CharField(
         verbose_name=_("Product Title"),
@@ -98,7 +103,6 @@ class Product(models.Model):
         _("Created at"), auto_now_add=True, editable=False
     )
     updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
-    users_wishlist = models.ManyToManyField(User, related_name="wishlist", blank=True)
 
     class Meta:
         ordering = ("-created_at",)
@@ -119,15 +123,27 @@ class Product(models.Model):
     def get_product_images(self):
         return self.product_images.all()
 
+    def extract_additional_information(self) -> list[dict]:
+        for line in self.additional_information.split("\n"):
+            if line:
+                name_value_tuples = line.strip().split("-")
+                if len(name_value_tuples) == 2:
+                    name, value = (
+                        name_value_tuples[0].strip(),
+                        name_value_tuples[1].strip(),
+                    )
+                    yield {"name": name, "value": value}
+        return
+
     @property
     def get_first_product_img(self):
-        return self.product_images.first().image.url
+        return self.product_images.first().image
 
     @property
     def get_featured_img(self):
         for img in self.product_images.all():
             if img.is_feature:
-                return img.image.url
+                return img.image
 
     @property
     def get_product_price(self):
@@ -141,6 +157,33 @@ class Product(models.Model):
             return f"{int(round((1 - (self.discount_price / self.regular_price)) * 100, 0))}%"
         else:
             return _("No discount")
+
+    @property
+    def get_all_reviews(self) -> list[object]:
+        return self.reviews.all().order_by("-created_at")
+
+    @property
+    def get_reviews_count(self) -> str:
+        count = self.reviews.count()
+        if count > 0 and count < 10:
+            return f"0{count}"
+        return f"{count}"
+
+    @property
+    def get_avarage_rating(self) -> range:
+        reviews = self.reviews.all()
+        if reviews:
+            avg = round(sum(review.rating for review in reviews) / len(reviews))
+            return range(avg)
+        return range(0)
+
+    @property
+    def get_blank_rating_avg(self) -> range:
+        reviews = self.reviews.all()
+        if reviews:
+            avg = round(sum(review.rating for review in reviews) / len(reviews))
+            return range(5 - avg)
+        return range(5)
 
 
 class ProductImage(models.Model):

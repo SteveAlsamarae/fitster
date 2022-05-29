@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block title %} {{ fitness_class.name }} {% endblock title %}
 
@@ -12,7 +13,14 @@
              <div class="col-lg-4">
                 <div class="classes_sidebar mb-30">
                    <div class="support-image">
-                      <img src="{{ fitness_class.thumbnail.url }}" class="img-fluid" alt="{{ fitness_class.name }}">
+                      {% thumbnail fitness_class.thumbnail "360x330" crop="center" as img %}
+                        <img
+                        src="{{ img.url }}"
+                        width="{{ img.width }}"
+                        height="{{ img.height }}"
+                        alt="{{ fitness_class.name }}"
+                        />
+                     {% endthumbnail %}
                    </div>
                    <div class="classes_widget classes_widget_support mb-30">
                       <div class="support_icon">
@@ -58,7 +66,14 @@
              <div class="col-lg-8">
                 <div class="classes_details_info">
                    <div class="class_main_image mb-30">
-                      <img src="{{ fitness_class.thumbnail.url }}" class="img-fluid" alt="{{ fitness_class.name }}">
+                      {% thumbnail fitness_class.thumbnail "750x550" crop="center" as img %}
+                        <img
+                        src="{{ img.url }}"
+                        width="{{ img.width }}"
+                        height="{{ img.height }}"
+                        alt="{{ fitness_class.name }}"
+                        />
+                     {% endthumbnail %}
                    </div>
                    <h5 class="classes_detals_title">{{ fitness_class.name }}</h5>
                    <p class="mb-40">{{ fitness_class.description }}</p>
@@ -68,14 +83,23 @@
                      <div class="col-xl-6 col-lg-6 col-md-6">
                         <div class="trainer-single mb-30">
                            <div class="trainer-image trainer-image_cs_details">
-                              <a href="#"><img src="{{ trainer.avater.url }}" alt="{{ trainer.name }}"></a>
+                              <a href="{{ trainer.get_absolute_url }}">
+                                 {% thumbnail trainer.avatar "360x400" crop="center" as img %}
+                                    <img
+                                       src="{{ img.url }}"
+                                       width="{{ img.width }}"
+                                       height="{{ img.height }}"
+                                       alt="{{ trainer.name }}"
+                                    />
+                                 {% endthumbnail %}
+                              </a>
                            </div>
                            <div class="trainer-info">
-                              <h5 class="trainer-name"><a href="#">{{ trainer.name }}</a></h5>
+                              <h5 class="trainer-name"><a href="{{ trainer.get_absolute_url }}">{{ trainer.name }}</a></h5>
                               <p class="mb-20">{{ trainer.title }}</p>
                            </div>
                            <div class="trainer-btn">
-                              <a href="#" class="tp-btn-square"><i class="fal fa-chevron-double-right"></i></a>
+                              <a href="{{ trainer.get_absolute_url }}" class="tp-btn-square"><i class="fal fa-chevron-double-right"></i></a>
                            </div>
                         </div>
                      </div>

@@ -47,15 +47,15 @@
                 <div class="main-menu">
                     <nav id="mobile-menu">
                         <ul>
-                        <li><a href="#" class="active">Home </a></li>
+                        <li><a href="{% url 'products:store' %}" class="active">Home </a></li>
                         <li><a href="{% url 'products:store' %}">Shop </a></li>
-                        <li><a href="#">Classes </a></li>
-                        <li><a href="#">Pricing </a></li>
+                        <li><a href="{% url 'classes:index' %}">Classes </a></li>
+                        <li><a href="{% url 'classes:pricing' %}">Pricing </a></li>
                         <li><a href="#">Blog </a></li>
                         <li><a href="#">About <i class="fal fa-plus dropdown-icon"></i></a>
                             <ul class="sub-menu">
                                 <li><a href="#">About fitster</a></li>
-                                <li><a href="#">Team</a></li>
+                                <li><a href="{% url 'classes:team' %}">Team</a></li>
                                 <li><a href="#">Portfolio</a></li>
                             </ul>
                         </li>
@@ -70,9 +70,9 @@
                     <a href="{% url 'cart:summary' %}"><i class="fas fa-shopping-basket"></i>
                         {% with request.user.cart as cart %}
                         {% if cart %}
-                        <span>{{ cart.get_cart_items_count }}</span>
+                        <span id="cart_items_counts">{{ cart.get_cart_items_count }}</span>
                         {% else %}
-                        <span>0</span>
+                        <span id="cart_items_counts">0</span>
                         {% endif %}
                         {% endwith %}
                     </a>

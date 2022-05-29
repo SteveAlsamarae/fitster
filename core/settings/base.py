@@ -42,6 +42,8 @@ THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "djstripe",
+    "django_htmx",
+    "sorl.thumbnail",
 ]
 LOCAL_APPS = [
     "users.apps.UsersConfig",
@@ -49,7 +51,8 @@ LOCAL_APPS = [
     "store.cart",
     "store.orders",
     "store.checkout",
-    "classes"
+    "store.reviews",
+    "classes",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -64,6 +67,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 # allauth specific settings

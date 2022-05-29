@@ -17,13 +17,12 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     avatar = ResizedImageField(
-        size=[300, 300],
+        size=[150, 150],
         crop=["middle", "center"],
         upload_to="avatars",
-        default="default.jpg",
         quality=70,
         keep_meta=False,
-        verbose_name="avatar",
+        verbose_name="Avatar",
         blank=True,
         null=True,
     )

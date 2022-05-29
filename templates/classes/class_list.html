@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block title %} All fitness classes | Fitster {% endblock title %}
 
@@ -24,7 +25,15 @@
                 <div class="single-class mb-40">
                    <div class="class-iamge">
                       <a href="{{ fit_class.get_absolute_url }}">
-                        <img src="{{ fit_class.thumbnail.url }}" class="img-fluid" alt="{{ fit_class.name }}"></a>
+                        {% thumbnail fit_class.thumbnail "360x340" crop="center" as img %}
+                           <img
+                           src="{{ img.url }}"
+                           class="img-fluid"
+                           width="{{ img.width }}"
+                           height="{{ img.height }}"
+                           alt="{{ fit_class.name }}"
+                           />
+                        {% endthumbnail %}
                    </div>
                    <div class="class-info text-center">
                       <div class="class_icon mb-10">
@@ -51,7 +60,7 @@
        </div>
     </div>
 
-   <div class="testimonial-area-two" data-background="{% static 'img/testimonialbg.jpg' %}">
+   <div class="testimonial-area-two" data-background="{% static 'img/testimonial-bg.jpg' %}">
       <div class="container">
          <div class="pt-120 pb-115">
             <div class="row justify-content-center">
@@ -60,7 +69,7 @@
                      <div class="testimonial-wrapper swiper-wrapper">
                         <div class="testimonial-slider-item swiper-slide text-center">
                            <div class="tesimonial-quote mb-60">
-                              <img src="{% static 'img/testimoinal-quote.png' %}" alt="quote">
+                              <img src="{% static 'img/testimonial-quote.png' %}" alt="quote">
                            </div>
                            <div class="testimonial-info">
                               <p class="testimonial_description testimonial_description-two pb-50">Eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac ante id sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre</p>
@@ -70,7 +79,7 @@
                         </div>
                         <div class="testimonial-slider-item swiper-slide text-center">
                            <div class="tesimonial-quote mb-60">
-                              <img src="assets/img/testimonial/testimoinal-quote.png" alt="">
+                              <img src="assets/img/testimonial/testimonial-quote.png" alt="">
                            </div>
                            <div class="testimonial-info">
                               <p class="testimonial_description testimonial_description-two pb-50">Sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre. eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac ante id.</p>
@@ -80,7 +89,7 @@
                         </div>
                         <div class="testimonial-slider-item swiper-slide text-center">
                            <div class="tesimonial-quote mb-60">
-                              <img src="assets/img/testimonial/testimoinal-quote.png" alt="">
+                              <img src="assets/img/testimonial/testimonial-quote.png" alt="">
                            </div>
                            <div class="testimonial-info">
                               <p class="testimonial_description testimonial_description-two pb-50">Saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac. Eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse ante id sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre</p>

@@ -1,0 +1,220 @@
+{% load static %}
+{% load thumbnail %}
+
+<div id="product_list">
+<div class="product">
+  <div class="text-center htmx-indicator">
+    <img src="{% static 'img/loader.svg' %}" alt="searching...." height="120px"> 
+  </div>
+  <div class="row" id="product_listing">
+    {% if products %}
+    {% if query %}
+    <div id="product_meta_bar" class="product-meta mb-20" hx-swap-oob="true">
+      <div class="search_result">Showing {{ page_obj.start_index }}–{{ page_obj.end_index }} of {{ products.count }} products</div>
+      <div class="selection d-flex align-items-center">
+        <span class="lead px-2 pb-3">Sort by:</span>
+        <select
+          name="sort_by_popularity"
+          id="sort_select"
+          style="display: none;"
+          class="sort-select"
+          hx-get="{% url 'products:sorting' %}"
+          hx-target="#product_list"
+          hx-indicator=".htmx-indicator"
+          hx-swap="outerHTML swap:.5s"
+          hx-trigger="change"
+        >
+          <option value="1">Popularity</option>
+          <option value="2">Date</option>
+          <option value="3">Price low to high</option>
+          <option value="4">Price high to low</option>
+        </select>
+      </div>
+    </div>
+      <h2 class="display-6 pt-0 pb-3" style="margin-top: -15px;">
+        Showing results for <span class="text-primary">"{{ query }}"</span>
+      </h2>
+    {% endif %}
+    {% if has_filter %}
+      <h2 class="display-6 pt-0 pb-3" style="margin-top: -15px;">
+        Showing products between <span class="text-primary">${{ min_price }}</span>
+        and <span class="text-primary">${{ max_price }}</span>
+      </h2>
+    {% endif %}
+    {% if category %}
+    <div id="product_meta_bar" class="product-meta mb-20" hx-swap-oob="true">
+      <div class="search_result">Showing {{ page_obj.start_index }}–{{ page_obj.end_index }} of {{ products.count }} products</div>
+      <div class="selection d-flex align-items-center">
+        <span class="lead px-2 pb-3">Sort by:</span>
+        <select
+          name="sort_by_popularity"
+          id="sort_select"
+          style="display: none;"
+          class="sort-select"
+          hx-get="{% url 'products:sorting' %}"
+          hx-target="#product_list"
+          hx-indicator=".htmx-indicator"
+          hx-swap="outerHTML swap:.5s"
+          hx-trigger="change"
+        >
+          <option value="1">Popularity</option>
+          <option value="2">Date</option>
+          <option value="3">Price low to high</option>
+          <option value="4">Price high to low</option>
+        </select>
+      </div>
+    </div>
+      <h2 class="display-6 pt-0 pb-3" style="margin-top: -15px;">
+        Showing products in <span class="text-primary">{{ category }}</span> category
+      </h2>
+    {% endif %}
+    {% for product in page_obj %}
+    <div class="col-lg-6 col-md-6">
+      <div class="product-item mb-40">
+        <div class="prouct-wrapper">
+          <div class="product_thum product_thum-new mb-30">
+            <div class="fix">
+              <a href="{{ product.get_absolute_url }}">
+                {% thumbnail product.get_first_product_img "360x400" crop="center" as img %}
+                <img
+                  src="{{ img.url }}"
+                  class="img-fluid"
+                  width="{{ img.width }}"
+                  height="{{ img.height }}"
+                  alt="{{ product.title }}"
+                />
+                {% endthumbnail %}
+              </a>
+            </div>
+            <div class="product-item-action">
+              <a href="#"><i class="far fa-heart"></i></a>
+              <a href="{{ product.get_first_product_img.url }}" class="image-popups">
+                <i class="fas fa-compress"></i>
+              </a>
+              <a
+                href="#"
+                hx-post="{% url 'cart:add_to_cart' product_id=product.id %}"
+                hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                hx-target="#cart_items_counts"
+                hx-swap="outerHTML swap:.2s"
+              ><i class="far fa-cart-plus"></i></a>
+            </div>
+            {% if product.sale_tag %}
+            <div class="sale-tag">
+              <span class="{{ product.sale_tag |lower }}">{{ product.sale_tag }}</span>
+            </div>
+            {% endif %}
+          </div>
+          <div class="product-content">
+            <div class="product-info">
+              <h5 class="product_name">
+                <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+              </h5>
+              <div class="d-flex">
+                {% if product.discount_price %}
+                <s>
+                  <span class="product_price product_discount">${{ product.regular_price }}</span>
+                </s>
+                {% endif %}
+                <span class="product_price"
+                  >${{ product.get_product_price }}</span
+                >
+              </div>
+            </div>
+            <div class="product-button">
+              <a
+                href="{{ product.get_absolute_url }}"
+                class="tp-btn-round-product"
+              >
+                buy now
+                <i class="fal fa-chevron-double-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h2 class="display-4">
+      Sorry! We don't have any active products at the moment.
+    </h2>
+    {% endif %}
+  </div>
+</div>
+
+{% if products %}
+<div class="row mt-40">
+  <div class="col-12">
+    <div
+      class="basic-pagination-two mt-10 wow fadeInUp"
+      data-wow-delay=".5s"
+      style="
+        visibility: visible;
+        animation-delay: 0.3s;
+        animation-name: fadeInUp;
+      "
+      >
+      <ul>
+        {% if page_obj.has_previous %}
+        <li>
+          <a class="next page-numbers" href="?page={{ page_obj.previous_page_number }}"><i class="fal fa-long-arrow-left"></i> </a>
+        </li>
+        {% endif %}
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %} 
+          <li>
+              <a href="?page={{ num }}"><span aria-current="page" class="page-numbers current">{{ num }}</span></a>
+          </li>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <li>
+              <a class="page-numbers" href="?page={{ num }}">{{ num }}</a>
+          </li>
+          {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li>
+            <a class="next page-numbers" href="?page={{ page_obj.next_page_number }}"><i class="fal fa-long-arrow-right"></i> </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endif %}
+</div>
+
+{% if has_filter %}
+  <input
+    id="search_box"
+    type="search" 
+    placeholder="Search..." 
+    name="q" 
+    value="" 
+    hx-swap-oob="true"
+  />
+  <div id="product_meta_bar" class="product-meta mb-20" hx-swap-oob="true">
+    <div class="search_result">Showing {{ page_obj.start_index }}–{{ page_obj.end_index }} of {{ products.count }} products</div>
+    <div class="selection d-flex align-items-center">
+      <span class="lead px-2 pb-3">Sort by:</span>
+      <select
+        name="sort_by_popularity"
+        id="sort_select"
+        style="display: none;"
+        class="sort-select"
+        hx-get="{% url 'products:sorting' %}"
+        hx-target="#product_list"
+        hx-indicator=".htmx-indicator"
+        hx-swap="outerHTML swap:.5s"
+        hx-trigger="change"
+      >
+        <option value="1">Popularity</option>
+        <option value="2">Date</option>
+        <option value="3">Price low to high</option>
+        <option value="4">Price high to low</option>
+      </select>
+    </div>
+  </div>
+{% endif %}
+
+<script src="{% static 'js/main.js' %}"></script>

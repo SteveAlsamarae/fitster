@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block title %} Pricing | Fitster {% endblock title %}
 
 
 {% block content %}
 <main class="pt-120">
-    <div class="priceing-area pt-120 pb-90">
+    <div class="priceing-area pt-120">
        <div class="container custome-container">
           <div class="row justify-content-center">
              <div class="col-lg-12">
@@ -26,14 +27,28 @@
                       <div class="price_item mb-30 wow fadeInUp" data-wow-delay=".6s">
                         {% if forloop.counter == 2 %}
                         <div class="priceing_image priceing_image-active mb-10 ">
-                            <img src="{{ plan.thumbnail.url }}" alt="{{ plan.name }}" class="img-fluid">
+                            {% thumbnail plan.thumbnail "350x220" crop="center" as img %}
+                              <img
+                              src="{{ img.url }}"
+                              width="{{ img.width }}"
+                              height="{{ img.height }}"
+                              alt="{{ plan.name }}"
+                              />
+                           {% endthumbnail %}
                             <div class="price__popular">
                                 <span>popular</span>
                              </div>
                          </div>
                          {% else %}
                          <div class="priceing_image mb-10">
-                            <img src="{{ plan.thumbnail.url }}" alt="{{ plan.name }}" class="img-fluid">
+                            {% thumbnail plan.thumbnail "350x220" crop="center" as img %}
+                              <img
+                              src="{{ img.url }}"
+                              width="{{ img.width }}"
+                              height="{{ img.height }}"
+                              alt="{{ plan.name }}"
+                              />
+                           {% endthumbnail %}
                          </div>
                         {% endif %}
                          {% if forloop.counter == 2 %}
@@ -76,7 +91,7 @@
           </div>
        </div>
 
-    <div class="testimonial-area-two" data-background="{% static 'img/testimonialbg.jpg' %}">
+    <div class="testimonial-area-two" data-background="{% static 'img/testimonial-bg.jpg' %}">
        <div class="container">
           <div class="pt-120 pb-115">
              <div class="row justify-content-center">
@@ -85,7 +100,7 @@
                       <div class="testimonial-wrapper swiper-wrapper">
                          <div class="testimonial-slider-item swiper-slide text-center">
                             <div class="tesimonial-quote mb-60">
-                               <img src="{% static 'img/testimoinal-quote.png' %}" alt="quote">
+                               <img src="{% static 'img/testimonial-quote.png' %}" alt="quote">
                             </div>
                             <div class="testimonial-info">
                                <p class="testimonial_description testimonial_description-two pb-50">Eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac ante id sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre</p>
@@ -95,7 +110,7 @@
                          </div>
                          <div class="testimonial-slider-item swiper-slide text-center">
                             <div class="tesimonial-quote mb-60">
-                               <img src="assets/img/testimonial/testimoinal-quote.png" alt="">
+                               <img src="assets/img/testimonial/testimonial-quote.png" alt="">
                             </div>
                             <div class="testimonial-info">
                                <p class="testimonial_description testimonial_description-two pb-50">Sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre. eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac ante id.</p>
@@ -105,7 +120,7 @@
                          </div>
                          <div class="testimonial-slider-item swiper-slide text-center">
                             <div class="tesimonial-quote mb-60">
-                               <img src="assets/img/testimonial/testimoinal-quote.png" alt="">
+                               <img src="assets/img/testimonial/testimonial-quote.png" alt="">
                             </div>
                             <div class="testimonial-info">
                                <p class="testimonial_description testimonial_description-two pb-50">Saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac. Eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse ante id sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre</p>

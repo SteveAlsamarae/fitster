@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from .models import (
     ClassSchedule,
+    FintnessSubscription,
     FitnessClass,
     FitnessSubscriptionPlan,
     NutritionPlan,
@@ -36,3 +37,4 @@ admin.site.register(
 
 admin.site.register(FitnessSubscriptionPlan)
 admin.site.register(NutritionPlan)
+admin.site.register(FintnessSubscription)

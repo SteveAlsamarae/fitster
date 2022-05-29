@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %}Fitster Shop{% endblock title %}
 
 {% block content %}
@@ -12,9 +13,15 @@
               <div class="product_sidebar-widget mb-30">
                 <div class="product_sidebar-inner">
                   <div class="sidebar__search-2">
-                    <form action="#">
+                    <form 
+                      hx-get="{% url 'products:search' %}"
+                      hx-target="#product_list"
+                      hx-indicator=".htmx-indicator"
+                      hx-swap="outerHTML swap:.5s"
+                      hx-push-url="true"
+                    >
                       <div class="sidebar__search-input-2">
-                        <input type="text" placeholder="Search..." />
+                        <input id="search_box" type="search" placeholder="Search..." name="q" />
                         <button type="submit">
                           <i class="far fa-search"></i>
                         </button>
@@ -28,14 +35,20 @@
                   <i class="far fa-circle"></i> Category
                 </h5>
                 <ul class="product-catagory_list">
-                  <li>
-                    <a href="#">Cardio Therapy</a>
-                    <a href="#">(07)</a>
+                  {% for cat in categories %}
+                  <li style="font-family: 'Roboto';">
+                    <button
+                      hx-get="{% url 'products:category_products' category_slug=cat.slug %}"
+                      hx-target="#product_list"
+                      hx-indicator=".htmx-indicator"
+                      hx-swap="outerHTML swap:.4s"
+                      hx-push-url="true"
+                      >
+                      <strong>{{ cat.name | title }}</strong>
+                    </button>
+                    <span>({{ cat.get_products_count }})</span>
                   </li>
-                  <li>
-                    <a href="#">Beauty & Spa</a>
-                    <a href="#">(12)</a>
-                  </li>
+                  {% endfor %}
                 </ul>
               </div>
               <div class="product_sidebar-widget mb-30">
@@ -45,26 +58,31 @@
                 <div class="price__slider">
                   <div
                     id="slider-range"
-                    class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                  >
+                    class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
                     <div
                       class="ui-slider-range ui-corner-all ui-widget-header"
-                      style="left: 0%; width: 100%"
-                    ></div>
+                      style="left: 0%; width: 100%">
+                    </div>
                     <span
                       tabindex="0"
                       class="ui-slider-handle ui-corner-all ui-state-default"
-                      style="left: 0%"
-                    ></span
-                    ><span
+                      style="left: 0%">
+                    </span>
+                    <span
                       tabindex="0"
                       class="ui-slider-handle ui-corner-all ui-state-default"
-                      style="left: 100%"
-                    ></span>
+                      style="left: 100%">
+                    </span>
                   </div>
                   <div>
-                    <form action="#">
-                      <input type="text" id="amount" readonly="" />
+                    <form 
+                      hx-get="{% url 'products:filter' %}"
+                      hx-target="#product_list"
+                      hx-indicator=".htmx-indicator"
+                      hx-swap="outerHTML"
+                      hx-push-url="/shop/"
+                    >
+                      <input type="text" name="price_range" id="amount" readonly="" />
                       <button type="submit" class="tp-btn-square-lg">
                         Filter <i class="fal fa-chevron-double-right"></i>
                       </button>
@@ -72,124 +90,37 @@
                   </div>
                 </div>
               </div>
-              
             </div>
           </div>
           <div class="col-lg-8">
-            <div class="product-meta mb-20">
-              <div class="search_result">Showing 1–12 of 19 results</div>
-              <div class="selection">
+            <div id="product_meta_bar" class="product-meta mb-20">
+              <div class="search_result">Showing {{ page_obj.start_index }}–{{ page_obj.end_index }} of {{ products.count }} products</div>
+              <div class="selection d-flex align-items-center">
+                <span class="lead px-2 pb-3">Sort by:</span>
                 <select
-                  name="Short by popularity"
-                  id="transport"
-                  style="display: none"
+                  name="sort_by_popularity"
+                  id="sort_select"
+                  style="display: none;"
+                  class="sort-select"
+                  hx-get="{% url 'products:sorting' %}"
+                  hx-target="#product_list"
+                  hx-indicator=".htmx-indicator"
+                  hx-swap="outerHTML swap:.5s"
+                  hx-trigger="change"
                 >
-                  <option value="01">Short by popularity</option>
-                  <option value="01">Price</option>
+                  <option value="1">Popularity</option>
+                  <option value="2">Date</option>
+                  <option value="3">Price low to high</option>
+                  <option value="4">Price high to low</option>
                 </select>
               </div>
             </div>
-            <div class="product">
-              <div class="row">
-                {% if products %}
-                {% for product in products %}
-                <div class="col-lg-6 col-md-6">
-                  <div class="product-item mb-40">
-                    <div class="prouct-wrapper">
-                      <div class="product_thum product_thum-new mb-30">
-                        <div class="fix">
-                          <a href="{{ product.get_absolute_url }}">
-                            <img
-                              src="{{ product.get_first_product_img }}"
-                              class="img-fluid"
-                              alt="{{ product.title }}"
-                            />
-                        </a>
-                        </div>
-                        <div class="product-item-action">
-                          <a href="#"><i class="far fa-heart"></i></a>
-                          <a
-                            href="{{ product.get_first_product_img }}"
-                            class="image-popups"
-                            >
-                            <i class="fas fa-compress"></i>
-                          </a>
-                          <a href="#"><i class="far fa-exchange"></i></a>
-                        </div>
-                        {% if product.sale_tag %}
-                        <div class="sale-tag">
-                          <span class="{{ product.sale_tag |lower }}">{{ product.sale_tag }}</span>
-                        </div>
-                        {% endif %}
-                      </div>
-                      <div class="product-content">
-                        <div class="product-info">
-                          <h5 class="product_name">
-                            <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
-                          </h5>
-                          <div class="d-flex">
-                          {% if product.discount_price %}
-                          <s><span class="product_price product_discount">${{ product.regular_price }}</span></s>
-                          {% endif %}
-                          <span class="product_price">${{ product.get_product_price }}</span>
-                          </div>
-                        </div>
-                        <div class="product-button">
-                          <a href="{{ product.get_absolute_url }}" class="tp-btn-round-product">
-                            buy now 
-                            <i class="fal fa-chevron-double-right"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {% endfor %}
-                {% else %}
-                <h2>Sorry! We don't have any active products now.</h2>
-                {% endif %}
-              </div>
-            </div>
-            <div class="row mt-40">
-              <div class="col-12">
-                <div
-                  class="basic-pagination-two mt-10 wow fadeInUp"
-                  data-wow-delay=".5s"
-                  style="
-                    visibility: visible;
-                    animation-delay: 0.5s;
-                    animation-name: fadeInUp;
-                  "
-                >
-                  <ul>
-                    {% if page_obj.has_previous %}
-                    <li>
-                      <a class="next page-numbers" href="?page={{ page_obj.previous_page_number }}"><i class="fal fa-long-arrow-left"></i> </a>
-                    </li>
-                    {% endif %}
-                    {% for num in page_obj.paginator.page_range %}
-                      {% if page_obj.number == num %} 
-                      <li>
-                          <a href="?page={{ num }}"><span aria-current="page" class="page-numbers current">{{ num }}</span></a>
-                      </li>
-                      {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                      <li>
-                          <a class="page-numbers" href="?page={{ num }}">{{ num }}</a>
-                      </li>
-                      {% endif %}
-                    {% endfor %}
-                    {% if page_obj.has_next %}
-                    <li>
-                        <a class="next page-numbers" href="?page={{ page_obj.next_page_number }}"><i class="fal fa-long-arrow-right"></i> </a>
-                    </li>
-                    {% endif %}
-                  </ul>
-                </div>
-              </div>
+            <div id="product_list">
+              {% include "_partials/product_list.html" %}
             </div>
           </div>
         </div>
       </div>
     </div>
-  </main>  
+  </main> 
 {% endblock content %}
