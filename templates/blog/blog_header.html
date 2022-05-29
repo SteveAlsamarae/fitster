@@ -1,0 +1,70 @@
+{% load static %}
+<header class="top-nav">
+  <div class="menu-area bg-dark" id="header-sticky">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-xxl-12 col-xl-12 col-lg-12">
+          <div class="menu-content">
+            <div class="top-logo d-lg-none">
+              <a href="#"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
+            </div>
+            <div class="main-menu">
+              <nav id="mobile-menu">
+                <ul>
+                  <li class="p-0">
+                    <a href="#" class="d-none d-lg-inline"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
+                  </li>
+
+                  <li>
+                    <a href="{% url 'products:store' %}" class="active">Home </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'products:store' %}">Shop </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'classes:index' %}">Classes </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'classes:team' %}">Team</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'blog:post_list' %}">Blog </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="side-menu-icon d-lg-none text-end">
+              <a href="javascript:void(0)" class="info-toggle-btn f-right sidebar-toggle-btn"><i class="fal fa-bars"></i></a>
+            </div>
+            <div class="header-action-btn  d-none d-lg-block mr-70">
+              <div class="main-menu">
+                <nav id="mobile-menu">
+                  <ul>
+                    {% if user.is_authenticated %}
+                      <a href="{% url 'blog:add_post' %}" class="btn btn-md btn-outline-danger mr-10"> Add Post</a>
+                    {% endif %}
+                    <li>
+                      <a href="#" class="main-menu"><i class="fas fa-user-circle"></i> Profile</a>
+                      <ul class="sub-menu">
+                        {% if user.is_authenticated %}
+                          <li><a href="{% url 'blog:user_posts' username=user.username %}">My Posts</a></li>
+                          <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                        {% else %}
+                          <li><a href="{% url 'account_login' %}">Login</a></li>
+                          <li><a href="{% url 'account_signup' %}">Signup</a></li>
+                        {% endif %}
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="body-overlay"></div>
