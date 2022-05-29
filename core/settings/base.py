@@ -56,6 +56,7 @@ LOCAL_APPS = [
     "store.wishlist",
     "classes",
     "blog",
+    "contact",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
