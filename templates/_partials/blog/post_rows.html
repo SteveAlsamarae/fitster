@@ -1,0 +1,69 @@
+{% load static %}
+<div id="post_rows_area">
+  {% if posts %}
+    <div class="text-center htmx-indicator">
+      <img src="{% static 'img/loader.svg' %}" alt="searching...." height="120px">
+    </div>
+    {% for post in page_obj %}
+      <div class="single_mblog mb-20 pt-10">
+        <div class="mblog_info">
+          <div class="mblog__meta mb-15">
+            <ul>
+              <li><a><i class="far fa-user"></i> @{{ post.author.username }}</a></li>
+              <li><a><i class="far fa-bookmark"></i> {{ post.get_comma_separated_tags.0 }}</a></li>
+            </ul>
+          </div>
+          <h6 class="mblog__title mb-15">
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+          </h6>
+          <p>{{ post.content|striptags| truncatechars:160 }}</p>
+          <div class="mblog-button">
+            <a href="{{ post.get_absolute_url }}">Continue Reading <i class="fal fa-chevron-double-right"></i></a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+    {% if page_obj %}
+      <div class="row mt-40">
+        <div class="col-12">
+          <div
+            class="basic-pagination-two mt-10 wow fadeInUp"
+            data-wow-delay=".5s"
+            style="
+              visibility: visible;
+              animation-delay: 0.15s;
+              animation-name: fadeInUp;
+            "
+          >
+            <ul>
+              {% if page_obj.has_previous %}
+                <li>
+                  <a class="next page-numbers" href="?page={{ page_obj.previous_page_number }}"><i class="fal fa-long-arrow-left"></i> </a>
+                </li>
+              {% endif %}
+              {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                  <li>
+                    <a href="?page={{ num }}"><span aria-current="page" class="page-numbers current">{{ num }}</span></a>
+                  </li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                  <li>
+                    <a class="page-numbers" href="?page={{ num }}">{{ num }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+              {% if page_obj.has_next %}
+                <li>
+                  <a class="next page-numbers" href="?page={{ page_obj.next_page_number }}"><i class="fal fa-long-arrow-right"></i> </a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% else %}
+    <h2 class="display-5 text-secondary">No Posts!</h2>
+  {% endif %}
+</div>

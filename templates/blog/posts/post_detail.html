@@ -1,0 +1,90 @@
+{% extends 'blog/_blog_base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %} {{ post.title }} | Fitster {% endblock title %}
+
+{% block content %}
+
+  <main class="pt-80">
+    <div class="blog_area pt-50 pb-70">
+      <div 
+         class="mx-4 text-lg text-dark" 
+         style="margin-top: -15px;padding-left: 30px;font-size: 1.3em;font-weight: lighter;font-family: 'Roboto';">
+        <a href="{% url 'blog:post_list' %}"><i class="fas fa-arrow-left"></i> Back to blog</a>
+      </div>
+      <div class="container custome-container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="main-blog">
+              <div class="single_mblog mb-30">
+                <div class="mblog_image mb-30">
+                  <a>
+                    {% thumbnail post.thumbnail "700x450" crop="center" as img %}
+                      <img
+                        src="{{ img.url }}"
+                        width="{{ img.width }}"
+                        height="{{ img.height }}"
+                        alt="{{ post.title }}"
+                      />
+                    {% endthumbnail %}
+                  </a>
+                  <div class="top_date">
+                    <span>{{ post.updated_at |date:"d M" }}</span>
+                  </div>
+                </div>
+                <div class="mblog_info mblog_details">
+                  <div class="mblog__meta mb-15">
+                    <ul>
+                      <li>
+                        <a>
+                          <i class="far fa-user"></i> @{{ post.author.username }}
+                        </a>
+                      </li>
+                      <li>
+                        <a>
+                          <i class="far fa-bookmark"></i> {{ tags }}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <h6 class="mblog__title mb-15">
+                    {{ post.title }}
+                  </h6>
+                  <hr>
+                </div>
+              </div>
+              <div class="markdown-body">
+                {{ post.get_markdown_content|safe }}
+              </div>
+
+            </div>
+            <div class="blog_nav mb-50">
+              <div class="blog-action-wrapper">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="blog_dmeta mb-20">
+                      <p>
+                        <i class="far fa-bookmark"></i>
+                        {{ tags }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="blog_dmeta mb-20 text-sm-end">
+                      <div class="share-social_icon">
+                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

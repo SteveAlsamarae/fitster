@@ -1,0 +1,52 @@
+{% extends 'blog/_blog_base.html' %}
+{% load static %}
+
+{% block title %} Blog | Fitster {% endblock title %}
+
+{% block content %}
+  <main class="pt-110">
+    <div class="blog_area pt-30 pb-100">
+      <div class="container custome-container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="main-blog">
+              <h1 class="display-4 text-dark">Blog posts from the community</h1>
+              <hr>
+              {% include "_partials/blog/post_rows.html" %}
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="blog_sidebar">
+              <div class="blog_sidebar-widget mb-30">
+                <div class="product_sidebar-inner">
+                  <div class="sidebar__search-2">
+                    <form
+                      hx-get="{% url 'blog:search' %}"
+                      hx-target="#post_rows_area"
+                      hx-indicator=".htmx-indicator"
+                      hx-swap="outerHTML swap:.5s"
+                      hx-push-url="true"
+                    >
+                      <div class="sidebar__search-input-2">
+                        <input type="search" name="q" placeholder="Search...">
+                        <button type="submit"><i class="far fa-search"></i></button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="blog_sidebar-widget mb-30">
+                <h5 class="classes_widget_title mb-25"><i class="far fa-circle"></i> Tags cloud</h5>
+                <div class="product_sidebar-tag">
+                  {% for tag in tags %}
+                    <a href="{% url 'blog:posts_by_tag' tag=tag|lower %}">{{ tag }}</a>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

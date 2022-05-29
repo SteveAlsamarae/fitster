@@ -11,6 +11,7 @@ urlpatterns = [
     # 3rd parties
     path("accounts/", include("allauth.urls")),
     path("stripe/", include("djstripe.urls", namespace="djstripe")),
+    path("markdownx/", include("markdownx.urls")),
     # local
     path("", store_view, name="index"),
     path("shop/", include("store.products.urls")),
@@ -20,6 +21,7 @@ urlpatterns = [
     path("shop/cart/checkout/order/", include("store.orders.urls")),
     path("shop/product/", include("store.reviews.urls")),
     path("classes/", include("classes.urls")),
+    path("blog/", include("blog.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
