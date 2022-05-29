@@ -1,0 +1,9 @@
+<span
+  id="wishlist_product_count"
+  class="wishlist-count"
+  hx-get="{% url 'wishlist:get_count' %}"
+  hx-trigger="update from:body"
+  hx-swap="outerHTML"
+>
+  {{ count }}</span
+>

@@ -1,0 +1,37 @@
+{% load static %}
+<div class="row" id="wishlist_summary_body">
+    <div class="col-12">
+             <div class="table-content table-responsive">
+                <table class="table">
+                      <thead>
+                         <tr>
+                            <th class="product-thumbnail">Images</th>
+                            <th class="wishlist-product-name">Product</th>
+                            <th class="product-price">Regular Price</th>
+                            <th class="product-discount">Discount Price</th>
+                            <th class="product-action">Action</th>
+                            <th class="product-remove">Remove</th>
+                         </tr>
+                      </thead>
+                        {% include "_partials/wishlist_rows.html" with wishlist=wishlist %}
+                </table>
+             </div>
+             {% if wishlist.get_all_wishlist_item %}
+             <div class="row">
+                <div class="col-12">
+                      <div class="coupon-all">
+                           <div class="coupon2 mx-3">
+                           <form hx-post="{% url 'wishlist:clear_wishlist' %}"
+                                 hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                                 hx-target="#wishlist_items"
+                                 hx-swap="outerHTML swap:.2s"
+                           >
+                              <button class="tp-btn-square-lg" name="update_cart" type="submit">Clear wishlist</button>
+                           </form>
+                           </div>
+                      </div>
+                </div>
+             </div>
+        {% endif %}
+    </div>
+ </div>

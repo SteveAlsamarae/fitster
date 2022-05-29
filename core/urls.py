@@ -14,6 +14,7 @@ urlpatterns = [
     # local
     path("", store_view, name="index"),
     path("shop/", include("store.products.urls")),
+    path("shop/wishlist/", include("store.wishlist.urls")),
     path("shop/cart/", include("store.cart.urls")),
     path("shop/cart/checkout/", include("store.checkout.urls")),
     path("shop/cart/checkout/order/", include("store.orders.urls")),

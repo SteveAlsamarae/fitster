@@ -7,7 +7,7 @@
 {% block content %}
 <main class="pt-120">
 {% if product %}
-<div class="shop-details_area pt-120 pb-110">
+<div class="shop-details_area pt-120 pb-100">
 <div class="mx-4 text-lg text-dark" style="margin-top: -20px;padding-left: 30px;font-size: 1.3em;font-weight: lighter;font-family: 'Roboto';">
     <a href="{% url 'products:store' %}"><i class="fas fa-arrow-left"></i> Back to shop</a>
 </div>
@@ -105,16 +105,27 @@
                 {% endif %}
                 ${{ product.get_product_price }}
             </h6>
+            <p class="mb-10"><strong class="mr-10 text-dark">Category :</strong>
+                {{ product.categories }}
+            </p>
             <p class="mb-30">
                 {{ product.short_description }}
             </p>
             <div class="product__modal-form">
+                {% if user.is_authenticated %}
                 <form 
                     hx-post="{% url 'cart:add_to_cart' product_id=product.id %}"
                     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
                     hx-target="#cart_items_counts"
                     hx-swap="outerHTML swap:.4s"
                 >
+                {% else %}
+                <form 
+                    action="{% url 'cart:add_to_cart' product_id=product.id %}"
+                    method="POST"
+                >
+                    {% csrf_token %}
+                {% endif %}
                     <div class="pro-quan-area">
                         <div class="product-quantity mr-20 mb-30">
                             <div class="cart-plus-minus p-relative">
@@ -129,10 +140,44 @@
             </div>
             <h2 id="nav-review-sec"></h2>
             <div class="quick-info mt-30">
-                <h6 class="quick-info-title mb-15">Add to Wishlist</h6>
-                <p class="mb-10"><span class="mr-10">Category :</span>
-                    {{ product.categories }}
-                </p>
+                <div>
+                    {% if user.is_authenticated %}
+                        {% if product.wishlist.count %}
+                        <a id="product_{{ product.pk }}">
+                            <strong>
+                                <i class="fas fa-heart" style="font-weight:bold"></i>
+                                <span style="font-size: 1.1em;">Added to Wishlist</span>
+                            </strong>
+                        </a>
+                        {% else %}
+                        <a 
+                            href="#"
+                            id="product_{{ product.pk }}"
+                            hx-post="{% url 'wishlist:add_to_wishlist' product_id=product.id %}"
+                            hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                            hx-target="#wishlist_product_count"
+                            hx-swap="outerHTML swap:.2s"
+                        >
+                            <strong>
+                                <i class="fas fa-heart"></i>
+                                <span style="font-size: 1.1em;">Add to Wishlist</span>
+                            </strong>
+                        </a>
+                        {% endif %}
+                    {% else %}
+                    <a 
+                        href="{% url 'wishlist:add_to_wishlist' product_id=product.id %}"
+                        id="product_{{ product.pk }}"
+                    >
+                        <strong>
+                            <i class="fas fa-heart"></i>
+                            <span style="font-size: 1.1em;">Add to Wishlist</span>
+                        </strong>
+                    </a>
+                    {% endif %}
+                </div>
+                <h2 id="nav-review-sec"></h2>
+                
             </div>
             </div>
         </div>
@@ -176,6 +221,7 @@
         <div class="tab-pane fade" id="nav-review" role="tabpanel">
             <div class="tabs-wrapper mt-35">
             <div class="product__details-comment ">
+                {% if user.is_authenticated %}
                 <div class="comment-title mb-20">
                     <h3>Add a review</h3>
                 </div>
@@ -216,8 +262,14 @@
                         </div>
                     </div>
                 </form>
+                {% else %}
+                <div class="comment-title mb-20">
+                    <h2 class="display-6">
+                        Please, <a href="{% url 'account_login' %}" class="text-primary">login</a> to add a review.
+                    </h2>
+                </div>
+                {% endif %}
             </div>
-
             <section id="testimonials">
                 <div class="pt-4">
                     <h4 class="display-5">Customer reviews</h4>

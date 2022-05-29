@@ -87,17 +87,51 @@
               </a>
             </div>
             <div class="product-item-action">
-              <a href="#"><i class="far fa-heart"></i></a>
+              {% if user.is_authenticated %}
+                {% if product.wishlist.count %}
+                <a 
+                  id="add_to_wishlist_btn"
+                  href="{% url 'wishlist:summary' %}"
+                >
+                  <i id="wishlist_icon" class="far fa-heart" style="font-weight: bold;"></i>
+                </a>
+                {% else %}
+                <a 
+                  href="#"
+                  id="pro_{{ product.pk }}"
+                  hx-post="{% url 'wishlist:add_to_wishlist' product_id=product.id %}"
+                  hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                  hx-target="#wishlist_product_count"
+                  hx-swap="outerHTML swap:.2s"
+                >
+                  <i id="wishlist_icon" class="far fa-heart"></i>
+                </a>
+                {% endif %}
+              {% else %}
+                <a href="{% url 'wishlist:add_to_wishlist' product_id=product.id %}">
+                  <i class="far fa-heart"></i>
+                </a>
+              {% endif %}
               <a href="{{ product.get_first_product_img.url }}" class="image-popups">
                 <i class="fas fa-compress"></i>
               </a>
+              {% if user.is_authenticated %}
               <a
                 href="#"
                 hx-post="{% url 'cart:add_to_cart' product_id=product.id %}"
                 hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
                 hx-target="#cart_items_counts"
                 hx-swap="outerHTML swap:.2s"
-              ><i class="far fa-cart-plus"></i></a>
+              >
+                <i class="far fa-cart-plus"></i>
+              </a>
+              {% else %}
+              <a
+                href="{% url 'cart:add_to_cart' product_id=product.id %}"
+              >
+                <i class="far fa-cart-plus"></i>
+              </a>
+              {% endif %}
             </div>
             {% if product.sale_tag %}
             <div class="sale-tag">
