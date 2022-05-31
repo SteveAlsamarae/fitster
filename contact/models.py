@@ -13,7 +13,7 @@ class ContactMessage(models.Model):
     phone = models.CharField(
         max_length=12, verbose_name=_("Phone"), blank=True, null=True
     )
-    subject = models.CharField(max_length=60, verbose_name=_("Subject"))
+    subject = models.CharField(max_length=120, verbose_name=_("Subject"))
     message = models.TextField(verbose_name=_("Message"))
 
     class Meta:
