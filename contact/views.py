@@ -4,15 +4,15 @@ from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 
-from .forms import ConactForm
+from .forms import ContactForm
 
 
 def contact_us_view(request):
 
-    form = ConactForm()
+    form = ContactForm()
 
     if request.method == "POST":
-        form = ConactForm(request.POST)
+        form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(

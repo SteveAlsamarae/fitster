@@ -4,7 +4,7 @@ from django import forms
 from .models import ContactMessage
 
 
-class ConactForm(ModelForm):
+class ContactForm(ModelForm):
     class Meta:
         model = ContactMessage
         fields = [
@@ -60,7 +60,7 @@ class ConactForm(ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super(ConactForm, self).__init__(*args, **kwargs)
+        super(ContactForm, self).__init__(*args, **kwargs)
 
         self.fields[
             "name"
