@@ -47,5 +47,3 @@ def get_in_touch(request: HttpRequest) -> HttpResponse:
         if name and email and message:
             send_mail(subsect, message, email, recipient_list)
             return render(request, "contact/contact_success.html")
-
-    return request.META.get("HTTP_REFERER")
