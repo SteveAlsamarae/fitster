@@ -14,5 +14,6 @@ Pillow
 whitenoise
 django-mptt==0.13.4
 django-htmx==1.11.0
+dj-stripe==2.6.1
 sorl-thumbnail==12.8.0
 django-markdownx==3.0.1
