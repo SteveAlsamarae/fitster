@@ -14,6 +14,7 @@ urlpatterns = [
     path("markdownx/", include("markdownx.urls")),
     # local
     path("", store_view, name="index"),
+    path("customers/", include("users.urls")),
     path("shop/", include("store.products.urls")),
     path("shop/wishlist/", include("store.wishlist.urls")),
     path("shop/cart/", include("store.cart.urls")),
