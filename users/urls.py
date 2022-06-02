@@ -5,6 +5,12 @@ from .views import (
     add_delivery_address,
     edit_delivery_address,
     delete_delivery_address,
+    user_profile_dashboard,
+    user_orders,
+    user_reviews,
+    user_addresses,
+    user_subscription,
+    user_settings,
 )
 
 app_name = "users"
@@ -22,4 +28,10 @@ urlpatterns = [
         delete_delivery_address,
         name="delete_address",
     ),
+    path("profile/dashboard", user_profile_dashboard, name="dashboard"),
+    path("orders/", user_orders, name="orders"),
+    path("reviews/", user_reviews, name="reviews"),
+    path("address/", user_addresses, name="address"),
+    path("subscription/", user_subscription, name="subscription"),
+    path("settings/", user_settings, name="settings"),
 ]
