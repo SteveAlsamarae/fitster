@@ -225,6 +225,7 @@ class FintnessSubscription(models.Model):
         max_length=150, verbose_name=_("Stripe session key")
     )
     is_active = models.BooleanField(default=False, verbose_name=_("Is active"))
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.fitness_plan.name
