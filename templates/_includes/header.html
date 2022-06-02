@@ -1,162 +1,173 @@
 {% load static %}
 <header class="top-nav">
-<div class="top-address d-none d-lg-block bg-secondary">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-xxl-7 col-xl-5 col-lg-4 col-md-3">
-            <div class="top-logo">
-                <a href="#"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
-            </div>
-            </div>
-            <div class="col-xxl-5 col-xl-7 col-lg-8 col-md-9">
-            <div class="topbar-info">
-                <div class="contact-item">
-                    <i class="flaticon-pin"></i>
-                    <div class="content">
-                        <p>Our Location</p>
-                        <span>25/7 Flen, Sweden</span>
+    <div class="top-address d-none d-lg-block bg-secondary">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xxl-7 col-xl-5 col-lg-4 col-md-3">
+                    <div class="top-logo">
+                        <a href="#"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
                     </div>
                 </div>
-                <div class="contact-item">
-                    <i class="flaticon-email"></i>
-                    <div class="content">
-                        <p>Online Support</p>
-                        <a href="mailto:info.fitster@gmail.com">info.fitster@gmail.com</a>
+                <div class="col-xxl-5 col-xl-7 col-lg-8 col-md-9">
+                    <div class="topbar-info">
+                        <div class="contact-item">
+                            <i class="flaticon-pin"></i>
+                            <div class="content">
+                                <p>Our Location</p>
+                                <span>25/7 Flen, Sweden</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="flaticon-email"></i>
+                            <div class="content">
+                                <p>Online Support</p>
+                                <a href="mailto:info.fitster@gmail.com">info.fitster@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="flaticon-contact"></i>
+                            <div class="content">
+                                <p>Free Contact</p>
+                                <a href="tel:01-234-567-8901">01-234-567-8901</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="contact-item">
-                    <i class="flaticon-contact"></i>
-                    <div class="content">
-                        <p>Free Contact</p>
-                        <a href="tel:01-234-567-8901">01-234-567-8901</a>
-                    </div>
-                </div>
-            </div>
             </div>
         </div>
     </div>
-</div>
-<div class="menu-area bg-dark" id="header-sticky">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-xxl-12 col-xl-12 col-lg-12">
-            <div class="menu-content">
-                <div class="top-logo d-lg-none">
-                    <a href="#"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
+    <div class="menu-area bg-dark" id="header-sticky">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-xxl-12 col-xl-12 col-lg-12">
+                    <div class="menu-content">
+                        <div class="top-logo d-lg-none">
+                            <a href="#"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
+                        </div>
+                        <div class="main-menu">
+                            <nav id="mobile-menu">
+                                <ul>
+                                    <li><a href="{% url 'products:store' %}" class="active">Home </a></li>
+                                    <li><a href="{% url 'products:store' %}">Shop </a></li>
+                                    <li><a href="{% url 'classes:index' %}">Classes </a></li>
+                                    <li><a href="{% url 'classes:team' %}">Team</a></li>
+                                    <li><a href="{% url 'classes:pricing' %}">Pricing </a></li>
+                                    <li><a href="{% url 'blog:post_list' %}">Blog </a></li>
+                                    <li><a href="{% url 'contact_us' %}">Contact </a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="side-menu-icon d-lg-none text-end">
+                            <a href="javascript:void(0)" class="info-toggle-btn f-right sidebar-toggle-btn"><i
+                                    class="fal fa-bars"></i></a>
+                        </div>
+                        <div class="header-action-btn d-none d-lg-block mr-70">
+                            <div class="main-menu">
+                                <nav id="mobile-menu">
+                                    <ul>
+                                        <a href="{% url 'wishlist:summary' %}">
+                                            <i class="fal fa-heart"></i>
+                                            {% with request.user.wishlist as wishlist %}
+                                            {% if wishlist %}
+                                            <span id="wishlist_product_count" class="wishlist-count"
+                                                hx-get="{% url 'wishlist:get_count' %}" hx-trigger="update from:body"
+                                                hx-swap="outerHTML">
+                                                {{ wishlist.get_wishlist_items_count }}
+                                            </span>
+                                            {% else %}
+                                            <span id="wishlist_product_count">0</span>
+                                            {% endif %}
+                                            {% endwith %}
+                                        </a>
+                                        <a href="{% url 'cart:summary' %}"><i class="fas fa-shopping-cart"></i>
+                                            {% with request.user.cart as cart %}
+                                            {% if cart %}
+                                            <span id="cart_items_counts" class="cart-count"
+                                                hx-get="{% url 'wishlist:get_cart_count' %}"
+                                                hx-trigger="update_cart from:body" hx-swap="outerHTML">
+                                                {{ cart.get_cart_items_count }}
+                                            </span>
+                                            {% else %}
+                                            <span id="cart_items_counts">0</span>
+                                            {% endif %}
+                                            {% endwith %}
+                                        </a>
+                                        <li>
+                                            <a href="#" class="main-menu"><i class="fas fa-user-circle"></i> Profile</a>
+                                            <ul class="sub-menu">
+                                                {% if user.is_authenticated %}
+                                                <li><a href="{% url 'users:dashboard' %}">My
+                                                        Profile</a></li>
+                                                <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                                                {% else %}
+                                                <li><a href="{% url 'account_login' %}">Login</a></li>
+                                                <li><a href="{% url 'account_signup' %}">Signup</a></li>
+                                                {% endif %}
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="main-menu">
-                    <nav id="mobile-menu">
-                        <ul>
-                        <li><a href="{% url 'products:store' %}" class="active">Home </a></li>
-                        <li><a href="{% url 'products:store' %}">Shop </a></li>
-                        <li><a href="{% url 'classes:index' %}">Classes </a></li>
-                        <li><a href="{% url 'classes:team' %}">Team</a></li>
-                        <li><a href="{% url 'classes:pricing' %}">Pricing </a></li>
-                        <li><a href="{% url 'blog:post_list' %}">Blog </a></li>
-                        <li><a href="{% url 'contact_us' %}">Contact </a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="side-menu-icon d-lg-none text-end">
-                    <a href="javascript:void(0)" class="info-toggle-btn f-right sidebar-toggle-btn"><i class="fal fa-bars"></i></a>
-                </div>
-                <div class="header-action-btn f-right d-none d-lg-block">
-                    <a href="{% url 'wishlist:summary' %}">
-                        <i class="fal fa-heart"></i>
-                        {% with request.user.wishlist as wishlist %}
-                            {% if wishlist %}
-                            <span 
-                                id="wishlist_product_count" 
-                                class="wishlist-count"
-                                hx-get="{% url 'wishlist:get_count' %}"
-                                hx-trigger="update from:body"
-                                hx-swap="outerHTML"
-                            >
-                                {{ wishlist.get_wishlist_items_count }}
-                            </span>
-                            {% else %}
-                            <span id="wishlist_product_count">0</span>
-                            {% endif %}
-                        {% endwith %}
-                    </a>
-                    <a href="{% url 'cart:summary' %}"><i class="fas fa-shopping-cart"></i>
-                        {% with request.user.cart as cart %}
-                            {% if cart %}
-                            <span 
-                                id="cart_items_counts"
-                                class="cart-count"
-                                hx-get="{% url 'wishlist:get_cart_count' %}"
-                                hx-trigger="update_cart from:body"
-                                hx-swap="outerHTML"
-                            >
-                                {{ cart.get_cart_items_count }}
-                            </span>
-                            {% else %}
-                            <span id="cart_items_counts">0</span>
-                            {% endif %}
-                        {% endwith %}
-                    </a>
-                    <a href="#" class="main-menu"><i class="fas fa-user-circle"></i>
-                </div>
-            </div>
             </div>
         </div>
     </div>
-</div>
 </header>
 
 <div class="sidebar__area">
-<div class="sidebar__wrapper">
-    <div class="sidebar__close">
-        <button class="sidebar__close-btn" id="sidebar__close-btn">
-            <i class="fal fa-times"></i>
-        </button>
-    </div>
-    <div class="sidebar__content">
-        <div class="sidebar__logo mb-40">
-            <a href="#">
-            <img src="{% static 'img/fitster.png' %}" alt="fitster-logo">
-            </a>
+    <div class="sidebar__wrapper">
+        <div class="sidebar__close">
+            <button class="sidebar__close-btn" id="sidebar__close-btn">
+                <i class="fal fa-times"></i>
+            </button>
         </div>
-        <div class="mobile-menu fix"></div>
-        <div class="sidebar__contact mt-30 mb-20">
-            <h4>Contact Info</h4>
-            <ul>
-            <li class="d-flex align-items-center">
-                <div class="sidebar__contact-icon mr-15">
-                    <i class="fal fa-map-marker-alt"></i>
-                </div>
-                <div class="sidebar__contact-text">
-                    <a href="#">25/7 Flen, Sweden</a>
-                </div>
-            </li>
-            <li class="d-flex align-items-center">
-                <div class="sidebar__contact-icon mr-15">
-                    <i class="far fa-phone"></i>
-                </div>
-                <div class="sidebar__contact-text">
-                    <a href="tel:+01-234-567-8901">01-234-567-8901</a>
-                </div>
-            </li>
-            <li class="d-flex align-items-center">
-                <div class="sidebar__contact-icon mr-15">
-                    <i class="fal fa-envelope"></i>
-                </div>
-                <div class="sidebar__contact-text">
-                    <a href="mailto:info.fitster@gmail.com">info.fitster@gmail.com</a>
-                </div>
-            </li>
-            </ul>
-        </div>
-        <div class="sidebar__social">
-            <ul>
-            <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
-            <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://www.linkedin.com"><i class="fab fa-linkedin"></i></a></li>
-            </ul>
+        <div class="sidebar__content">
+            <div class="sidebar__logo mb-40">
+                <a href="#">
+                    <img src="{% static 'img/fitster.png' %}" alt="fitster-logo">
+                </a>
+            </div>
+            <div class="mobile-menu fix"></div>
+            <div class="sidebar__contact mt-30 mb-20">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li class="d-flex align-items-center">
+                        <div class="sidebar__contact-icon mr-15">
+                            <i class="fal fa-map-marker-alt"></i>
+                        </div>
+                        <div class="sidebar__contact-text">
+                            <a href="#">25/7 Flen, Sweden</a>
+                        </div>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <div class="sidebar__contact-icon mr-15">
+                            <i class="far fa-phone"></i>
+                        </div>
+                        <div class="sidebar__contact-text">
+                            <a href="tel:+01-234-567-8901">01-234-567-8901</a>
+                        </div>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <div class="sidebar__contact-icon mr-15">
+                            <i class="fal fa-envelope"></i>
+                        </div>
+                        <div class="sidebar__contact-text">
+                            <a href="mailto:info.fitster@gmail.com">info.fitster@gmail.com</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar__social">
+                <ul>
+                    <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://www.linkedin.com"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
-</div>
-  
+
 <div class="body-overlay"></div>
