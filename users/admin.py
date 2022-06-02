@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 
-from .models import UserProfile
+from .models import UserProfile, DeliveryAddress
 
 
 class UserProfileAdmin(admin.ModelAdmin):
@@ -20,4 +20,5 @@ admin.site.register(
     UserProfile,
     UserProfileAdmin,
 )
+admin.site.register(DeliveryAddress)
 admin.site.unregister(Group)
