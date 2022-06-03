@@ -46,6 +46,11 @@ class Order(models.Model):
     def __str__(self):
         return f"{self.user.username}'s order"
 
+    def get_all_order_items(self) -> list:
+        """Get all products in order."""
+
+        return self.order_items.all()
+
     def get_total_price(self):
         total_price = 0
         for item in self.order_items.all():
