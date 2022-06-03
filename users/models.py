@@ -50,7 +50,7 @@ class DeliveryAddress(models.Model):
         User,
         verbose_name=_("Customer"),
         on_delete=models.CASCADE,
-        related_name="addresses",
+        related_name="default_addresses",
     )
     name = models.CharField(_("Full Name"), max_length=150)
     phone = models.CharField(_("Contact Number"), max_length=50)
@@ -61,11 +61,40 @@ class DeliveryAddress(models.Model):
     created_at = models.DateTimeField(_("Created at"), auto_now_add=True)
     updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
     is_default = models.BooleanField(default=True)
+    is_shipping_address = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "Billing Address (Default)"
+        verbose_name_plural = "Billing Addresses (Default)"
+
+    def __str__(self):
+        return f"{self.name}'s billing address."
+
+
+class ShippingAddress(models.Model):
+    """Customer address where the order will be shipped"""
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    customer = models.ForeignKey(
+        User,
+        verbose_name=_("Customer"),
+        on_delete=models.CASCADE,
+        related_name="shipping_addresses",
+    )
+    name = models.CharField(_("Full Name"), max_length=150)
+    phone = models.CharField(_("Contact Number"), max_length=50)
+    city = models.CharField(_("City/State"), max_length=150)
+    postcode = models.CharField(_("Postcode"), max_length=50)
+    area = models.CharField(_("Area"), max_length=255)
+    address = models.CharField(_("Address"), max_length=255, blank=True, null=True)
+    created_at = models.DateTimeField(_("Created at"), auto_now_add=True)
+    updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
+    is_default = models.BooleanField(default=False)
     is_shipping_address = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name = "Address"
-        verbose_name_plural = "Addresses"
+        verbose_name = "Shipping Address"
+        verbose_name_plural = "Shipping Addresses"
 
     def __str__(self):
-        return f"{self.name}'s delivery address."
+        return f"{self.name}'s shipping address."
