@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+
+    {% block title %}{% endblock title %}
+</head>
+
+<body>
+    <header class="main-navbar-header">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top theme-color">
+            <div class="menu-toggle-button">
+                <a class="nav-link wave-effect" href="#" id="sidebarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </a>
+            </div>
+            <span class="navbar-brand">Admin Dashboard Quick Links</span>
+        </nav>
+    </header>
+    <div class="wrapper">
+        {% with request.resolver_match.url_name as view_url %}
+        <nav id="sidebar" class="nav-sidebar">
+            <ul class="list-unstyled components" id="accordion">
+                <li>
+                    <a href="{% url 'admin_dashboard:active_orders' %}" class="wave-effect">
+                        Dashboard(Orders) <span class="badge bg-danger badge-danger">{{ total }}</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#homeSubmenu" class="accordion-toggle wave-effect" data-toggle="collapse"
+                        aria-expanded="true">
+                        Users
+                    </a>
+                    <ul class="collapse list-unstyled inside-level show" id="homeSubmenu" data-parent="#accordion">
+                        <li>
+                            <a href="/admin/auth/user/add/">
+                                Add User
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/auth/user/">
+                                View Users
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#homeSubmenu" class="accordion-toggle wave-effect" data-toggle="collapse"
+                        aria-expanded="true">
+                        Products
+                    </a>
+                    <ul class="collapse list-unstyled inside-level show" id="homeSubmenu" data-parent="#accordion">
+                        <li>
+                            <a href="/admin/products/product/add/">
+                                Add Product
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/products/product/">
+                                View Products
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/products/productcategory/add/">
+                                Add Category
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/products/productcategory/">
+                                View Categories
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu" class="accordion-toggle wave-effect" data-toggle="collapse"
+                        aria-expanded="true">
+                        Fitness Class
+                    </a>
+                    <ul class="collapse list-unstyled inside-level show" id="homeSubmenu" data-parent="#accordion">
+                        <li>
+                            <a href="/admin/classes/fitnessclass/add/">
+                                Add Class
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/classes/fitnessclass/">
+                                View Classes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/classes/trainer/add/">
+                                Add Trainer
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/classes/trainer/">
+                                View Trainers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/classes/fitnesssubscriptionplan/">
+                                Fitness Plans
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/classes/fintnesssubscription/" class="wave-effect">
+                        Subscriptions
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/orders/order/" class="wave-effect">
+                        Manage Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/blog/post/" class="wave-effect">
+                        Blog Posts
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/contact/contactmessage/" class="wave-effect">
+                        Contact Messages
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'index' %}" class="wave-effect">
+                        View Site
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'account_logout' %}" class="wave-effect">
+                        <span aria-hidden="true" class="icon_puzzle"></span>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% endwith %}
+
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    <!-- Scritps -->
+    <script src="{% static 'js/vendor/jquery-3.6.0.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebarCollapse").on("click", function () {
+                $("#sidebar").toggleClass("active");
+            });
+        });
+    </script>
+</body>
+
+</html>
