@@ -1,0 +1,135 @@
+<div id="profile_dashboard_body" class="card-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4>My Profile</h4>
+                <a  href="#" 
+                    class="text-dark mr-20" 
+                    hx-target="#profile_dashboard_body"
+                    hx-get="{% url 'users:update_profile' %}" 
+                    hx-swap="outerHTML"
+                    hx-push-url="true"
+                >
+                    <i class="fas fa-pen"></i>
+                </a>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                <strong class="text-dark">Name :</strong> {{ user.profile.name }}
+            </p>
+            <p>
+                <strong class="text-dark">Phone: </strong> {{ user.profile.phone }}
+            </p>
+        </div>
+        <div class="col-md-6">
+            <p>
+                <strong class="text-dark">Username :</strong> {{ user.username }}
+            </p>
+            <p>
+                <strong class="text-dark">Contact Email :</strong> {{ user.profile.email }}
+            </p>
+        </div>
+    </div>
+    <div class="row mt-10">
+        <div class="col-md-12">
+            <h4>My Subscription</h4>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% if subscription %}
+            <p>You have subscribed to our
+                <strong style="color:#b7ad0b">
+                    <i class="fas fa-dumbbell"></i> {{ subscription.fitness_plan.name }}
+                </strong>
+            </p>
+            <p>
+                <strong class="text-dark"> Plan price :</strong>
+                USD${{ subscription.fitness_plan.price }}/month
+            </p>
+            <p class="my-0 py-0"> <strong class="text-dark">Subscription date :</strong>
+                <strong>{{ subscription.created_at|date:"d M, Y" }}</strong>
+            </p>
+            {% else %}
+            <p>You are not subscribed to any of our plan.</p>
+            <p>To join our community and fitness community you can view our
+                <strong><a href="{% url 'classes:pricing' %}" class="text-info">plan</a> </strong>
+                and subscribe.
+            </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<a  href="#" 
+    id="dashboard_link"
+    class="list-group-item list-group-item-action active"
+    hx-get="{% url 'users:dashboard' %}"
+    hx-target="#profile_dashboard_body"
+    hx-push-url="true"
+    hx-swap="outerHTML swap:.3s"
+    hx-swap-oob="true"
+>
+    Dashboard
+</a>
+<a  href="#"
+    id="orders_link"
+    hx-get="{% url 'users:orders' %}"
+    hx-target="#profile_dashboard_body"
+    hx-swap="outerHTML swap:.3s"
+    hx-class="active"
+    hx-push-url="true"
+    hx-swap-oob="true"
+    class="list-group-item list-group-item-action"
+>
+    My Orders
+</a>
+<a  href="#"
+    id="reviews_link"
+    hx-get="{% url 'users:reviews' %}"
+    hx-target="#profile_dashboard_body"
+    hx-swap="outerHTML swap:.3s"
+    hx-push-url="true"
+    class="list-group-item list-group-item-action"
+    hx-swap-oob="true"
+>
+    My Reviews
+</a>
+<a  href="#"
+    id="subscription_link"
+    hx-get="{% url 'users:subscription' %}"
+    hx-target="#profile_dashboard_body"
+    hx-swap="outerHTML swap:.3s"
+    hx-push-url="true"
+    hx-swap-oob="true"
+    class="list-group-item list-group-item-action"
+>
+    My Subscription
+</a>
+<a  href="#"
+    id="address_link"
+    hx-get="{% url 'users:address' %}"
+    hx-target="#profile_dashboard_body"
+    hx-swap="outerHTML swap:.3s"
+    hx-push-url="true"
+    hx-swap-oob="true"
+    class="list-group-item list-group-item-action"
+>
+    Manage Addresses
+</a>
+<a  href="#"
+    id="settings_link"
+    hx-get="{% url 'users:settings' %}"
+    hx-target="#profile_dashboard_body"
+    hx-swap="outerHTML swap:.3s"
+    hx-push-url="true"
+    hx-swap-oob="true"
+    class="list-group-item list-group-item-action"
+>
+    Settings
+</a>
