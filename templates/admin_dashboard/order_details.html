@@ -1,0 +1,110 @@
+{% extends 'admin_dashboard/_base.html' %}
+
+{% block title %}Fitster Admin{% endblock %}
+
+{% block content %}
+<div class="container content-area">
+    <div class="row text-center">
+        {% include "_includes/message.html" %}
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="panel">
+                <div class="m-b-15">
+                    <div>
+                        <h4> Order <code>"{{ order.order_id }}"</code> Details</h4>
+                    </div>
+                    <hr />
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="product-name">Product</th>
+                                <th class="product-total">Total</th>
+                            </tr>
+                        </thead>
+                        {% if order.get_all_order_items %}
+                        <tbody>
+                            {% for item in order.get_all_order_items %}
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    {{ item.product.title }} <strong class="product-quantity"> × {{ item.quantity }}
+                                    </strong>
+                                </td>
+                                <td class="product-total">
+                                    <span class="amount">${{ item.get_product_total_price }}</span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr class="order-total">
+                                <th>Order Total</th>
+                                <td><strong><span class="amount">${{ total_amount }}</span></strong>(Included shipping
+                                    fee)
+                                </td>
+                            </tr>
+                        </tfoot>
+                        {% endif %}
+                    </table>
+                    <hr>
+                    <h5 class="border-bottom border-2 pb-2">Billing & Shipping Address</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>
+                                <strong>Billing Address</strong>
+                                <br>
+                                {{ billing_address.name }}
+                                <br>
+                                {{ billing_address.phone }}
+                                <br>
+                                {{ billing_address.city }}
+                                <br>
+                                {{ billing_address.postcode }}
+                                <br>
+                                {{ billing_address.area }}
+                                <br>
+                                {{ billing_address.address }}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                <strong>Shipping Address</strong>
+                                    <br>
+                                    {{ shipping_address.name }}
+                                    <br>
+                                    {{ shipping_address.phone }}
+                                    <br>
+                                    {{ shipping_address.city }}
+                                    <br>
+                                    {{ shipping_address.postcode }}
+                                    <br>
+                                    {{ shipping_address.area }}
+                                    <br>
+                                    {{ shipping_address.address }}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <h5>Order Status
+                        <small class="badge badge-info p-2 bg-info text-white mb-4">{{ order.get_order_status_display }}</small>
+                    </h5>
+                    <hr>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <strong>Update Status: </strong>
+                        <select name="order_status">
+                            <option value="0">Confirmed</option>
+                            <option value="1">Processing</option>
+                            <option value="2">Delivered</option>
+                            <option value="3">Cancelled</option>
+                        </select>
+                        <button class="btn btn-outline-danger btn-sm mx-4 mb-1">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
