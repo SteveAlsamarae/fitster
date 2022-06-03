@@ -1,0 +1,21 @@
+{% load crispy_forms_tags %}
+<div id="profile_dashboard_body" class="card-body">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Update Profile</h4>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form action="{% url 'users:update_profile' %}" method="post">
+                {% csrf_token %}
+                {{ profile_form| crispy }}
+                {{ user_form| crispy }}
+                <div class="text-center">
+                    <button class="btn btn-lg btn-dark">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
