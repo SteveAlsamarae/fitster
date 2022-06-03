@@ -57,6 +57,7 @@ LOCAL_APPS = [
     "classes",
     "blog",
     "contact",
+    "admin_dashboard",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
