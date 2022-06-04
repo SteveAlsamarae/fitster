@@ -1,46 +1,46 @@
-{% extends 'admin_dashboard/_base.html' %} 
+{% extends 'admin_dashboard/_base.html' %}
 
 {% block title %}Fitster Admin{% endblock %}
 
 {% block content %}
-<div class="container content-area">
-  <div class="row text-center">
-  <div class="col-md-1"></div>
-    <div class="col-md-10">
-      <div class="panel">
-        <div class="m-b-15">
-          <div>
-            <h4>Active Orders</h4>
+  <div class="container content-area">
+    <div class="row text-center">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="panel">
+          <div class="m-b-15">
+            <div>
+              <h4>Active Orders</h4>
+            </div>
+            <hr />
           </div>
-          <hr />
-        </div>
-        <div class="table-responsive">
-          <table class="table table-bordered">
-            <tr>
-              <th>Order ID</th>
-              <th>Customer</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-            {% for order in orders %}
-            <tr>
-              <td>{{ order.order_id }}</td>
-              <td>
-                {{ order.user.username }}
-              </td>
-              <td>
-                  <span class="badge bg-dark text-white">{{ order.get_order_status_display }}</span>
-              </td>
-              <td>
-                  <a href="{% url 'admin_dashboard:order_details' order_id=order.id %}" class="btn btn-sm btn-outline-dark">View</a>
-              </td>
-            </tr>
-            {% endfor %}
-          </table>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+              {% for order in orders %}
+                <tr>
+                  <td>{{ order.order_id }}</td>
+                  <td>
+                    {{ order.user.username }}
+                  </td>
+                  <td>
+                    <span class="badge bg-dark text-white">{{ order.get_order_status_display }}</span>
+                  </td>
+                  <td>
+                    <a href="{% url 'admin_dashboard:order_details' order_id=order.id %}" class="btn btn-sm btn-outline-dark">View</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
+  </div>
 {% endblock %}
