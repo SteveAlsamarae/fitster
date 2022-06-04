@@ -4,82 +4,81 @@
 {% block title %}Profile{% endblock title %}
 
 {% block content %}
-<main class="pt-120  mx-2">
+  <main class="pt-120  mx-2">
     <div class="container pt-120 pb-100">
-        <div class="row">
-            <div class="col-md-3 ">
-                <div class="list-group ">
-                    <a  href="#" 
-                        id="dashboard_link"
-                        class="list-group-item list-group-item-action active"
-                        hx-get="{% url 'users:dashboard' %}"
-                        hx-target="#profile_dashboard_body"
-                        hx-push-url="true"
-                        hx-swap="outerHTML swap:.3s"
-                    >
-                        Dashboard
-                    </a>
-                    <a  href="#"
-                        id="orders_link"
-                        hx-get="{% url 'users:orders' %}"
-                        hx-target="#profile_dashboard_body"
-                        hx-swap="outerHTML swap:.3s"
-                        hx-class="active"
-                        hx-push-url="true"
-                        class="list-group-item list-group-item-action"
-                    >
-                        My Orders
-                    </a>
-                    <a  href="#"
-                        hx-get="{% url 'users:reviews' %}"
-                        hx-target="#profile_dashboard_body"
-                        hx-swap="outerHTML swap:.3s"
-                        hx-push-url="true"
-                        class="list-group-item list-group-item-action"
-                    >
-                        My Reviews
-                    </a>
-                    <a  href="#"
-                        id="subscription_link"
-                        hx-get="{% url 'users:subscription' %}"
-                        hx-target="#profile_dashboard_body"
-                        hx-swap="outerHTML swap:.3s"
-                        hx-push-url="true"
-                        class="list-group-item list-group-item-action"
-                    >
-                        My Subscription
-                    </a>
-                    <a  href="#"
-                        id="address_link"
-                        hx-get="{% url 'users:address' %}"
-                        hx-target="#profile_dashboard_body"
-                        hx-swap="outerHTML swap:.3s"
-                        hx-push-url="true"
-                        class="list-group-item list-group-item-action"
-                    >
-                        Manage Addresses
-                    </a>
-                    <a  href="#"
-                        id="settings_link"
-                        hx-get="{% url 'users:settings' %}"
-                        hx-target="#profile_dashboard_body"
-                        hx-swap="outerHTML swap:.3s"
-                        hx-push-url="true"
-                        class="list-group-item list-group-item-action"
-                    >
-                        Settings
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div class="card">
-                    {% include "_partials/customer/_update_form.html" %}
-                </div>
-            </div>
+      <div class="row">
+        <div class="col-md-3 ">
+          <div class="list-group ">
+            <a  href="#"
+              id="dashboard_link"
+              class="list-group-item list-group-item-action active"
+              hx-get="{% url 'users:dashboard' %}"
+              hx-target="#profile_dashboard_body"
+              hx-push-url="true"
+              hx-swap="outerHTML swap:.3s"
+            >
+              Dashboard
+            </a>
+            <a  href="#"
+              id="orders_link"
+              hx-get="{% url 'users:orders' %}"
+              hx-target="#profile_dashboard_body"
+              hx-swap="outerHTML swap:.3s"
+              hx-class="active"
+              hx-push-url="true"
+              class="list-group-item list-group-item-action"
+            >
+              My Orders
+            </a>
+            <a  href="#"
+              hx-get="{% url 'users:reviews' %}"
+              hx-target="#profile_dashboard_body"
+              hx-swap="outerHTML swap:.3s"
+              hx-push-url="true"
+              class="list-group-item list-group-item-action"
+            >
+              My Reviews
+            </a>
+            <a  href="#"
+              id="subscription_link"
+              hx-get="{% url 'users:subscription' %}"
+              hx-target="#profile_dashboard_body"
+              hx-swap="outerHTML swap:.3s"
+              hx-push-url="true"
+              class="list-group-item list-group-item-action"
+            >
+              My Subscription
+            </a>
+            <a  href="#"
+              id="address_link"
+              hx-get="{% url 'users:address' %}"
+              hx-target="#profile_dashboard_body"
+              hx-swap="outerHTML swap:.3s"
+              hx-push-url="true"
+              class="list-group-item list-group-item-action"
+            >
+              Manage Addresses
+            </a>
+            <a  href="#"
+              id="settings_link"
+              hx-get="{% url 'users:settings' %}"
+              hx-target="#profile_dashboard_body"
+              hx-swap="outerHTML swap:.3s"
+              hx-push-url="true"
+              class="list-group-item list-group-item-action"
+            >
+              Settings
+            </a>
+          </div>
         </div>
+        <div class="col-md-9">
+          <div class="card">
+            {% include "_partials/customer/_update_form.html" %}
+          </div>
+        </div>
+      </div>
     </div>
-</main>
-<script>
-
-</script>
+  </main>
+  <script>
+  </script>
 {% endblock %}

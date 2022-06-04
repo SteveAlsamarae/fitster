@@ -4,129 +4,129 @@
 {% block title %}Dashboard | Reviews{% endblock title %}
 
 {% block content %}
-<main class="pt-120  mx-2">
+  <main class="pt-120  mx-2">
     <div class="container pt-120 pb-100">
-        <div class="row">
-            <div class="col-md-3 ">
-                <div class="list-group ">
-                    <a  href="#"
-                        id="dashboard_link"
-                        class="list-group-item list-group-item-action"
-                        hx-get="{% url 'users:dashboard' %}"
-                        hx-target="#profile_dashboard_body"
-                        hx-swap="outerHTML swap:.3s"
-                        hx-push-url="true"
-                    >
-                        Dashboard
-                    </a>
-                    <a  href="#"
-                        id="orders_link"
-                        hx-get="{% url 'users:orders' %}"
-                        hx-target="#profile_dashboard_body"
-                        hx-swap="outerHTML swap:.3s"
-                        hx-push-url="true"
-                        class="list-group-item list-group-item-action"
-                    >
-                        My Orders
-                    </a>
-                    <a  href="#"
-                        id="reviews_link"
-                        hx-get="{% url 'users:reviews' %}"
-                        hx-target="#profile_dashboard_body"
-                        hx-swap="outerHTML swap:.3s"
-                        hx-push-url="true"
-                        class="list-group-item list-group-item-action active"
-                    >
-                        My Reviews
-                    </a>
-                    <a  href="#"
-                        id="subscription_link"
-                        hx-get="{% url 'users:subscription' %}"
-                        hx-target="#profile_dashboard_body"
-                        hx-swap="outerHTML swap:.3s"
-                        hx-push-url="true"
-                        class="list-group-item list-group-item-action"
-                    >
-                        My Subscription
-                    </a>
-                    <a  href="#"
-                        id="address_link"
-                        hx-get="{% url 'users:address' %}"
-                        hx-target="#profile_dashboard_body"
-                        hx-swap="outerHTML swap:.3s"
-                        hx-push-url="true"
-                        class="list-group-item list-group-item-action"
-                    >
-                        Manage Addresses
-                    </a>
-                    <a  href="#"
-                        id="settings_link"
-                        hx-get="{% url 'users:settings' %}"
-                        hx-target="#profile_dashboard_body"
-                        hx-swap="outerHTML swap:.3s"
-                        hx-push-url="true"
-                        class="list-group-item list-group-item-action"
-                    >
-                        Settings
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div class="card">
-                    <div id="profile_dashboard_body" class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4>My Reviews</h4>
-                                <hr>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Rating</th>
-                                        <th colspan="2">Review</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                    {% if reviews %}
-                                    {% for review in reviews %}
-                                    <tr style="font-family:'Roboto';">
-                                        <td>{{ review.product.title|title }}</td>
-                                        <td>
-                                            {% for _ in review.get_rating_range %}
-                                                <span><i class="fas fa-star"></i></span>
-                                            {% endfor %}
-                                            {% for _ in review.get_blank_rating_range %}
-                                                <span><i class="far fa-star"></i></span>
-                                            {% endfor %}
-                                        </td>
-                                        <td colspan="2">{{ review.text|truncatechars:40 }}</td>
-                                        <td class="text-center">
-                                            <form action="{% url 'users:delete_user_review' id=review.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button type="submit">
-                                                    <i class="fas fa-trash text-danger"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                    {% else %}
-                                    <tr>
-                                        <td colspan="5" class="text-center">
-                                            <p class="text-danger">
-                                                No reviews found!
-                                            </p>
-                                        </td>
-                                    </tr>
-                                    {% endif %}
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="row">
+        <div class="col-md-3 ">
+          <div class="list-group ">
+            <a  href="#"
+              id="dashboard_link"
+              class="list-group-item list-group-item-action"
+              hx-get="{% url 'users:dashboard' %}"
+              hx-target="#profile_dashboard_body"
+              hx-swap="outerHTML swap:.3s"
+              hx-push-url="true"
+            >
+              Dashboard
+            </a>
+            <a  href="#"
+              id="orders_link"
+              hx-get="{% url 'users:orders' %}"
+              hx-target="#profile_dashboard_body"
+              hx-swap="outerHTML swap:.3s"
+              hx-push-url="true"
+              class="list-group-item list-group-item-action"
+            >
+              My Orders
+            </a>
+            <a  href="#"
+              id="reviews_link"
+              hx-get="{% url 'users:reviews' %}"
+              hx-target="#profile_dashboard_body"
+              hx-swap="outerHTML swap:.3s"
+              hx-push-url="true"
+              class="list-group-item list-group-item-action active"
+            >
+              My Reviews
+            </a>
+            <a  href="#"
+              id="subscription_link"
+              hx-get="{% url 'users:subscription' %}"
+              hx-target="#profile_dashboard_body"
+              hx-swap="outerHTML swap:.3s"
+              hx-push-url="true"
+              class="list-group-item list-group-item-action"
+            >
+              My Subscription
+            </a>
+            <a  href="#"
+              id="address_link"
+              hx-get="{% url 'users:address' %}"
+              hx-target="#profile_dashboard_body"
+              hx-swap="outerHTML swap:.3s"
+              hx-push-url="true"
+              class="list-group-item list-group-item-action"
+            >
+              Manage Addresses
+            </a>
+            <a  href="#"
+              id="settings_link"
+              hx-get="{% url 'users:settings' %}"
+              hx-target="#profile_dashboard_body"
+              hx-swap="outerHTML swap:.3s"
+              hx-push-url="true"
+              class="list-group-item list-group-item-action"
+            >
+              Settings
+            </a>
+          </div>
         </div>
-</main>
+        <div class="col-md-9">
+          <div class="card">
+            <div id="profile_dashboard_body" class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <h4>My Reviews</h4>
+                  <hr>
+                </div>
+              </div>
+              <div class="row">
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <tr>
+                      <th>Product</th>
+                      <th>Rating</th>
+                      <th colspan="2">Review</th>
+                      <th class="text-center">Action</th>
+                    </tr>
+                    {% if reviews %}
+                      {% for review in reviews %}
+                        <tr style="font-family:'Roboto';">
+                          <td>{{ review.product.title|title }}</td>
+                          <td>
+                            {% for _ in review.get_rating_range %}
+                              <span><i class="fas fa-star"></i></span>
+                            {% endfor %}
+                            {% for _ in review.get_blank_rating_range %}
+                              <span><i class="far fa-star"></i></span>
+                            {% endfor %}
+                          </td>
+                          <td colspan="2">{{ review.text|truncatechars:40 }}</td>
+                          <td class="text-center">
+                            <form action="{% url 'users:delete_user_review' id=review.id %}" method="post">
+                              {% csrf_token %}
+                              <button type="submit">
+                                <i class="fas fa-trash text-danger"></i>
+                              </button>
+                            </form>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                    {% else %}
+                      <tr>
+                        <td colspan="5" class="text-center">
+                          <p class="text-danger">
+                            No reviews found!
+                          </p>
+                        </td>
+                      </tr>
+                    {% endif %}
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 {% endblock %}
