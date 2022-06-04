@@ -5,68 +5,68 @@
 {% block title %} {% trans "Sign up | Fitster" %} {% endblock title %}
 
 {% block content %}
-<style>
+  <style>
     .label-class-fix{
-        font-size: 1.5em;
-        padding-left: 15px;
+      font-size: 1.5em;
+      padding-left: 15px;
     }
-</style>
+  </style>
 
-<main class="pt-120">
+  <main class="pt-120">
     <div class="">
-    <div class="support_area pt-120  pb-90">
-       <div class="container">
+      <div class="support_area pt-120  pb-90">
+        <div class="container">
           <div class="row d-flex justify-content-center">
-             <div class="col-lg-6 col-md-10">
-                <div class="support_info-two mb-35">
-                   <div class="mb-35 text-center">
-                      <span class="tpsub-title mb-15">Fitster Fitness Center</span>
-                      <h3 class="section-title mb-20">Customer Signup</h3>
-                   </div>
-                   <form method="post" id="id_signup_form" autocomplete="off">
-                    {% if form.non_field_errors %}
-                    <div class="alert alert-block alert-danger">
-                        <ul class="m-0">
-                            {% for err in form.non_field_errors %}
-                                <li>{{ err }}</li>
-                            {% endfor %}
-                        </ul> 
-                    </div>
-                    {% endif %}
-                       {% csrf_token %}
-                      <div class="tp-support-form-field mb-40">
-                        {{ form.email|as_crispy_field }}
-                      </div>
-                      <div class="tp-support-form-field mb-40">
-                        {{ form.username|as_crispy_field }}
-                      </div>
-                      <div class="tp-support-form-field mb-40">
-                        {{ form.password1|as_crispy_field }}
-                      </div>
-                      <div class="tp-support-form-field mb-40">
-                        {{ form.password2|as_crispy_field }}
-                      </div>
-                      {% if redirect_field_value %}
-                      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                      {% endif %}
-                      <p class="text-right">
-                        Already have an account? <a href="{% url 'account_login' %}">Log in</a>
-                      </p>
-                      <div class="d-flex justify-content-center">
-                      <div class="support-btn">
-                         <button type="submit" class="tp-btn-round">{% trans "Sign Up" %}<i class="fal fa-chevron-double-right"></i></button>
-                      </div>
-                    </div>
-                    <p class="text-center pt-4 small">
-                        By clicking the "Sign up" button, you are creating an account, and agree to <a href="{% url 'products:store' %}">Fister's</a> Terms of Service and Privacy Policy.
-                    </p>
-                   </form>
+            <div class="col-lg-6 col-md-10">
+              <div class="support_info-two mb-35">
+                <div class="mb-35 text-center">
+                  <span class="tpsub-title mb-15">Fitster Fitness Center</span>
+                  <h3 class="section-title mb-20">Customer Signup</h3>
                 </div>
-             </div>
+                <form method="post" id="id_signup_form" autocomplete="off">
+                  {% if form.non_field_errors %}
+                    <div class="alert alert-block alert-danger">
+                      <ul class="m-0">
+                        {% for err in form.non_field_errors %}
+                          <li>{{ err }}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+                  {% csrf_token %}
+                  <div class="tp-support-form-field mb-40">
+                    {{ form.email|as_crispy_field }}
+                  </div>
+                  <div class="tp-support-form-field mb-40">
+                    {{ form.username|as_crispy_field }}
+                  </div>
+                  <div class="tp-support-form-field mb-40">
+                    {{ form.password1|as_crispy_field }}
+                  </div>
+                  <div class="tp-support-form-field mb-40">
+                    {{ form.password2|as_crispy_field }}
+                  </div>
+                  {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                  {% endif %}
+                  <p class="text-right">
+                    Already have an account? <a href="{% url 'account_login' %}">Log in</a>
+                  </p>
+                  <div class="d-flex justify-content-center">
+                    <div class="support-btn">
+                      <button type="submit" class="tp-btn-round">{% trans "Sign Up" %}<i class="fal fa-chevron-double-right"></i></button>
+                    </div>
+                  </div>
+                  <p class="text-center pt-4 small">
+                    By clicking the "Sign up" button, you are creating an account, and agree to <a href="{% url 'products:store' %}">Fister's</a> Terms of Service and Privacy Policy.
+                  </p>
+                </form>
+              </div>
+            </div>
           </div>
-       </div>
-    </div>
+        </div>
+      </div>
     </div>
     {% include "_includes/auth_scripts.html" %}
- </main>
- {% endblock %}
+  </main>
+{% endblock %}
