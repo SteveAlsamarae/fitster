@@ -5,74 +5,73 @@
 {% block title %} Contact Us | Fitster {% endblock title %}
 
 {% block content %}
-<main class="pt-120">
-   <div class="conatct_dinfo pt-130 mt-4">
+  <main class="pt-120">
+    <div class="conatct_dinfo pt-130 mt-4">
       <div class="container custome-container">
-         <div class="row">
-            <div class="col-md-4 col-sm-6">
-               <div class="tp-contact-info mb-40">
-                  <div class="sv-inner">
-                     <div class="services-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                     </div>
-                  </div>
-                  <div class="tp-contact-info-text">
-                     <h4 class="tp-contact-info-title">Address</h4>
-                     <p><a>25/7 Flen, Sweden</a></p>
-                  </div>
-               </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-6">
+            <div class="tp-contact-info mb-40">
+              <div class="sv-inner">
+                <div class="services-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+              </div>
+              <div class="tp-contact-info-text">
+                <h4 class="tp-contact-info-title">Address</h4>
+                <p><a>25/7 Flen, Sweden</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="tp-contact-info mb-40">
+              <div class="sv-inner">
+                <div class="services-icon">
+                  <i class="fas fa-phone"></i>
+                </div>
+              </div>
+              <div class="tp-contact-info-text">
+                <h4 class="tp-contact-info-title">Phone</h4>
+                <p><a href="tel:01-234-567-8901">01-234-567-8901</a>
+                </div>
+              </div>
             </div>
             <div class="col-md-4 col-sm-6">
-               <div class="tp-contact-info mb-40">
-                  <div class="sv-inner">
-                     <div class="services-icon">
-                        <i class="fas fa-phone"></i>
-                     </div>
+              <div class="tp-contact-info mb-40">
+                <div class="sv-inner">
+                  <div class="services-icon">
+                    <i class="fas fa-envelope-open"></i>
                   </div>
-                  <div class="tp-contact-info-text">
-                     <h4 class="tp-contact-info-title">Phone</h4>
-                     <p><a href="tel:01-234-567-8901">01-234-567-8901</a>
+                </div>
+                <div class="tp-contact-info-text">
+                  <h4 class="tp-contact-info-title">Email</h4>
+                  <p><a href="mailto:info.fitster@gmail.com">info.fitster@gmail.com</a>
                   </div>
-               </div>
+                </div>
+              </div>
             </div>
-            <div class="col-md-4 col-sm-6">
-               <div class="tp-contact-info mb-40">
-                  <div class="sv-inner">
-                     <div class="services-icon">
-                        <i class="fas fa-envelope-open"></i>
-                     </div>
-                  </div>
-                  <div class="tp-contact-info-text">
-                     <h4 class="tp-contact-info-title">Email</h4>
-                     <p><a href="mailto:info.fitster@gmail.com">info.fitster@gmail.com</a>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-
-   <div class="support_area pt-35  pb-90">
-      <div class="container custome-container">
-         <div class="row justify-content-center">
-            <div class="col-lg-8">
-               <div class="support_info-two mb-35">
+          </div>
+        </div>
+        <div class="support_area pt-35  pb-90">
+          <div class="container custome-container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="support_info-two mb-35">
                   <div class="section-wrap mb-35">
-                     <span class="tpsub-title mb-15">Customer support</span>
-                     <h3 class="section-title mb-20">Out dedicated supporting team is always ready to help</h3>
-                     <span class="section-border mb-30"><i class="far fa-circle"></i></span>
+                    <span class="tpsub-title mb-15">Customer support</span>
+                    <h3 class="section-title mb-20">Out dedicated supporting team is always ready to help</h3>
+                    <span class="section-border mb-30"><i class="far fa-circle"></i></span>
                   </div>
                   <form action="{% url 'contact_us' %}" method="post" style="font-family:'Roboto'">
-                     {% csrf_token %}
-                     {{ form |crispy }}
-                     <div class="support-btn text-center">
-                        <button class="tp-btn-round">Send Message<i class="fal fa-chevron-double-right"></i></button>
-                     </div>
+                    {% csrf_token %}
+                    {{ form |crispy }}
+                    <div class="support-btn text-center">
+                      <button class="tp-btn-round">Send Message<i class="fal fa-chevron-double-right"></i></button>
+                    </div>
                   </form>
-               </div>
+                </div>
+              </div>
             </div>
-         </div>
-      </div>
-   </div>
-</main>
+          </div>
+        </div>
+      </main>
 {% endblock content %}
