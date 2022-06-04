@@ -204,14 +204,4 @@ try:
     DJSTRIPE_USE_NATIVE_JSONFIELD = True
 
 except Exception as excep:
-    STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", "")
-    STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", "")
-    STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "")
-    DJSTRIPE_WEBHOOK_SECRET = os.environ.get("DJSTRIPE_WEBHOOK_SECRET", "wh_secret")
-    STRIPE_LIVE_MODE = os.environ.get("STRIPE_LIVE_MODE", False)
-    DJSTRIPE_FOREIGN_KEY_TO_FIELD = os.environ.get(
-        "DJSTRIPE_FOREIGN_KEY_TO_FIELD", "id"
-    )
-    DJSTRIPE_USE_NATIVE_JSONFIELD = True
-
-    print("Stripe keys not found using django-environ", excep)
+    raise ImproperlyConfigured("Stripe settings are not configured properly", excep)

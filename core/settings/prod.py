@@ -5,21 +5,36 @@ import dj_database_url
 from .base import *
 
 
-if DEBUG:
-    DEBUG = False
+DEBUG = False
+
+ALLOWED_HOSTS = ["0.0.0.0", "*.herokuapp.com"]
 
 INSTALLED_APPS += [
-    "whitenoise.runserver_nostatic",
+    "storages",
 ]
 
-MIDDLEWARE += [
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-]
+# =============================
+# AWS S3 configuration
+# =============================
+AWS_S3_OBJECT_PARAMETERS = {
+    "Expires": "Thu, 31 Dec 2099 20:00:00 GMT",
+    "CacheControl": "max-age=94608000",
+}
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-WHITENOISE_MANIFEST_STRICT = False
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME")
 
-ALLOWED_HOSTS = ["0.0.0.0", "prince-booking.herokuapp.com"]
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+
+STATICFILES_STORAGE = "boto_storages.StaticStorage"
+STATICFILES_LOCATION = "static"
+DEFAULT_FILE_STORAGE = "boto_storages.MediaStorage"
+MEDIAFILES_LOCATION = "media"
+
+STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/"
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/"
 
 
 # Password validation
@@ -39,16 +54,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Make sure to use production ready smtp server for sending emails
-# Set the email backend to 'django.core.mail.backends.smtp.EmailBackend'
-# Set the following environ variales for the email server
-
+# ===================================
+# EMAIL SMTP SERVER CONFIGURATION
+# ===================================
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.gmail.com")
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = os.environ.get("EMAIL_PORT", 587)
 EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", True)
+
+# ========================
+# Stripe config
+# ========================
+STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", "")
+STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", "")
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "")
+DJSTRIPE_WEBHOOK_SECRET = os.environ.get("DJSTRIPE_WEBHOOK_SECRET", "wh_secret")
+STRIPE_LIVE_MODE = os.environ.get("STRIPE_LIVE_MODE", False)
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = os.environ.get("DJSTRIPE_FOREIGN_KEY_TO_FIELD", "id")
+DJSTRIPE_USE_NATIVE_JSONFIELD = True
 
 
 # This is just for test purpose to avoid sending emails
