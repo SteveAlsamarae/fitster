@@ -16,6 +16,10 @@ class UserProfileAdmin(admin.ModelAdmin):
     search_fields = ["user"]
 
 
+admin.site.site_header = "Fitster"
+admin.site.site_title = "Fitster-Site Admin"
+admin.site.index_title = "Fitster Admin"
+
 admin.site.register(
     UserProfile,
     UserProfileAdmin,

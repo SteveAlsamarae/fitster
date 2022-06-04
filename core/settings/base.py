@@ -28,6 +28,8 @@ except ImproperlyConfigured:
 
 # APPS
 DJANGO_APPS = [
+    "admin_interface",
+    "colorfield",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -205,3 +207,6 @@ try:
 
 except Exception as excep:
     raise ImproperlyConfigured("Stripe settings are not configured properly", excep)
+
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
