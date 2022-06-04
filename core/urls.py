@@ -6,11 +6,33 @@ from django.contrib.sitemaps.views import sitemap
 from django.views.generic.base import TemplateView
 
 from store.products.views import store_view
+from store.products.sitemap import ProductSitemap
+from classes.sitemap import FitnessClassSitemap, FitnessPlanSitemap, TrainerSitemap
+from blog.sitemap import PostSitemap
+
+
+sitemaps = {
+    "products": ProductSitemap,
+    "classes": FitnessClassSitemap,
+    "plans": FitnessPlanSitemap,
+    "trainers": TrainerSitemap,
+    "posts": PostSitemap,
+}
+
 
 urlpatterns = [
     # core
     path("admin/", admin.site.urls),
-    path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
+    path(
+        "robots.txt",
+        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
     # 3rd parties
     path("accounts/", include("allauth.urls")),
     path("stripe/", include("djstripe.urls", namespace="djstripe")),
