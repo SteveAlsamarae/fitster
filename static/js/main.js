@@ -1,8 +1,5 @@
 // Main Javascript(Jquery) file for the application
-
-(function ($) {
-  "use strict";
-
+$(document).ready(function () {
   var windowOn = $(window);
 
   // Mobile Menu
@@ -244,4 +241,4 @@
       });
     }
   }
-})(jQuery);
+});
