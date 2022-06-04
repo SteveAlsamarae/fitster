@@ -5,321 +5,321 @@
 {% block title %} {{ product.title }} {% endblock title %}
 
 {% block content %}
-<main class="pt-120">
-{% if product %}
-<div class="shop-details_area pt-120 pb-100">
-<div class="mx-4 text-lg text-dark" style="margin-top: -20px;padding-left: 30px;font-size: 1.3em;font-weight: lighter;font-family: 'Roboto';">
-    <a href="{% url 'products:store' %}"><i class="fas fa-arrow-left"></i> Back to shop</a>
-</div>
-<div class="container custome-container">
-    <div class="row "> 
-        <div class="col-lg-2 col-md-3 col-sm-3">
-            <div class="product-details-nav mb-30">
+  <main class="pt-120">
+    {% if product %}
+      <div class="shop-details_area pt-120 pb-100">
+        <div class="mx-4 text-lg text-dark" style="margin-top: -20px;padding-left: 30px;font-size: 1.3em;font-weight: lighter;font-family: 'Roboto';">
+          <a href="{% url 'products:store' %}"><i class="fas fa-arrow-left"></i> Back to shop</a>
+        </div>
+        <div class="container custome-container">
+          <div class="row ">
+            <div class="col-lg-2 col-md-3 col-sm-3">
+              <div class="product-details-nav mb-30">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-                {% for product_img_obj in product.get_product_images %}
-                {% if product_img_obj.is_feature %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pro-{{ product_img_obj.pk }}-tab" data-bs-toggle="tab" data-bs-target="#pro-{{ product_img_obj.pk }}" type="button" role="tab" aria-controls="pro-{{ product_img_obj.pk }}" aria-selected="true">
-                    {% thumbnail product_img_obj.image "165x165" crop="center" as img %}
-                        <img
-                          src="{{ img.url }}"
-                          width="{{ img.width }}"
-                          height="{{ img.height }}"
-                          alt="{{ product_img_obj.product.title }}"
-                        />
-                    {% endthumbnail %}
-                    </button>
-                </li>
-                {% else %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pro-{{ product_img_obj.pk }}-tab" data-bs-toggle="tab" data-bs-target="#pro-{{ product_img_obj.pk }}" type="button" role="tab" aria-controls="pro-{{ product_img_obj.pk }}" aria-selected="true">
-                    {% thumbnail product_img_obj.image "165x165" crop="center" as img %}
-                        <img
-                          src="{{ img.url }}"
-                          width="{{ img.width }}"
-                          height="{{ img.height }}"
-                          alt="{{ product_img_obj.product.title }}"
-                        />
-                    {% endthumbnail %}
-                    </button>
-                </li>
-                {% endif %}
-                {% endfor %}
-                </ul>
-        </div>
-        </div>
-        <div class="col-lg-6 col-md-9 col-sm-9 order-first order-sm-1">
-            <div class="product-details-tab">
-                <div class="tab-content" id="productDetailsTab">
-                    {% for product_img_obj in product.get_product_images %}
+                  {% for product_img_obj in product.get_product_images %}
                     {% if product_img_obj.is_feature %}
-                    <div class="tab-pane fade show active" id="pro-{{ product_img_obj.pk }}" role="tabpanel" aria-labelledby="pro-{{ product_img_obj.pk }}-tab">
-                        {% thumbnail product_img_obj.image "555x610" crop="center" as img %}
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pro-{{ product_img_obj.pk }}-tab" data-bs-toggle="tab" data-bs-target="#pro-{{ product_img_obj.pk }}" type="button" role="tab" aria-controls="pro-{{ product_img_obj.pk }}" aria-selected="true">
+                          {% thumbnail product_img_obj.image "165x165" crop="center" as img %}
                             <img
-                            src="{{ img.url }}"
-                            class="active"
-                            width="{{ img.width }}"
-                            height="{{ img.height }}"
-                            alt="{{ product_img_obj.product.title }}"
+                              src="{{ img.url }}"
+                              width="{{ img.width }}"
+                              height="{{ img.height }}"
+                              alt="{{ product_img_obj.product.title }}"
                             />
-                        {% endthumbnail %}
-                    </div>
+                          {% endthumbnail %}
+                        </button>
+                      </li>
                     {% else %}
-                    <div class="tab-pane fade" id="pro-{{ product_img_obj.pk }}" role="tabpanel" aria-labelledby="pro-{{ product_img_obj.pk }}-tab">
-                        {% thumbnail product_img_obj.image "555x610" crop="center" as img %}
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pro-{{ product_img_obj.pk }}-tab" data-bs-toggle="tab" data-bs-target="#pro-{{ product_img_obj.pk }}" type="button" role="tab" aria-controls="pro-{{ product_img_obj.pk }}" aria-selected="true">
+                          {% thumbnail product_img_obj.image "165x165" crop="center" as img %}
                             <img
+                              src="{{ img.url }}"
+                              width="{{ img.width }}"
+                              height="{{ img.height }}"
+                              alt="{{ product_img_obj.product.title }}"
+                            />
+                          {% endthumbnail %}
+                        </button>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-9 col-sm-9 order-first order-sm-1">
+              <div class="product-details-tab">
+                <div class="tab-content" id="productDetailsTab">
+                  {% for product_img_obj in product.get_product_images %}
+                    {% if product_img_obj.is_feature %}
+                      <div class="tab-pane fade show active" id="pro-{{ product_img_obj.pk }}" role="tabpanel" aria-labelledby="pro-{{ product_img_obj.pk }}-tab">
+                        {% thumbnail product_img_obj.image "555x610" crop="center" as img %}
+                          <img
                             src="{{ img.url }}"
                             class="active"
                             width="{{ img.width }}"
                             height="{{ img.height }}"
                             alt="{{ product_img_obj.product.title }}"
-                            />
+                          />
                         {% endthumbnail %}
-                    </div>
+                      </div>
+                    {% else %}
+                      <div class="tab-pane fade" id="pro-{{ product_img_obj.pk }}" role="tabpanel" aria-labelledby="pro-{{ product_img_obj.pk }}-tab">
+                        {% thumbnail product_img_obj.image "555x610" crop="center" as img %}
+                          <img
+                            src="{{ img.url }}"
+                            class="active"
+                            width="{{ img.width }}"
+                            height="{{ img.height }}"
+                            alt="{{ product_img_obj.product.title }}"
+                          />
+                        {% endthumbnail %}
+                      </div>
                     {% endif %}
-                    {% endfor %}
+                  {% endfor %}
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-12 order-last">
-            <div class="product-side-info mb-30">
-            <div class="producttop-info mb-15" id="avg_rating">
-                {% if product.reviews %}
-                <div class="product_rating">
-                    {% for _ in product.get_avarage_rating %}
+            <div class="col-lg-4 col-md-12 order-last">
+              <div class="product-side-info mb-30">
+                <div class="producttop-info mb-15" id="avg_rating">
+                  {% if product.reviews %}
+                    <div class="product_rating">
+                      {% for _ in product.get_avarage_rating %}
                         <a href="#nav-review-sec"><i class="fas fa-star"></i></a>
-                    {% endfor %}
-                    {% for _ in product.get_blank_rating_avg %}
+                      {% endfor %}
+                      {% for _ in product.get_blank_rating_avg %}
                         <a href="#nav-review-sec"><i class="far fa-star"></i></a>
-                    {% endfor %}
-                </div>
-                    <span>({{ product.get_reviews_count }} customer review)</span>
-                    {% else %}
-                    <span>(0 customer review)</span>
-                {% endif %}
-            </div>
-            <h6 class="product-site-title">{{ product.title }}</h6>
-            <h6 class="product-dt-price">
-                {% if product.discount_price %}
-                <span class="product_discount">${{ product.regular_price }}</span>
-                {% endif %}
-                ${{ product.get_product_price }}
-            </h6>
-            <p class="mb-10"><strong class="mr-10 text-dark">Category :</strong>
-                {{ product.categories }}
-            </p>
-            <p class="mb-30">
-                {{ product.short_description }}
-            </p>
-            <div class="product__modal-form">
-                {% if user.is_authenticated %}
-                <form 
-                    hx-post="{% url 'cart:add_to_cart' product_id=product.id %}"
-                    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-                    hx-target="#cart_items_counts"
-                    hx-swap="outerHTML swap:.4s"
-                >
-                {% else %}
-                <form 
-                    action="{% url 'cart:add_to_cart' product_id=product.id %}"
-                    method="POST"
-                >
-                    {% csrf_token %}
-                {% endif %}
-                    <div class="pro-quan-area">
-                        <div class="product-quantity mr-20 mb-30">
-                            <div class="cart-plus-minus p-relative">
-                                <input name="quantities" type="quantity" value="1">
-                            </div>
-                        </div>
-                        <div class="pro-cart-btn mb-30">
-                            <button class="tp-btn-round-cart" type="submit">Add to cart</button>
-                        </div>
+                      {% endfor %}
                     </div>
-                </form>
-            </div>
-            <h2 id="nav-review-sec"></h2>
-            <div class="quick-info mt-30">
-                <div>
-                    {% if user.is_authenticated %}
-                        {% if product.wishlist.count %}
-                        <a id="product_{{ product.pk }}">
-                            <strong>
-                                <i class="fas fa-heart" style="font-weight:bold"></i>
-                                <span style="font-size: 1.1em;">Added to Wishlist</span>
-                            </strong>
-                        </a>
-                        {% else %}
-                        <a 
-                            href="#"
-                            id="product_{{ product.pk }}"
-                            hx-post="{% url 'wishlist:add_to_wishlist' product_id=product.id %}"
-                            hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-                            hx-target="#wishlist_product_count"
-                            hx-swap="outerHTML swap:.2s"
-                        >
-                            <strong>
-                                <i class="fas fa-heart"></i>
-                                <span style="font-size: 1.1em;">Add to Wishlist</span>
-                            </strong>
-                        </a>
-                        {% endif %}
-                    {% else %}
-                    <a 
-                        href="{% url 'wishlist:add_to_wishlist' product_id=product.id %}"
-                        id="product_{{ product.pk }}"
+                    <span>({{ product.get_reviews_count }} customer review)</span>
+                  {% else %}
+                    <span>(0 customer review)</span>
+                  {% endif %}
+                </div>
+                <h6 class="product-site-title">{{ product.title }}</h6>
+                <h6 class="product-dt-price">
+                  {% if product.discount_price %}
+                    <span class="product_discount">${{ product.regular_price }}</span>
+                  {% endif %}
+                  ${{ product.get_product_price }}
+                </h6>
+                <p class="mb-10"><strong class="mr-10 text-dark">Category :</strong>
+                  {{ product.categories }}
+                </p>
+                <p class="mb-30">
+                  {{ product.short_description }}
+                </p>
+                <div class="product__modal-form">
+                  {% if user.is_authenticated %}
+                    <form
+                      hx-post="{% url 'cart:add_to_cart' product_id=product.id %}"
+                      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                      hx-target="#cart_items_counts"
+                      hx-swap="outerHTML swap:.4s"
                     >
+                  {% else %}
+                    <form
+                      action="{% url 'cart:add_to_cart' product_id=product.id %}"
+                      method="POST"
+                    >
+                      {% csrf_token %}
+                  {% endif %}
+                  <div class="pro-quan-area">
+                    <div class="product-quantity mr-20 mb-30">
+                      <div class="cart-plus-minus p-relative">
+                        <input name="quantities" type="quantity" value="1">
+                      </div>
+                    </div>
+                    <div class="pro-cart-btn mb-30">
+                      <button class="tp-btn-round-cart" type="submit">Add to cart</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <h2 id="nav-review-sec"></h2>
+              <div class="quick-info mt-30">
+                <div>
+                  {% if user.is_authenticated %}
+                    {% if product.wishlist.count %}
+                      <a id="product_{{ product.pk }}">
                         <strong>
-                            <i class="fas fa-heart"></i>
-                            <span style="font-size: 1.1em;">Add to Wishlist</span>
+                          <i class="fas fa-heart" style="font-weight:bold"></i>
+                          <span style="font-size: 1.1em;">Added to Wishlist</span>
                         </strong>
-                    </a>
+                      </a>
+                    {% else %}
+                      <a
+                        href="#"
+                        id="product_{{ product.pk }}"
+                        hx-post="{% url 'wishlist:add_to_wishlist' product_id=product.id %}"
+                        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                        hx-target="#wishlist_product_count"
+                        hx-swap="outerHTML swap:.2s"
+                      >
+                        <strong>
+                          <i class="fas fa-heart"></i>
+                          <span style="font-size: 1.1em;">Add to Wishlist</span>
+                        </strong>
+                      </a>
                     {% endif %}
+                  {% else %}
+                    <a
+                      href="{% url 'wishlist:add_to_wishlist' product_id=product.id %}"
+                      id="product_{{ product.pk }}"
+                    >
+                      <strong>
+                        <i class="fas fa-heart"></i>
+                        <span style="font-size: 1.1em;">Add to Wishlist</span>
+                      </strong>
+                    </a>
+                  {% endif %}
                 </div>
                 <h2 id="nav-review-sec"></h2>
-                
-            </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
 
-<div class="product_info-faq-area pb-40">
-<div class="container custome-container">
-    <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link show active" id="nav-general-tab" data-bs-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-add-desc" aria-selected="true">Description</a>
-            <a class="nav-item nav-link" id="nav-add-desc-tab" data-bs-toggle="tab" href="#nav-add-desc" role="tab" aria-controls="nav-add-desc" aria-selected="false">Additional information </a>
-            <a class="nav-item nav-link" id="nav-review-tab" data-bs-toggle="tab" href="#nav-review" role="tab" aria-controls="nav-review" aria-selected="false">Reviews</a>
+              </div>
+            </div>
+          </div>
         </div>
-    </nav>
-    <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade active show" id="nav-general" role="tabpanel">
-            <div class="tabs-wrapper mt-35">
-            <div class="product__details-des">
-                <p>
+      </div>
+      </div>
+
+      <div class="product_info-faq-area pb-40">
+        <div class="container custome-container">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link show active" id="nav-general-tab" data-bs-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-add-desc" aria-selected="true">Description</a>
+              <a class="nav-item nav-link" id="nav-add-desc-tab" data-bs-toggle="tab" href="#nav-add-desc" role="tab" aria-controls="nav-add-desc" aria-selected="false">Additional information </a>
+              <a class="nav-item nav-link" id="nav-review-tab" data-bs-toggle="tab" href="#nav-review" role="tab" aria-controls="nav-review" aria-selected="false">Reviews</a>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade active show" id="nav-general" role="tabpanel">
+              <div class="tabs-wrapper mt-35">
+                <div class="product__details-des">
+                  <p>
                     {{ product.description }}
-                </p>
-            </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="nav-add-desc" role="tabpanel">
-            <div class="tabs-wrapper mt-35">
-            <div class="product__details-info">
-                <ul>
-                    {% for line in product.extract_additional_information %}
-                        <li>
-                            <h6>{{ line.name }}</h6>
-                            <span>{{ line.value }}</span>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="nav-review" role="tabpanel">
-            <div class="tabs-wrapper mt-35">
-            <div class="product__details-comment ">
-                {% if user.is_authenticated %}
-                <div class="comment-title mb-20">
-                    <h3>Add a review</h3>
+                  </p>
                 </div>
-                <form 
-                    hx-post="{% url 'reviews:add_review' product_id=product.id %}"
-                    hx-target="#review_box"
-                    hx-swap="beforebegin swap:.3s"
-                >   
-                    {% csrf_token %}
-                    <div class="comment-rating mb-20 d-flex align-items-center">
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-add-desc" role="tabpanel">
+              <div class="tabs-wrapper mt-35">
+                <div class="product__details-info">
+                  <ul>
+                    {% for line in product.extract_additional_information %}
+                      <li>
+                        <h6>{{ line.name }}</h6>
+                        <span>{{ line.value }}</span>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-review" role="tabpanel">
+              <div class="tabs-wrapper mt-35">
+                <div class="product__details-comment ">
+                  {% if user.is_authenticated %}
+                    <div class="comment-title mb-20">
+                      <h3>Add a review</h3>
+                    </div>
+                    <form
+                      hx-post="{% url 'reviews:add_review' product_id=product.id %}"
+                      hx-target="#review_box"
+                      hx-swap="beforebegin swap:.3s"
+                    >
+                      {% csrf_token %}
+                      <div class="comment-rating mb-20 d-flex align-items-center">
                         <span class="lead pb-2 px-2">Overall ratings</span>
                         <div class="rating-box">
-                            <div class="rating-container" id="rating_box">
-                                <input type="radio" name="rating" value="5" id="star-5"> <label for="star-5">&#9733;</label>
-                                <input type="radio" name="rating" value="4" id="star-4"> <label for="star-4">&#9733;</label>
-                                <input type="radio" name="rating" value="3" id="star-3"> <label for="star-3">&#9733;</label>
-                                <input type="radio" name="rating" value="2" id="star-2"> <label for="star-2">&#9733;</label>
-                                <input type="radio" name="rating" value="1" id="star-1"> <label for="star-1">&#9733;</label>
-                            </div>
+                          <div class="rating-container" id="rating_box">
+                            <input type="radio" name="rating" value="5" id="star-5"> <label for="star-5">&#9733;</label>
+                            <input type="radio" name="rating" value="4" id="star-4"> <label for="star-4">&#9733;</label>
+                            <input type="radio" name="rating" value="3" id="star-3"> <label for="star-3">&#9733;</label>
+                            <input type="radio" name="rating" value="2" id="star-2"> <label for="star-2">&#9733;</label>
+                            <input type="radio" name="rating" value="1" id="star-1"> <label for="star-1">&#9733;</label>
+                          </div>
                         </div>
-                    </div>
-                    <div class="comment-input-box">
+                      </div>
+                      <div class="comment-input-box">
                         <div class="row">
-                            <div class="col-xxl-10 col-lg-8">
-                                <textarea 
-                                    placeholder="Your review here" 
-                                    class="comment-input comment-textarea p-2"
-                                    name="review"
-                                    id="review_text_area"
-                                    required
-                                ></textarea>
+                          <div class="col-xxl-10 col-lg-8">
+                            <textarea
+                              placeholder="Your review here"
+                              class="comment-input comment-textarea p-2"
+                              name="review"
+                              id="review_text_area"
+                              required
+                            ></textarea>
+                          </div>
+                          <div class="col-xxl-12">
+                            <div class="comment-submit">
+                              <button type="submit" class="tp-btn-round">Submit</button>
                             </div>
-                            <div class="col-xxl-12">
-                                <div class="comment-submit">
-                                    <button type="submit" class="tp-btn-round">Submit</button>
-                                </div>
-                            </div>
+                          </div>
                         </div>
-                    </div>
-                </form>
-                {% else %}
-                <div class="comment-title mb-20">
-                    <h2 class="display-6">
+                      </div>
+                    </form>
+                  {% else %}
+                    <div class="comment-title mb-20">
+                      <h2 class="display-6">
                         Please, <a href="{% url 'account_login' %}" class="text-primary">login</a> to add a review.
-                    </h2>
+                      </h2>
+                    </div>
+                  {% endif %}
                 </div>
-                {% endif %}
-            </div>
-            <section id="testimonials">
-                <div class="pt-4">
+                <section id="testimonials">
+                  <div class="pt-4">
                     <h4 class="display-5">Customer reviews</h4>
                     <hr>
-                </div>
-                <div class="testimonial-box-container">
+                  </div>
+                  <div class="testimonial-box-container">
                     {% for review in product.get_all_reviews %}
-                    <div class="testimonial-box" id="review_box">
+                      <div class="testimonial-box" id="review_box">
                         <div class="box-top">
-                            <div class="profile">
-                                <div class="profile-img">
-                                    {% if review.customer.profile.avatar %}
-                                    <img src="{{ review.customer.profile.avatar.url }}" />
-                                    {% else %}
-                                    <img src="https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png" />
-                                    {% endif %}
-                                </div>
-                                <div class="name-user">
-                                    <strong>{{ review.customer.profile.name }}</strong>
-                                    <span class="lead">@{{ review.customer.username }}</span>
-                                </div>
+                          <div class="profile">
+                            <div class="profile-img">
+                              {% if review.customer.profile.avatar %}
+                                <img src="{{ review.customer.profile.avatar.url }}" />
+                              {% else %}
+                                <img src="https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png" />
+                              {% endif %}
                             </div>
-                            <div class="reviews">
-                                {% for rating in review.get_rating_range %}
-                                    <i class="fas fa-star"></i>
-                                {% endfor %}
-                                {% for blank in review.get_blank_rating_range %}
-                                    <i class="far fa-star"></i>
-                                {% endfor %}
+                            <div class="name-user">
+                              <strong>{{ review.customer.profile.name }}</strong>
+                              <span class="lead">@{{ review.customer.username }}</span>
                             </div>
+                          </div>
+                          <div class="reviews">
+                            {% for rating in review.get_rating_range %}
+                              <i class="fas fa-star"></i>
+                            {% endfor %}
+                            {% for blank in review.get_blank_rating_range %}
+                              <i class="far fa-star"></i>
+                            {% endfor %}
+                          </div>
                         </div>
                         <div class="client-comment">
-                            <p>
-                                {{ review.text }}
-                            </p>
+                          <p>
+                            {{ review.text }}
+                          </p>
                         </div>
                         <p class="text-secondary text-right">{{ review.created_at | timesince }} ago</p>
-                    </div>
+                      </div>
                     {% endfor %}
                     {% if not product.get_all_reviews %}
-                    <div id="review_box"></div>
+                      <div id="review_box"></div>
                     {% endif %}
-                </div>
-              </section>
+                  </div>
+                </section>
 
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-</div>
-{% endif %}
-</main>
+      </div>
+    {% endif %}
+  </main>
 {% endblock %}

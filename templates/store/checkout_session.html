@@ -7,16 +7,16 @@
     <script type="text/javascript">
       var stripe = Stripe("{{STRIPE_PUBLIC_KEY}}");
       stripe.redirectToCheckout({
-            sessionId: '{{CHECKOUT_SESSION_ID}}'
-        })
+        sessionId: '{{CHECKOUT_SESSION_ID}}'
+      })
         .then(function (result) {
-            if (result.error) {
-                alert(result.error.message);
-            }
-        })
+        if (result.error) {
+          alert(result.error.message);
+        }
+      })
         .catch(function (error) {
-          console.error("Error:", error);
-       });
+        console.error("Error:", error);
+      });
     </script>
   </body>
 </html>

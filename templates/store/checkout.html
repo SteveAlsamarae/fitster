@@ -4,233 +4,232 @@
 {% block title %} Checkout {% endblock title %}
 
 {% block content %}
-<main class="pt-120 mx-lg-4">
+  <main class="pt-120 mx-lg-4">
     <div class="checkout-area pb-85 pt-120">
-       <div class="container">
-           <form action="{% url 'checkout:checkout_session' %}" method="POST">
-               {% csrf_token %}
-               <div class="row">
-                   <div class="col-lg-6">
-                       <div class="checkbox-form">
-                           <h3>Billing Details</h3>
-                           {% if user_address %}
-                           <div class="row">
-                               <div class="col-md-12">
-                                   <div class="checkout-form-list">
-                                       <label>Name <span class="required">*</span></label>
-                                       <input type="text" name="full_name" value="{{ user_address.name }}" required>
-                                   </div>
-                               </div>
-                               <div class="col-md-12">
-                                <div class="checkout-form-list">
-                                    <label>State / City <span class="required">*</span></label>
-                                    <input type="text" value="{{ user_address.city }}" name="city" required>
-                                </div>
-                                </div>
-                               <div class="col-md-12">
-                                   <div class="checkout-form-list">
-                                       <label>Address <span class="required">*</span></label>
-                                       <input type="text" value="{{ user_address.area }}" name="area" required>
-                                   </div>
-                               </div>
-                               <div class="col-md-12">
-                                   {% if user_address.address %}
-                                   <div class="checkout-form-list">
-                                       <input type="text" value="{{ user_address.address }}" name="address">
-                                   </div>
-                                   {% else %}
-                                   <div class="checkout-form-list">
-                                    <input type="text" placeholder="Apartment, unit etc. (optional)">
-                                    </div>
-                                   {% endif %}
-                               </div>
-                               <div class="col-md-6">
-                                   <div class="checkout-form-list">
-                                       <label>Postcode / Zip <span class="required">*</span></label>
-                                       <input type="text" value="{{ user_address.postcode }}" name="post_code" required>
-                                   </div>
-                               </div>
-                               <div class="col-md-6">
-                                   <div class="checkout-form-list">
-                                       <label>Email Address <span class="required">*</span></label>
-                                       <input type="email" value="{{ user_address.email }}" required>
-                                   </div>
-                               </div>
-                               <div class="col-md-12">
-                                   <div class="checkout-form-list">
-                                       <label>Phone <span class="required">*</span></label>
-                                       <input type="text" value="{{ user_address.phone }}" name="phone" required>
-                                   </div>
-                               </div>
-                           </div>
-                           {% else %}
-                           <div class="row">
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>Name <span class="required">*</span></label>
-                                        <input type="text" placeholder="Your full name" name="full_name">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                <div class="checkout-form-list">
-                                    <label>State / City <span class="required">*</span></label>
-                                    <input type="text" placeholder="State / City" name="city" required>
-                                </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>Address <span class="required">*</span></label>
-                                        <input type="text" placeholder="Street address" name="area" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <input type="text" placeholder="Apartment, unit etc. (optional)" name="address">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="checkout-form-list">
-                                        <label>Postcode / Zip <span class="required">*</span></label>
-                                        <input type="text" placeholder="Postcode / Zip" name="post_code" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="checkout-form-list">
-                                        <label>Email Address <span class="required">*</span></label>
-                                        <input type="email" placeholder="mail@company.com">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>Phone <span class="required">*</span></label>
-                                        <input type="text" placeholder="+923XXXXXXXXX" name="phone" required>
-                                    </div>
-                                </div>
-                            </div>
-                           {% endif %}
-                           <div class="different-address">
-                               <div class="ship-different-title">
-                                   <h3>
-                                       <label>Ship to a different address?</label>
-                                       <input id="ship-box" type="checkbox" value="on">
-                                   </h3>
-                               </div>
-                               <div id="ship-box-info">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <label>Name <span class="required">*</span></label>
-                                            <input type="text" placeholder="Your full name" name="s_full_name">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>State / City <span class="required">*</span></label>
-                                        <input type="text" placeholder="State / City" name="s_city">
-                                    </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <label>Address <span class="required">*</span></label>
-                                            <input type="text" placeholder="Street address" name="s_area">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <input type="text" placeholder="Apartment, unit etc. (optional)" name="s_address">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="checkout-form-list">
-                                            <label>Postcode / Zip <span class="required">*</span></label>
-                                            <input type="text" placeholder="Postcode / Zip" name="s_post_code">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="checkout-form-list">
-                                            <label>Email Address <span class="required">*</span></label>
-                                            <input type="email" placeholder="mail@company.com" name="s_email">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <label>Phone <span class="required">*</span></label>
-                                            <input type="text" placeholder="+923XXXXXXXXX" name="s_phone">
-                                        </div>
-                                    </div>
-                                </div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6">
-                       <div class="your-order mb-30 ">
-                           <h3>Your order</h3>
-                           <div class="your-order-table table-responsive">
-                               <table>
-                                   <thead>
-                                       <tr>
-                                           <th class="product-name">Product</th>
-                                           <th class="product-total">Total</th>
-                                       </tr>
-                                   </thead>
-                                   {% if cart.get_all_cart_item %}
-                                   <tbody>
-                                    {% for item in cart.get_all_cart_item %}
-                                       <tr class="cart_item">
-                                           <td class="product-name">
-                                               {{ item.product.title }} <strong class="product-quantity"> × {{ item.quantity }} </strong>
-                                           </td>
-                                           <td class="product-total">
-                                               <span class="amount">${{ item.get_product_discount_price }}</span>
-                                           </td>
-                                       </tr>
-                                    {% endfor %}
-                                   </tbody>
-                                   <tfoot>
-                                       <tr class="cart-subtotal">
-                                           <th>Cart Subtotal</th>
-                                           <td><span class="amount">${{ cart.get_final_price }}</span></td>
-                                       </tr>
-                                       <tr class="shipping">
-                                           <th>Shipping(Flat Rate)</th>
-                                           <td>
-                                               <ul>
-                                                   <li>
-                                                       <label>
-                                                            <span class="amount">${{ shipping_fee }}</span>
-                                                       </label>
-                                                   </li>
-                                               </ul>
-                                           </td>
-                                       </tr>
-                                       <tr class="order-total">
-                                           <th>Order Total</th>
-                                           <td><strong><span class="amount">${{ sub_total }}</span></strong>
-                                           </td>
-                                       </tr>
-                                   </tfoot>
-                                   {% else %}
-                                   <tbody>
-                                       <tr class="cart_item">
-                                           <td colspan=2 class="alert alert-secondary"> No items in cart! Add items to checkout.</td>
-                                       </tr>
-                                    </tbody>
-                                    {% endif %}
-                               </table>
-                           </div>
-
-                           <div class="payment-method">
-                               <div class="order-button-payment mt-20">
-                                <input type="hidden" name="total_price" value="{{ sub_total }}">
-                               <button type="submit" class="tp-btn-square-lg">Pay with stripe</button>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </form>
-       </div>
+      <div class="container">
+        <form action="{% url 'checkout:checkout_session' %}" method="POST">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="checkbox-form">
+                <h3>Billing Details</h3>
+                {% if user_address %}
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="checkout-form-list">
+                        <label>Name <span class="required">*</span></label>
+                        <input type="text" name="full_name" value="{{ user_address.name }}" required>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="checkout-form-list">
+                        <label>State / City <span class="required">*</span></label>
+                        <input type="text" value="{{ user_address.city }}" name="city" required>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="checkout-form-list">
+                        <label>Address <span class="required">*</span></label>
+                        <input type="text" value="{{ user_address.area }}" name="area" required>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      {% if user_address.address %}
+                        <div class="checkout-form-list">
+                          <input type="text" value="{{ user_address.address }}" name="address">
+                        </div>
+                      {% else %}
+                        <div class="checkout-form-list">
+                          <input type="text" placeholder="Apartment, unit etc. (optional)">
+                        </div>
+                      {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                      <div class="checkout-form-list">
+                        <label>Postcode / Zip <span class="required">*</span></label>
+                        <input type="text" value="{{ user_address.postcode }}" name="post_code" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="checkout-form-list">
+                        <label>Email Address <span class="required">*</span></label>
+                        <input type="email" value="{{ user_address.email }}" required>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="checkout-form-list">
+                        <label>Phone <span class="required">*</span></label>
+                        <input type="text" value="{{ user_address.phone }}" name="phone" required>
+                      </div>
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="checkout-form-list">
+                        <label>Name <span class="required">*</span></label>
+                        <input type="text" placeholder="Your full name" name="full_name">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="checkout-form-list">
+                        <label>State / City <span class="required">*</span></label>
+                        <input type="text" placeholder="State / City" name="city" required>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="checkout-form-list">
+                        <label>Address <span class="required">*</span></label>
+                        <input type="text" placeholder="Street address" name="area" required>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="checkout-form-list">
+                        <input type="text" placeholder="Apartment, unit etc. (optional)" name="address">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="checkout-form-list">
+                        <label>Postcode / Zip <span class="required">*</span></label>
+                        <input type="text" placeholder="Postcode / Zip" name="post_code" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="checkout-form-list">
+                        <label>Email Address <span class="required">*</span></label>
+                        <input type="email" placeholder="mail@company.com">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="checkout-form-list">
+                        <label>Phone <span class="required">*</span></label>
+                        <input type="text" placeholder="+923XXXXXXXXX" name="phone" required>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                <div class="different-address">
+                  <div class="ship-different-title">
+                    <h3>
+                      <label>Ship to a different address?</label>
+                      <input id="ship-box" type="checkbox" value="on">
+                    </h3>
+                  </div>
+                  <div id="ship-box-info">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="checkout-form-list">
+                          <label>Name <span class="required">*</span></label>
+                          <input type="text" placeholder="Your full name" name="s_full_name">
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="checkout-form-list">
+                          <label>State / City <span class="required">*</span></label>
+                          <input type="text" placeholder="State / City" name="s_city">
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="checkout-form-list">
+                          <label>Address <span class="required">*</span></label>
+                          <input type="text" placeholder="Street address" name="s_area">
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="checkout-form-list">
+                          <input type="text" placeholder="Apartment, unit etc. (optional)" name="s_address">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="checkout-form-list">
+                          <label>Postcode / Zip <span class="required">*</span></label>
+                          <input type="text" placeholder="Postcode / Zip" name="s_post_code">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="checkout-form-list">
+                          <label>Email Address <span class="required">*</span></label>
+                          <input type="email" placeholder="mail@company.com" name="s_email">
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="checkout-form-list">
+                          <label>Phone <span class="required">*</span></label>
+                          <input type="text" placeholder="+923XXXXXXXXX" name="s_phone">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="your-order mb-30 ">
+                <h3>Your order</h3>
+                <div class="your-order-table table-responsive">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th class="product-name">Product</th>
+                        <th class="product-total">Total</th>
+                      </tr>
+                    </thead>
+                    {% if cart.get_all_cart_item %}
+                      <tbody>
+                        {% for item in cart.get_all_cart_item %}
+                          <tr class="cart_item">
+                            <td class="product-name">
+                              {{ item.product.title }} <strong class="product-quantity"> × {{ item.quantity }} </strong>
+                            </td>
+                            <td class="product-total">
+                              <span class="amount">${{ item.get_product_discount_price }}</span>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                      <tfoot>
+                        <tr class="cart-subtotal">
+                          <th>Cart Subtotal</th>
+                          <td><span class="amount">${{ cart.get_final_price }}</span></td>
+                        </tr>
+                        <tr class="shipping">
+                          <th>Shipping(Flat Rate)</th>
+                          <td>
+                            <ul>
+                              <li>
+                                <label>
+                                  <span class="amount">${{ shipping_fee }}</span>
+                                </label>
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr class="order-total">
+                          <th>Order Total</th>
+                          <td><strong><span class="amount">${{ sub_total }}</span></strong>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    {% else %}
+                      <tbody>
+                        <tr class="cart_item">
+                          <td colspan=2 class="alert alert-secondary"> No items in cart! Add items to checkout.</td>
+                        </tr>
+                      </tbody>
+                    {% endif %}
+                  </table>
+                </div>
+                <div class="payment-method">
+                  <div class="order-button-payment mt-20">
+                    <input type="hidden" name="total_price" value="{{ sub_total }}">
+                    <button type="submit" class="tp-btn-square-lg">Pay with stripe</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
- </main>
+  </main>
 {% endblock content %}

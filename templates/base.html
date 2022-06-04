@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,33 +27,33 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/favicons/favicon-96x96.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicons/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'img/favicons/manifest.json' %}">
-    
+
 
     <title>
-        {% block title %} {% endblock title %}
+      {% block title %} {% endblock title %}
     </title>
 
     {% include '_includes/statics.html' %}
 
-</head>
+  </head>
 
-    <body>
+  <body>
 
-        <!-- back to top -->
-        <div class="progress-wrap">
-            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
-            </svg>
-        </div>
+    <!-- back to top -->
+    <div class="progress-wrap">
+      <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+      </svg>
+    </div>
 
-        <!-- include header -->
-        {% include '_includes/header.html' %}
-        <!-- main block -->
-        {% block content %} {% endblock content %}
-        <!-- include footer -->
-        {% include '_includes/footer.html' %}
-        <!-- include scripts -->
-        {% include '_includes/scripts.html' %}
-    </body>
+    <!-- include header -->
+    {% include '_includes/header.html' %}
+    <!-- main block -->
+    {% block content %} {% endblock content %}
+    <!-- include footer -->
+    {% include '_includes/footer.html' %}
+    <!-- include scripts -->
+    {% include '_includes/scripts.html' %}
+  </body>
 
 </html>
