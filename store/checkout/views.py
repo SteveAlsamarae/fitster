@@ -7,7 +7,7 @@ from djstripe import models
 from djstripe import settings as djstripe_settings
 
 from store.cart.models import Cart
-from users.models import DeliveryAddress
+from users.models import DeliveryAddress, ShippingAddress
 
 from .forms import AddressForm
 
@@ -27,7 +27,7 @@ def checkout_view(request: HttpRequest) -> HttpResponse:
 
     try:
         cart = request.user.cart
-        user_address = request.user.addresses.filter(is_default=True).first()
+        user_address = request.user.default_addresses.filter(is_default=True).first()
     except ObjectDoesNotExist:
         cart = Cart.objects.create(user=request.user)
         user_address = None
@@ -98,7 +98,7 @@ def checkout_session_veiw(request: HttpRequest) -> HttpResponse:
             address.is_shipping_address = False
             address.save()
 
-            shipping_addresses: object = DeliveryAddress.objects.filter(
+            shipping_addresses: object = ShippingAddress.objects.filter(
                 is_shipping_address=True, customer=request.user
             )
             if shipping_addresses:
