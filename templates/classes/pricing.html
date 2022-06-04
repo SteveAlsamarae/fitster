@@ -4,7 +4,6 @@
 
 {% block title %} Pricing | Fitster {% endblock title %}
 
-
 {% block content %}
   <main class="pt-120">
     <div class="priceing-area pt-120">
@@ -63,8 +62,8 @@
                       </div>
                     </div>
                     {% if forloop.counter == 2 %}
-                      <h5 class="price_type price_type-active mb-20 text-center">{{ plan.name }}</h5>
-                      <div class="tp_pricing-list tp_pricing-list-active pb-45">
+                      <h5 class="price_type mb-20 text-center">{{ plan.name }}</h5>
+                      <div class="tp_pricing-list pb-45">
                     {% else %}
                       <h5 class="price_type mb-20 text-center">{{ plan.name }}</h5>
                       <div class="tp_pricing-list pb-45">
