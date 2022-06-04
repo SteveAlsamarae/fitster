@@ -1,19 +1,19 @@
 <script>
-    var labels = Array.from(document.getElementsByClassName('form-label'))
-    labels.forEach(function(label){
-        label.classList.add('label-class-fix');
-    });
-    var inputs = Array.from(document.getElementsByClassName('form-control'))
-    {% if form.errors %}
-        inputs.forEach(function(input){
-            input.classList.add('is-invalid');
-        });
-    {% endif %}
-
+  var labels = Array.from(document.getElementsByClassName('form-label'))
+  labels.forEach(function(label){
+    label.classList.add('label-class-fix');
+  });
+  var inputs = Array.from(document.getElementsByClassName('form-control'))
+  {% if form.errors %}
     inputs.forEach(function(input){
-        input.addEventListener('focus', function(){
-            input.classList.remove('is-invalid');
-        });
-        
+      input.classList.add('is-invalid');
     });
+  {% endif %}
+
+  inputs.forEach(function(input){
+    input.addEventListener('focus', function(){
+      input.classList.remove('is-invalid');
+    });
+
+  });
 </script>
