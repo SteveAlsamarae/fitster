@@ -1,75 +1,75 @@
 {% load static %}
 <div class="row" id="cart_summary_body">
-    <div class="col-12">
-             <div class="table-content table-responsive">
-                <table class="table">
-                      <thead>
-                         <tr>
-                            <th class="product-thumbnail">Images</th>
-                            <th class="cart-product-name">Product</th>
-                            <th class="product-price">Unit Price</th>
-                            <th class="product-quantity">Quantity</th>
-                            <th class="product-subtotal">Total</th>
-                            <th class="product-remove">Remove</th>
-                         </tr>
-                      </thead>
-                      <tbody id="cart_items" hx-target="closest tr" hx-swap="outerHTML swap:.5s">
-                         {% include "_partials/cart_items.html" with cart=cart %}
-                      </tbody>
-                </table>
-             </div>
-             {% if cart.get_all_cart_item %}
-             <div class="row">
-                <div class="col-12">
-                      <div class="coupon-all">
-                         <div class="coupon2">
-                           <form hx-post="{% url 'cart:update_cart' %}"
-                                 hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-                                 hx-target="#cart_summary_body"
-                                 hx-swap="outerHTML swap:.4s"
-                           >
-                              {% if cart.get_all_cart_item %}
-                                 {% for item in cart.get_all_cart_item %}
-                                    <input type="hidden" name="{{ item.product.id }}" value="{{ item.product.id }}">
-                                    <input 
-                                       id="cart_item_qt_hid{{ forloop.counter }}" 
-                                       type="hidden" name="quantity_{{ forloop.counter }}" 
-                                       value="{{ item.quantity }}"
-                                    >
-                                 {% endfor %}
-                              {% endif %}
-                              <button id="cart_update_btn" class="tp-btn-square-lg" name="update_cart" type="submit">Update cart</button>
-                           </form>
-                           </div>
-                           <div class="coupon2 mx-3">
-                           <form hx-post="{% url 'cart:clear_cart' %}"
-                                 hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-                                 hx-target="#cart_summary_body"
-                                 hx-swap="outerHTML swap:.4s"
-                           >
-                              <button id="cart_clear_btn" class="tp-btn-square-lg bg-secondary text-white" name="update_cart" type="submit">Clear cart</button>
-                           </form>
-                           </div>
-                      </div>
-                </div>
-             </div>
-             <div class="row justify-content-end">
-                <div class="col-md-5">
-                      <div class="cart-page-total">
-                         <h2>Cart total</h2>
-                         <ul class="mb-20">
-                            <li>Subtotal <span>${{ cart.get_total_regular_price }}</span></li>
-                            <li>Discount <span class="text-danger">- ${{ cart.get_total_discount }}</span></li>
-                            <li>Total <span class="text-success">${{ cart.get_final_price}}</span></li>
-                         </ul>
-                         <div class="checkout_btn d-flex justify-content-center">
-                            <a class="tp-btn-square-lg" href="{% url 'checkout:checkout' %}"> checkout</a>
-                         </div>
-                      </div>
-                </div>
-             </div>
-             {% endif %}
+  <div class="col-12">
+    <div class="table-content table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="product-thumbnail">Images</th>
+            <th class="cart-product-name">Product</th>
+            <th class="product-price">Unit Price</th>
+            <th class="product-quantity">Quantity</th>
+            <th class="product-subtotal">Total</th>
+            <th class="product-remove">Remove</th>
+          </tr>
+        </thead>
+        <tbody id="cart_items" hx-target="closest tr" hx-swap="outerHTML swap:.5s">
+          {% include "_partials/cart_items.html" with cart=cart %}
+        </tbody>
+      </table>
     </div>
- </div>
- 
+    {% if cart.get_all_cart_item %}
+      <div class="row">
+        <div class="col-12">
+          <div class="coupon-all">
+            <div class="coupon2">
+              <form hx-post="{% url 'cart:update_cart' %}"
+                hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                hx-target="#cart_summary_body"
+                hx-swap="outerHTML swap:.4s"
+              >
+                {% if cart.get_all_cart_item %}
+                  {% for item in cart.get_all_cart_item %}
+                    <input type="hidden" name="{{ item.product.id }}" value="{{ item.product.id }}">
+                    <input
+                      id="cart_item_qt_hid{{ forloop.counter }}"
+                      type="hidden" name="quantity_{{ forloop.counter }}"
+                      value="{{ item.quantity }}"
+                    >
+                  {% endfor %}
+                {% endif %}
+                <button id="cart_update_btn" class="tp-btn-square-lg" name="update_cart" type="submit">Update cart</button>
+              </form>
+            </div>
+            <div class="coupon2 mx-3">
+              <form hx-post="{% url 'cart:clear_cart' %}"
+                hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                hx-target="#cart_summary_body"
+                hx-swap="outerHTML swap:.4s"
+              >
+                <button id="cart_clear_btn" class="tp-btn-square-lg bg-secondary text-white" name="update_cart" type="submit">Clear cart</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-end">
+        <div class="col-md-5">
+          <div class="cart-page-total">
+            <h2>Cart total</h2>
+            <ul class="mb-20">
+              <li>Subtotal <span>${{ cart.get_total_regular_price }}</span></li>
+              <li>Discount <span class="text-danger">- ${{ cart.get_total_discount }}</span></li>
+              <li>Total <span class="text-success">${{ cart.get_final_price}}</span></li>
+            </ul>
+            <div class="checkout_btn d-flex justify-content-center">
+              <a class="tp-btn-square-lg" href="{% url 'checkout:checkout' %}"> checkout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
 <script src="{% static 'js/main.js' %}"></script>

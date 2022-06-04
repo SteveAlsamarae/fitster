@@ -1,130 +1,130 @@
 <div id="profile_dashboard_body" class="card-body">
-    <div class="row">
-        <div class="col-md-12">
-            <h4>Manage Account</h4>
-            <hr>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Manage Account</h4>
+      <hr>
     </div>
-    <div class="row">
-        <p>
-            <a 
-                href="#" 
-                class="btn btn-warning" 
-                hx-target="#profile_dashboard_body"
-                hx-get="{% url 'users:update_profile' %}" 
-                hx-swap="outerHTML" 
-                hx-push-url="true"
-            >
-                Update Profile
-            </a>
-            <a href="{% url 'account_reset_password' %}" class="btn btn-dark ml-10">Change Password</a>
-        </p>
+  </div>
+  <div class="row">
+    <p>
+      <a
+        href="#"
+        class="btn btn-warning"
+        hx-target="#profile_dashboard_body"
+        hx-get="{% url 'users:update_profile' %}"
+        hx-swap="outerHTML"
+        hx-push-url="true"
+      >
+        Update Profile
+      </a>
+      <a href="{% url 'account_reset_password' %}" class="btn btn-dark ml-10">Change Password</a>
+    </p>
+  </div>
+  <div class="row mt-20">
+    <div class="col-md-12">
+      <h4>Manage Subscription</h4>
+      <hr>
     </div>
-    <div class="row mt-20">
-        <div class="col-md-12">
-            <h4>Manage Subscription</h4>
-            <hr>
-        </div>
-    </div>
-    <div class="row">
-        <p>
-            <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#CancelSubscription">
-                Cancel Subscription
-            </button>
-        </p>
-    </div>
+  </div>
+  <div class="row">
+    <p>
+      <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#CancelSubscription">
+        Cancel Subscription
+      </button>
+    </p>
+  </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="CancelSubscription" tabindex="-1" role="dialog" aria-labelledby="CancelSubscriptionTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title display-6" id="exampleModalLongTitle">Do you sure to cancel the subscription?
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <p>
-                        <span aria-hidden="true">&times;</span>
-                    </p>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>
-                    You will not be able to access the fitness center after you cancel it.
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success px-4" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger">Cancel Subscription</button>
-            </div>
-        </div>
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title display-6" id="exampleModalLongTitle">Do you sure to cancel the subscription?
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <p>
+            <span aria-hidden="true">&times;</span>
+          </p>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          You will not be able to access the fitness center after you cancel it.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success px-4" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger">Cancel Subscription</button>
+      </div>
     </div>
+  </div>
 </div>
 
-<a  href="#" 
-    id="dashboard_link"
-    class="list-group-item list-group-item-action"
-    hx-get="{% url 'users:dashboard' %}"
-    hx-target="#profile_dashboard_body"
-    hx-push-url="true"
-    hx-swap="outerHTML swap:.3s"
-    hx-swap-oob="true"
+<a  href="#"
+  id="dashboard_link"
+  class="list-group-item list-group-item-action"
+  hx-get="{% url 'users:dashboard' %}"
+  hx-target="#profile_dashboard_body"
+  hx-push-url="true"
+  hx-swap="outerHTML swap:.3s"
+  hx-swap-oob="true"
 >
-    Dashboard
+  Dashboard
 </a>
 <a  href="#"
-    id="orders_link"
-    hx-get="{% url 'users:orders' %}"
-    hx-target="#profile_dashboard_body"
-    hx-swap="outerHTML swap:.3s"
-    hx-class="active"
-    hx-push-url="true"
-    hx-swap-oob="true"
-    class="list-group-item list-group-item-action"
+  id="orders_link"
+  hx-get="{% url 'users:orders' %}"
+  hx-target="#profile_dashboard_body"
+  hx-swap="outerHTML swap:.3s"
+  hx-class="active"
+  hx-push-url="true"
+  hx-swap-oob="true"
+  class="list-group-item list-group-item-action"
 >
-    My Orders
+  My Orders
 </a>
 <a  href="#"
-    id="reviews_link"
-    hx-get="{% url 'users:reviews' %}"
-    hx-target="#profile_dashboard_body"
-    hx-swap="outerHTML swap:.3s"
-    hx-push-url="true"
-    class="list-group-item list-group-item-action"
-    hx-swap-oob="true"
+  id="reviews_link"
+  hx-get="{% url 'users:reviews' %}"
+  hx-target="#profile_dashboard_body"
+  hx-swap="outerHTML swap:.3s"
+  hx-push-url="true"
+  class="list-group-item list-group-item-action"
+  hx-swap-oob="true"
 >
-    My Reviews
+  My Reviews
 </a>
 <a  href="#"
-    id="subscription_link"
-    hx-get="{% url 'users:subscription' %}"
-    hx-target="#profile_dashboard_body"
-    hx-swap="outerHTML swap:.3s"
-    hx-push-url="true"
-    hx-swap-oob="true"
-    class="list-group-item list-group-item-action"
+  id="subscription_link"
+  hx-get="{% url 'users:subscription' %}"
+  hx-target="#profile_dashboard_body"
+  hx-swap="outerHTML swap:.3s"
+  hx-push-url="true"
+  hx-swap-oob="true"
+  class="list-group-item list-group-item-action"
 >
-    My Subscription
+  My Subscription
 </a>
 <a  href="#"
-    id="address_link"
-    hx-get="{% url 'users:address' %}"
-    hx-target="#profile_dashboard_body"
-    hx-swap="outerHTML swap:.3s"
-    hx-push-url="true"
-    hx-swap-oob="true"
-    class="list-group-item list-group-item-action"
+  id="address_link"
+  hx-get="{% url 'users:address' %}"
+  hx-target="#profile_dashboard_body"
+  hx-swap="outerHTML swap:.3s"
+  hx-push-url="true"
+  hx-swap-oob="true"
+  class="list-group-item list-group-item-action"
 >
-    Manage Addresses
+  Manage Addresses
 </a>
 <a  href="#"
-    id="settings_link"
-    hx-get="{% url 'users:settings' %}"
-    hx-target="#profile_dashboard_body"
-    hx-swap="outerHTML swap:.3s"
-    hx-push-url="true"
-    hx-swap-oob="true"
-    class="list-group-item list-group-item-action active"
+  id="settings_link"
+  hx-get="{% url 'users:settings' %}"
+  hx-target="#profile_dashboard_body"
+  hx-swap="outerHTML swap:.3s"
+  hx-push-url="true"
+  hx-swap-oob="true"
+  class="list-group-item list-group-item-action active"
 >
-    Settings
+  Settings
 </a>

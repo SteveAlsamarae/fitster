@@ -1,54 +1,54 @@
 {% load thumbnail %}
 
 {% if cart.get_all_cart_item %}
-{% for item in cart.get_all_cart_item %}
-<tr>
-    <td class="product-thumbnail">
-    <a href="{{ item.product.get_absolute_url }}">
-        {% thumbnail item.product.get_featured_img "125x125" crop="center" as img %}
+  {% for item in cart.get_all_cart_item %}
+    <tr>
+      <td class="product-thumbnail">
+        <a href="{{ item.product.get_absolute_url }}">
+          {% thumbnail item.product.get_featured_img "125x125" crop="center" as img %}
             <img
-                src="{{ img.url }}"
-                width="{{ img.width }}"
-                height="{{ img.height }}"
-                alt="{{ product_img_obj.product.title }}"
+              src="{{ img.url }}"
+              width="{{ img.width }}"
+              height="{{ img.height }}"
+              alt="{{ product_img_obj.product.title }}"
             />
-        {% endthumbnail %}
-    </a>
-    </td>
-    <td class="product-name">
+          {% endthumbnail %}
+        </a>
+      </td>
+      <td class="product-name">
         <a href="{{ item.product.get_absolute_url }}">{{ item.product.title }} </a>
-    </td>
-    <td class="product-price"><span class="amount">${{ item.product.get_product_price }}</span></td>
-    <td class="product-quantity">
+      </td>
+      <td class="product-price"><span class="amount">${{ item.product.get_product_price }}</span></td>
+      <td class="product-quantity">
         <div class="cart-plus-minus cdcart-plus-minus">
-            <input
+          <input
             id="qty_{{ forloop.counter }}"
-            type="text" 
+            type="text"
             value="{{ item.quantity }}"
             class="cart-item-qty"
-            >
-            <div class="dec qtybutton">-</div>
-            <div class="inc qtybutton">+</div>
+          >
+          <div class="dec qtybutton">-</div>
+          <div class="inc qtybutton">+</div>
         </div>
-    </td>
-    <td class="product-subtotal">
-    <span class="amount">${{ item.get_product_discount_price }}</span>
-    </td>
-    <td class="product-remove">
-    <form hx-post="{% url 'cart:remove_from_cart' product_id=item.product.id %}"
-        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-        hx-target="#cart_summary_body"
-        hx-swap="outerHTML swap:.1s"
-    >
-        <button class="delete_item_btn" type="submit" ><i class="fa fa-times"></i></button>
-    </form>
-</td>
-</tr>
-{% endfor %}
+      </td>
+      <td class="product-subtotal">
+        <span class="amount">${{ item.get_product_discount_price }}</span>
+      </td>
+      <td class="product-remove">
+        <form hx-post="{% url 'cart:remove_from_cart' product_id=item.product.id %}"
+          hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+          hx-target="#cart_summary_body"
+          hx-swap="outerHTML swap:.1s"
+        >
+          <button class="delete_item_btn" type="submit" ><i class="fa fa-times"></i></button>
+        </form>
+      </td>
+    </tr>
+  {% endfor %}
 {% else %}
-<tr>
-<td colspan="6">
-    <p class="alert alert-secondary">There is no items in your cart.</p>
-</td>
-</tr>
+  <tr>
+    <td colspan="6">
+      <p class="alert alert-secondary">There is no items in your cart.</p>
+    </td>
+  </tr>
 {% endif %}

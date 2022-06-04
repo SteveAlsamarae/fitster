@@ -1,35 +1,35 @@
 {% if wishlist %}
-<tbody id="wishlist_items">
+  <tbody id="wishlist_items">
     <tr>
-        <td colspan="6">
-            <p class="alert alert-secondary">There is no item in your wishlist.</p>
-        </td>
+      <td colspan="6">
+        <p class="alert alert-secondary">There is no item in your wishlist.</p>
+      </td>
     </tr>
-</tbody>
+  </tbody>
 {% else %}
-<div class="row" id="cart_summary_body">
+  <div class="row" id="cart_summary_body">
     <div class="col-12">
-        <div class="table-content table-responsive">
+      <div class="table-content table-responsive">
         <table class="table">
-            <thead>
-                <tr>
-                    <th class="product-thumbnail">Images</th>
-                    <th class="cart-product-name">Product</th>
-                    <th class="product-price">Unit Price</th>
-                    <th class="product-quantity">Quantity</th>
-                    <th class="product-subtotal">Total</th>
-                    <th class="product-remove">Remove</th>
-                </tr>
-            </thead>
-            <tbody id="cart_items">
-                <tr>
-                    <td colspan="6">
-                        <p class="alert alert-secondary">There is no item in your cart.</p>
-                    </td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th class="product-thumbnail">Images</th>
+              <th class="cart-product-name">Product</th>
+              <th class="product-price">Unit Price</th>
+              <th class="product-quantity">Quantity</th>
+              <th class="product-subtotal">Total</th>
+              <th class="product-remove">Remove</th>
+            </tr>
+          </thead>
+          <tbody id="cart_items">
+            <tr>
+              <td colspan="6">
+                <p class="alert alert-secondary">There is no item in your cart.</p>
+              </td>
+            </tr>
+          </tbody>
         </table>
-        </div>
+      </div>
     </div>
- </div>
- {% endif %}
+  </div>
+{% endif %}
