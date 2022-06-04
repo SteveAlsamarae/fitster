@@ -5,106 +5,106 @@
 {% block title %} All fitness classes | Fitster {% endblock title %}
 
 {% block content %}
-<main class="pt-120">
+  <main class="pt-120">
     <div class="classes-area pt-120 pb-80">
-       <div class="container custome-container">
-          <div class="row justify-content-center">
-             <div class="col-lg-12">
-                <div class="section-wrap-two text-center">
-                   <span class="tpsub-title-two mb-15"><i class="far fa-circle"></i>Fitness Classes<i class="far fa-circle"></i></span>
-                   <h3 class="section-title-two  mb-30">All the classes <strong>fitster</strong> provide for your better health</h3>
-                </div>
-             </div>
+      <div class="container custome-container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+            <div class="section-wrap-two text-center">
+              <span class="tpsub-title-two mb-15"><i class="far fa-circle"></i>Fitness Classes<i class="far fa-circle"></i></span>
+              <h3 class="section-title-two  mb-30">All the classes <strong>fitster</strong> provide for your better health</h3>
+            </div>
           </div>
-       </div>
-       <div class="container custome-container">
-          <div class="row mt-30">
-             {% if classes %}
-             {% for fit_class in classes %}
-             <div class="col-lg-4 col-md-6">
+        </div>
+      </div>
+      <div class="container custome-container">
+        <div class="row mt-30">
+          {% if classes %}
+            {% for fit_class in classes %}
+              <div class="col-lg-4 col-md-6">
                 <div class="single-class mb-40">
-                   <div class="class-iamge">
-                      <a href="{{ fit_class.get_absolute_url }}">
-                        {% thumbnail fit_class.thumbnail "360x340" crop="center" as img %}
-                           <img
-                           src="{{ img.url }}"
-                           class="img-fluid"
-                           width="{{ img.width }}"
-                           height="{{ img.height }}"
-                           alt="{{ fit_class.name }}"
-                           />
-                        {% endthumbnail %}
-                   </div>
-                   <div class="class-info text-center">
+                  <div class="class-iamge">
+                    <a href="{{ fit_class.get_absolute_url }}">
+                      {% thumbnail fit_class.thumbnail "360x340" crop="center" as img %}
+                        <img
+                          src="{{ img.url }}"
+                          class="img-fluid"
+                          width="{{ img.width }}"
+                          height="{{ img.height }}"
+                          alt="{{ fit_class.name }}"
+                        />
+                      {% endthumbnail %}
+                    </div>
+                    <div class="class-info text-center">
                       <div class="class_icon mb-10">
-                         <i class="flaticon-muscle"></i>
+                        <i class="flaticon-muscle"></i>
                       </div>
                       <h4 class="class_title">
-                         <a href="{{ fit_class.get_absolute_url }}">{{ fit_class.name }}</a>
+                        <a href="{{ fit_class.get_absolute_url }}">{{ fit_class.name }}</a>
                       </h4>
                       <div class="class_btn">
-                         <a href="{{ fit_class.get_absolute_url }}">Read More<i class="fal fa-chevron-double-right"></i></a>
+                        <a href="{{ fit_class.get_absolute_url }}">Read More<i class="fal fa-chevron-double-right"></i></a>
                       </div>
-                   </div>
-                </div>
-             </div>
-             {% endfor %}
-             {% else %}
-               <div class="col-lg-12">
-                  <div class="alert alert-warning">
-                     <p>No classes found</p>
+                    </div>
                   </div>
-               </div>
-             {% endif %}
-          </div>
-       </div>
+                </div>
+            {% endfor %}
+          {% else %}
+            <div class="col-lg-12">
+              <div class="alert alert-warning">
+                <p>No classes found</p>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
     </div>
 
-   <div class="testimonial-area-two" data-background="{% static 'img/testimonial-bg.jpg' %}">
+    <div class="testimonial-area-two" data-background="{% static 'img/testimonial-bg.jpg' %}">
       <div class="container">
-         <div class="pt-120 pb-115">
-            <div class="row justify-content-center">
-               <div class="col-xxl-10 col-xl-11 col-lg-12">
-                  <div class="swiper-container testimonial_active">
-                     <div class="testimonial-wrapper swiper-wrapper">
-                        <div class="testimonial-slider-item swiper-slide text-center">
-                           <div class="tesimonial-quote mb-60">
-                              <img src="{% static 'img/testimonial-quote.png' %}" alt="quote">
-                           </div>
-                           <div class="testimonial-info">
-                              <p class="testimonial_description testimonial_description-two pb-50">Eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac ante id sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre</p>
-                              <h5 class="client-name client-name2">Calwen Synton</h5>
-                              <span class="client-degination client-degination2">Sr Designer</span>
-                           </div>
-                        </div>
-                        <div class="testimonial-slider-item swiper-slide text-center">
-                           <div class="tesimonial-quote mb-60">
-                              <img src="assets/img/testimonial/testimonial-quote.png" alt="">
-                           </div>
-                           <div class="testimonial-info">
-                              <p class="testimonial_description testimonial_description-two pb-50">Sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre. eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac ante id.</p>
-                              <h5 class="client-name client-name2">Calwen Andrew</h5>
-                              <span class="client-degination client-degination2">Sr Dev</span>
-                           </div>
-                        </div>
-                        <div class="testimonial-slider-item swiper-slide text-center">
-                           <div class="tesimonial-quote mb-60">
-                              <img src="assets/img/testimonial/testimonial-quote.png" alt="">
-                           </div>
-                           <div class="testimonial-info">
-                              <p class="testimonial_description testimonial_description-two pb-50">Saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac. Eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse ante id sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre</p>
-                              <h5 class="client-name client-name2">Calwen Synton</h5>
-                              <span class="client-degination client-degination2">Sr Designer</span>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="swiper-button-prev ts-button ts-button2 ts-button-prev"></div>
-                     <div class="swiper-button-next ts-button ts-button2 ts-button-next"></div>
+        <div class="pt-120 pb-115">
+          <div class="row justify-content-center">
+            <div class="col-xxl-10 col-xl-11 col-lg-12">
+              <div class="swiper-container testimonial_active">
+                <div class="testimonial-wrapper swiper-wrapper">
+                  <div class="testimonial-slider-item swiper-slide text-center">
+                    <div class="tesimonial-quote mb-60">
+                      <img src="{% static 'img/testimonial-quote.png' %}" alt="quote">
+                    </div>
+                    <div class="testimonial-info">
+                      <p class="testimonial_description testimonial_description-two pb-50">Eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac ante id sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre</p>
+                      <h5 class="client-name client-name2">Calwen Synton</h5>
+                      <span class="client-degination client-degination2">Sr Designer</span>
+                    </div>
                   </div>
-               </div>
+                  <div class="testimonial-slider-item swiper-slide text-center">
+                    <div class="tesimonial-quote mb-60">
+                      <img src="assets/img/testimonial/testimonial-quote.png" alt="">
+                    </div>
+                    <div class="testimonial-info">
+                      <p class="testimonial_description testimonial_description-two pb-50">Sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre. eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac ante id.</p>
+                      <h5 class="client-name client-name2">Calwen Andrew</h5>
+                      <span class="client-degination client-degination2">Sr Dev</span>
+                    </div>
+                  </div>
+                  <div class="testimonial-slider-item swiper-slide text-center">
+                    <div class="tesimonial-quote mb-60">
+                      <img src="assets/img/testimonial/testimonial-quote.png" alt="">
+                    </div>
+                    <div class="testimonial-info">
+                      <p class="testimonial_description testimonial_description-two pb-50">Saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac. Eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse ante id sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre</p>
+                      <h5 class="client-name client-name2">Calwen Synton</h5>
+                      <span class="client-degination client-degination2">Sr Designer</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-button-prev ts-button ts-button2 ts-button-prev"></div>
+                <div class="swiper-button-next ts-button ts-button2 ts-button-next"></div>
+              </div>
             </div>
-         </div>
+          </div>
+        </div>
       </div>
-   </div>
- </main>
+    </div>
+  </main>
 {% endblock %}

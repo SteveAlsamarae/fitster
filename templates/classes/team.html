@@ -1,58 +1,58 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load static %}
 {% load thumbnail %}
 
-{% block title %} Our fitness team | Fitster {% endblock title %} 
+{% block title %} Our fitness team | Fitster {% endblock title %}
 
 {% block content %}
-<main class="pt-120">
-  <div class="trainer_parea pt-120 pb-60">
-    <div class="container pt-10">
-      <div class="section-wrap-two text-center">
-        <span class="tpsub-title-two mb-15">
-          <i class="far fa-circle"></i>Fitness Team<i class="far fa-circle"></i>
-        </span>
-        <h3 class="section-title-two mb-30">
-          Our dedicated and professional fitness team
-        </h3>
-      </div>
-      <div class="row mt-60">
-        {% for trainer in trainers %}
-        <div class="col-xxl-3 col-lg-4 col-md-6">
-          <div class="trainer-single mb-60">
-            <div class="trainer-image">
-              <a href="{{ trainer.get_absolute_url }}">
-                {% thumbnail trainer.avatar "330x400" crop="center" as img %}
-                  <img
-                    src="{{ img.url }}"
-                    width="{{ img.width }}"
-                    height="{{ img.height }}"
-                    alt="{{ trainer.name }}"
-                  />
-                {% endthumbnail %}
-              </a>
-            </div>
-            <div class="trainer-info">
-              <h5 class="trainer-name">
-                <a href="{{ trainer.get_absolute_url }}">{{ trainer.name }}</a>
-              </h5>
-              <p class="mb-20">{{ trainer.title }}</p>
-              <div class="trainer-soicial-icon">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-              </div>
-            </div>
-            <div class="trainer-btn">
-              <a href="{{ trainer.get_absolute_url }}" class="tp-btn-square"
-                ><i class="fal fa-chevron-double-right"></i
-              ></a>
-            </div>
-          </div>
+  <main class="pt-120">
+    <div class="trainer_parea pt-120 pb-60">
+      <div class="container pt-10">
+        <div class="section-wrap-two text-center">
+          <span class="tpsub-title-two mb-15">
+            <i class="far fa-circle"></i>Fitness Team<i class="far fa-circle"></i>
+          </span>
+          <h3 class="section-title-two mb-30">
+            Our dedicated and professional fitness team
+          </h3>
         </div>
-        {% endfor %}
+        <div class="row mt-60">
+          {% for trainer in trainers %}
+            <div class="col-xxl-3 col-lg-4 col-md-6">
+              <div class="trainer-single mb-60">
+                <div class="trainer-image">
+                  <a href="{{ trainer.get_absolute_url }}">
+                    {% thumbnail trainer.avatar "330x400" crop="center" as img %}
+                      <img
+                        src="{{ img.url }}"
+                        width="{{ img.width }}"
+                        height="{{ img.height }}"
+                        alt="{{ trainer.name }}"
+                      />
+                    {% endthumbnail %}
+                  </a>
+                </div>
+                <div class="trainer-info">
+                  <h5 class="trainer-name">
+                    <a href="{{ trainer.get_absolute_url }}">{{ trainer.name }}</a>
+                  </h5>
+                  <p class="mb-20">{{ trainer.title }}</p>
+                  <div class="trainer-soicial-icon">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                  </div>
+                </div>
+                <div class="trainer-btn">
+                  <a href="{{ trainer.get_absolute_url }}" class="tp-btn-square"
+                  ><i class="fal fa-chevron-double-right"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+          {% endfor %}
+        </div>
       </div>
     </div>
-  </div>
-</main>
+  </main>
 {% endblock %}

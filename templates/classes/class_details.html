@@ -6,121 +6,121 @@
 
 
 {% block content %}
-<main class="pt-120">
+  <main class="pt-120">
     <div class="classes_details_area pt-120 pb-90">
-       <div class="container custome-container pt-20">
-          <div class="row">
-             <div class="col-lg-4">
-                <div class="classes_sidebar mb-30">
-                   <div class="support-image">
-                      {% thumbnail fitness_class.thumbnail "360x330" crop="center" as img %}
-                        <img
-                        src="{{ img.url }}"
-                        width="{{ img.width }}"
-                        height="{{ img.height }}"
-                        alt="{{ fitness_class.name }}"
-                        />
-                     {% endthumbnail %}
-                   </div>
-                   <div class="classes_widget classes_widget_support mb-30">
-                      <div class="support_icon">
-                         <i class="flaticon-support-1"></i>
-                      </div>
-                      <h5 class="classes_widget_title mb-25"><i class="far fa-circle"></i> Contact Info</h5>
-                      <ul class="support_contact">
-                         <li class="d-flex align-items-start pt-5 mb-20">
-                            <div class="support__info-icon mr-20">
-                               <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="support__info-text">
-                               <a href="#">
-                               {{ fitness_class.address }}
-                              </a>
-                            </div>
-                         </li>
-                         <li class="d-flex align-items-start">
-                            <div class="support__info-icon mr-20">
-                               <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="support__info-text">
-                               <a href="tel:{{ fitness_class.phone }}">{{ fitness_class.phone }}</a> <br>
-                            </div>
-                         </li>
-                      </ul>
-                   </div>
-                   <div class="classes_widget mb-30">
-                      <h5 class="classes_widget_title mb-25"><i class="far fa-circle"></i> Download</h5>
-                      <ul class="download_option">
-                         <li class="d-flex align-items-center mb-20 download_option_list">
-                            <div class="download_icon mr-20">
-                               <a href="{{ fitness_class.thumbnail.url }}" download><i class="fal fa-file-pdf"></i></a>
-                            </div>
-                            <div class="download__info-text ml-20">
-                               <a href="{{ fitness_class.thumbnail.url }}" download>Presentation</a>
-                            </div>
-                         </li>
-                      </ul>
-                   </div>
+      <div class="container custome-container pt-20">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="classes_sidebar mb-30">
+              <div class="support-image">
+                {% thumbnail fitness_class.thumbnail "360x330" crop="center" as img %}
+                  <img
+                    src="{{ img.url }}"
+                    width="{{ img.width }}"
+                    height="{{ img.height }}"
+                    alt="{{ fitness_class.name }}"
+                  />
+                {% endthumbnail %}
+              </div>
+              <div class="classes_widget classes_widget_support mb-30">
+                <div class="support_icon">
+                  <i class="flaticon-support-1"></i>
                 </div>
-             </div>
-             <div class="col-lg-8">
-                <div class="classes_details_info">
-                   <div class="class_main_image mb-30">
-                      {% thumbnail fitness_class.thumbnail "750x550" crop="center" as img %}
-                        <img
-                        src="{{ img.url }}"
-                        width="{{ img.width }}"
-                        height="{{ img.height }}"
-                        alt="{{ fitness_class.name }}"
-                        />
-                     {% endthumbnail %}
-                   </div>
-                   <h5 class="classes_detals_title">{{ fitness_class.name }}</h5>
-                   <p class="mb-40">{{ fitness_class.description }}</p>
-                   <h5 class="classes_detals_title_sm mb-30">Trainers</h5>
-                   <div class="row mb-10">
-                      {% for trainer in fitness_class.get_all_trainers %}
-                     <div class="col-xl-6 col-lg-6 col-md-6">
-                        <div class="trainer-single mb-30">
-                           <div class="trainer-image trainer-image_cs_details">
-                              <a href="{{ trainer.get_absolute_url }}">
-                                 {% thumbnail trainer.avatar "360x400" crop="center" as img %}
-                                    <img
-                                       src="{{ img.url }}"
-                                       width="{{ img.width }}"
-                                       height="{{ img.height }}"
-                                       alt="{{ trainer.name }}"
-                                    />
-                                 {% endthumbnail %}
-                              </a>
-                           </div>
-                           <div class="trainer-info">
-                              <h5 class="trainer-name"><a href="{{ trainer.get_absolute_url }}">{{ trainer.name }}</a></h5>
-                              <p class="mb-20">{{ trainer.title }}</p>
-                           </div>
-                           <div class="trainer-btn">
-                              <a href="{{ trainer.get_absolute_url }}" class="tp-btn-square"><i class="fal fa-chevron-double-right"></i></a>
-                           </div>
-                        </div>
-                     </div>
-                     {% endfor %}
-                  </div>
-                   <h5 class="classes_detals_title_sm mb-30">Class Schedules</h5>
-                   <div class="row">
-                      {% for class in fitness_class.class_schedules.all %}
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                         <div class="class_schedule_sm mb-30">
-                            <h6>{{ class.get_day_display }}</h6>
-                            <span>{{ class.start_time }} - {{ class.end_time }}</span>
-                            <p>{{ class.trainer.name }}</p>
-                         </div>
-                      </div>
-                      {% endfor %}
-                   </div>
-                </div>
-             </div>
+                <h5 class="classes_widget_title mb-25"><i class="far fa-circle"></i> Contact Info</h5>
+                <ul class="support_contact">
+                  <li class="d-flex align-items-start pt-5 mb-20">
+                    <div class="support__info-icon mr-20">
+                      <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="support__info-text">
+                      <a href="#">
+                        {{ fitness_class.address }}
+                      </a>
+                    </div>
+                  </li>
+                  <li class="d-flex align-items-start">
+                    <div class="support__info-icon mr-20">
+                      <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="support__info-text">
+                      <a href="tel:{{ fitness_class.phone }}">{{ fitness_class.phone }}</a> <br>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="classes_widget mb-30">
+                <h5 class="classes_widget_title mb-25"><i class="far fa-circle"></i> Download</h5>
+                <ul class="download_option">
+                  <li class="d-flex align-items-center mb-20 download_option_list">
+                    <div class="download_icon mr-20">
+                      <a href="{{ fitness_class.thumbnail.url }}" download><i class="fal fa-file-pdf"></i></a>
+                    </div>
+                    <div class="download__info-text ml-20">
+                      <a href="{{ fitness_class.thumbnail.url }}" download>Presentation</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-       </div>
+          <div class="col-lg-8">
+            <div class="classes_details_info">
+              <div class="class_main_image mb-30">
+                {% thumbnail fitness_class.thumbnail "750x550" crop="center" as img %}
+                  <img
+                    src="{{ img.url }}"
+                    width="{{ img.width }}"
+                    height="{{ img.height }}"
+                    alt="{{ fitness_class.name }}"
+                  />
+                {% endthumbnail %}
+              </div>
+              <h5 class="classes_detals_title">{{ fitness_class.name }}</h5>
+              <p class="mb-40">{{ fitness_class.description }}</p>
+              <h5 class="classes_detals_title_sm mb-30">Trainers</h5>
+              <div class="row mb-10">
+                {% for trainer in fitness_class.get_all_trainers %}
+                  <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="trainer-single mb-30">
+                      <div class="trainer-image trainer-image_cs_details">
+                        <a href="{{ trainer.get_absolute_url }}">
+                          {% thumbnail trainer.avatar "360x400" crop="center" as img %}
+                            <img
+                              src="{{ img.url }}"
+                              width="{{ img.width }}"
+                              height="{{ img.height }}"
+                              alt="{{ trainer.name }}"
+                            />
+                          {% endthumbnail %}
+                        </a>
+                      </div>
+                      <div class="trainer-info">
+                        <h5 class="trainer-name"><a href="{{ trainer.get_absolute_url }}">{{ trainer.name }}</a></h5>
+                        <p class="mb-20">{{ trainer.title }}</p>
+                      </div>
+                      <div class="trainer-btn">
+                        <a href="{{ trainer.get_absolute_url }}" class="tp-btn-square"><i class="fal fa-chevron-double-right"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+              <h5 class="classes_detals_title_sm mb-30">Class Schedules</h5>
+              <div class="row">
+                {% for class in fitness_class.class_schedules.all %}
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                    <div class="class_schedule_sm mb-30">
+                      <h6>{{ class.get_day_display }}</h6>
+                      <span>{{ class.start_time }} - {{ class.end_time }}</span>
+                      <p>{{ class.trainer.name }}</p>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
- </main>
+  </main>
 {% endblock %}

@@ -6,137 +6,137 @@
 
 
 {% block content %}
-<main class="pt-120">
+  <main class="pt-120">
     <div class="priceing-area pt-120">
-       <div class="container custome-container">
+      <div class="container custome-container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+            <div class="section-wrap-two text-center">
+              <span class="tpsub-title-two mb-15"><i class="far fa-circle"></i>Pricing plan<i class="far fa-circle"></i></span>
+              <h3 class="section-title-two  mb-30">Choose your plan from our comfortable fitness plan</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tp_priceing">
+        <div class="container custome-container mt-35">
           <div class="row justify-content-center">
-             <div class="col-lg-12">
-                <div class="section-wrap-two text-center">
-                   <span class="tpsub-title-two mb-15"><i class="far fa-circle"></i>Pricing plan<i class="far fa-circle"></i></span>
-                   <h3 class="section-title-two  mb-30">Choose your plan from our comfortable fitness plan</h3>
-                </div>
-             </div>
-          </div>
-       </div>
-       <div class="tp_priceing">
-          <div class="container custome-container mt-35">
-             <div class="row justify-content-center">
-                <div class="row">
-                    {% for plan in fitness_plans %}
-                   <div class="col-lg-4 col-md-6">
-                      <div class="price_item mb-30 wow fadeInUp" data-wow-delay=".6s">
-                        {% if forloop.counter == 2 %}
-                        <div class="priceing_image priceing_image-active mb-10 ">
-                            {% thumbnail plan.thumbnail "350x220" crop="center" as img %}
-                              <img
-                              src="{{ img.url }}"
-                              width="{{ img.width }}"
-                              height="{{ img.height }}"
-                              alt="{{ plan.name }}"
-                              />
-                           {% endthumbnail %}
-                            <div class="price__popular">
-                                <span>popular</span>
-                             </div>
-                         </div>
-                         {% else %}
-                         <div class="priceing_image mb-10">
-                            {% thumbnail plan.thumbnail "350x220" crop="center" as img %}
-                              <img
-                              src="{{ img.url }}"
-                              width="{{ img.width }}"
-                              height="{{ img.height }}"
-                              alt="{{ plan.name }}"
-                              />
-                           {% endthumbnail %}
-                         </div>
-                        {% endif %}
-                         {% if forloop.counter == 2 %}
-                         <div class="price_info price_info2 pt-80">
-                         {% else %}
-                         <div class="price_info pt-80">
-                         {% endif %}
-                            <div class="price text-center">
-                               <div class="inner">
-                                  <h5>${{ plan.price }}</h5>
-                                  <p>Monthly</p>
-                               </div>
-                            </div>
-                            {% if forloop.counter == 2 %}
-                            <h5 class="price_type price_type-active mb-20 text-center">{{ plan.name }}</h5>
-                            <div class="tp_pricing-list tp_pricing-list-active pb-45">
-                            {% else %}
-                            <h5 class="price_type mb-20 text-center">{{ plan.name }}</h5>
-                            <div class="tp_pricing-list pb-45">
-                            {% endif %}
-                               <ul>
-                                {% for feature in plan.get_lines_from_description %}
-                                  <li><i class="fal fa-check"></i> {{ feature }}</li>
-                                {% endfor %}
-                               </ul>
-                            </div>
-                            <div class="price-btn text-center pb-30">
-                            <form action="{% url 'classes:subscription_checkout' %}" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="price_id" value="{{ plan.stripe_price_id }}" />
-                               <button type="submit" class="tp-btn-round">join today <i class="fal fa-chevron-double-right"></i></button>
-                            </form>
-                            </div>
-                         </div>
+            <div class="row">
+              {% for plan in fitness_plans %}
+                <div class="col-lg-4 col-md-6">
+                  <div class="price_item mb-30 wow fadeInUp" data-wow-delay=".6s">
+                    {% if forloop.counter == 2 %}
+                      <div class="priceing_image priceing_image-active mb-10 ">
+                        {% thumbnail plan.thumbnail "350x220" crop="center" as img %}
+                          <img
+                            src="{{ img.url }}"
+                            width="{{ img.width }}"
+                            height="{{ img.height }}"
+                            alt="{{ plan.name }}"
+                          />
+                        {% endthumbnail %}
+                        <div class="price__popular">
+                          <span>popular</span>
+                        </div>
                       </div>
-                   </div>
-                   {% endfor %}
+                    {% else %}
+                      <div class="priceing_image mb-10">
+                        {% thumbnail plan.thumbnail "350x220" crop="center" as img %}
+                          <img
+                            src="{{ img.url }}"
+                            width="{{ img.width }}"
+                            height="{{ img.height }}"
+                            alt="{{ plan.name }}"
+                          />
+                        {% endthumbnail %}
+                      </div>
+                    {% endif %}
+                    {% if forloop.counter == 2 %}
+                      <div class="price_info price_info2 pt-80">
+                    {% else %}
+                      <div class="price_info pt-80">
+                    {% endif %}
+                    <div class="price text-center">
+                      <div class="inner">
+                        <h5>${{ plan.price }}</h5>
+                        <p>Monthly</p>
+                      </div>
+                    </div>
+                    {% if forloop.counter == 2 %}
+                      <h5 class="price_type price_type-active mb-20 text-center">{{ plan.name }}</h5>
+                      <div class="tp_pricing-list tp_pricing-list-active pb-45">
+                    {% else %}
+                      <h5 class="price_type mb-20 text-center">{{ plan.name }}</h5>
+                      <div class="tp_pricing-list pb-45">
+                    {% endif %}
+                    <ul>
+                      {% for feature in plan.get_lines_from_description %}
+                        <li><i class="fal fa-check"></i> {{ feature }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  <div class="price-btn text-center pb-30">
+                    <form action="{% url 'classes:subscription_checkout' %}" method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="price_id" value="{{ plan.stripe_price_id }}" />
+                      <button type="submit" class="tp-btn-round">join today <i class="fal fa-chevron-double-right"></i></button>
+                    </form>
+                  </div>
                 </div>
-             </div>
+                </div>
+                </div>
+              {% endfor %}
+            </div>
           </div>
-       </div>
+        </div>
+      </div>
 
-    <div class="testimonial-area-two" data-background="{% static 'img/testimonial-bg.jpg' %}">
-       <div class="container">
+      <div class="testimonial-area-two" data-background="{% static 'img/testimonial-bg.jpg' %}">
+        <div class="container">
           <div class="pt-120 pb-115">
-             <div class="row justify-content-center">
-                <div class="col-xxl-10 col-xl-11 col-lg-12">
-                   <div class="swiper-container testimonial_active">
-                      <div class="testimonial-wrapper swiper-wrapper">
-                         <div class="testimonial-slider-item swiper-slide text-center">
-                            <div class="tesimonial-quote mb-60">
-                               <img src="{% static 'img/testimonial-quote.png' %}" alt="quote">
-                            </div>
-                            <div class="testimonial-info">
-                               <p class="testimonial_description testimonial_description-two pb-50">Eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac ante id sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre</p>
-                               <h5 class="client-name client-name2">Calwen Synton</h5>
-                               <span class="client-degination client-degination2">Sr Designer</span>
-                            </div>
-                         </div>
-                         <div class="testimonial-slider-item swiper-slide text-center">
-                            <div class="tesimonial-quote mb-60">
-                               <img src="assets/img/testimonial/testimonial-quote.png" alt="">
-                            </div>
-                            <div class="testimonial-info">
-                               <p class="testimonial_description testimonial_description-two pb-50">Sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre. eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac ante id.</p>
-                               <h5 class="client-name client-name2">Calwen Andrew</h5>
-                               <span class="client-degination client-degination2">Sr Dev</span>
-                            </div>
-                         </div>
-                         <div class="testimonial-slider-item swiper-slide text-center">
-                            <div class="tesimonial-quote mb-60">
-                               <img src="assets/img/testimonial/testimonial-quote.png" alt="">
-                            </div>
-                            <div class="testimonial-info">
-                               <p class="testimonial_description testimonial_description-two pb-50">Saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac. Eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse ante id sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre</p>
-                               <h5 class="client-name client-name2">Calwen Synton</h5>
-                               <span class="client-degination client-degination2">Sr Designer</span>
-                            </div>
-                         </div>
+            <div class="row justify-content-center">
+              <div class="col-xxl-10 col-xl-11 col-lg-12">
+                <div class="swiper-container testimonial_active">
+                  <div class="testimonial-wrapper swiper-wrapper">
+                    <div class="testimonial-slider-item swiper-slide text-center">
+                      <div class="tesimonial-quote mb-60">
+                        <img src="{% static 'img/testimonial-quote.png' %}" alt="quote">
                       </div>
-                      <!-- If we need navigation buttons -->
-                      <div class="swiper-button-prev ts-button ts-button2 ts-button-prev"></div>
-                      <div class="swiper-button-next ts-button ts-button2 ts-button-next"></div>
-                   </div>
+                      <div class="testimonial-info">
+                        <p class="testimonial_description testimonial_description-two pb-50">Eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac ante id sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre</p>
+                        <h5 class="client-name client-name2">Calwen Synton</h5>
+                        <span class="client-degination client-degination2">Sr Designer</span>
+                      </div>
+                    </div>
+                    <div class="testimonial-slider-item swiper-slide text-center">
+                      <div class="tesimonial-quote mb-60">
+                        <img src="assets/img/testimonial/testimonial-quote.png" alt="">
+                      </div>
+                      <div class="testimonial-info">
+                        <p class="testimonial_description testimonial_description-two pb-50">Sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre. eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac ante id.</p>
+                        <h5 class="client-name client-name2">Calwen Andrew</h5>
+                        <span class="client-degination client-degination2">Sr Dev</span>
+                      </div>
+                    </div>
+                    <div class="testimonial-slider-item swiper-slide text-center">
+                      <div class="tesimonial-quote mb-60">
+                        <img src="assets/img/testimonial/testimonial-quote.png" alt="">
+                      </div>
+                      <div class="testimonial-info">
+                        <p class="testimonial_description testimonial_description-two pb-50">Saoreet aenean litorace uterns dictum dolor convallis urnan erose nulla semper elementum primis tempor enim hac. Eleifend dis luctus be hace sociis porta sociosqu praesent lobortis tortor augue enim muse ante id sagittis suscipit nunc per luctus lacus utern aliquet nase vele anic scelerisque dus dapibus feugiat scelerisque metre</p>
+                        <h5 class="client-name client-name2">Calwen Synton</h5>
+                        <span class="client-degination client-degination2">Sr Designer</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- If we need navigation buttons -->
+                  <div class="swiper-button-prev ts-button ts-button2 ts-button-prev"></div>
+                  <div class="swiper-button-next ts-button ts-button2 ts-button-next"></div>
                 </div>
-             </div>
+              </div>
+            </div>
           </div>
-       </div>
-    </div>
- </main>
+        </div>
+      </div>
+    </main>
 {% endblock %}
