@@ -32,27 +32,6 @@
                             </div>
                             <div class="product_sidebar-widget mb-30">
                                 <h5 class="products_widget_title mb-25">
-                                    <i class="far fa-circle"></i> Category
-                                </h5>
-                                <ul class="product-catagory_list">
-                                    {% for cat in categories %}
-                                        <li style="font-family: 'Roboto';">
-                                            <button
-                                                hx-get="{% url 'products:category_products' category_slug=cat.slug %}"
-                                                hx-target="#product_list"
-                                                hx-indicator=".htmx-indicator"
-                                                hx-swap="outerHTML swap:.4s"
-                                                hx-push-url="true"
-                                            >
-                                                <strong>{{ cat.name | title }}</strong>
-                                            </button>
-                                            <span>({{ cat.get_products_count }})</span>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <div class="product_sidebar-widget mb-30">
-                                <h5 class="products_widget_title mb-25">
                                     <i class="far fa-circle"></i> Price Filter
                                 </h5>
                                 <div class="price__slider">
@@ -89,6 +68,27 @@
                                         </form>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="product_sidebar-widget mb-30">
+                                <h5 class="products_widget_title mb-25">
+                                    <i class="far fa-circle"></i> Category
+                                </h5>
+                                <ul class="product-catagory_list">
+                                    {% for cat in categories %}
+                                        <li style="font-family: 'Roboto';">
+                                            <button
+                                                hx-get="{% url 'products:category_products' category_slug=cat.slug %}"
+                                                hx-target="#product_list"
+                                                hx-indicator=".htmx-indicator"
+                                                hx-swap="outerHTML swap:.4s"
+                                                hx-push-url="true"
+                                            >
+                                                <strong>{{ cat.name | title }}</strong>
+                                            </button>
+                                            <span>({{ cat.get_products_count }})</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
                             </div>
                         </div>
                     </div>
