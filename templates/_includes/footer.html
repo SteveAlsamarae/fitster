@@ -1,8 +1,4 @@
 {% load static %}
-<!-- TODO -->
-<!-- 1. update the footer with thelinks -->
-<!-- 2. update recent post from backend l:30 -->
-
 <footer>
     <div class="footer-area bg-dark">
        
@@ -12,37 +8,44 @@
                 <div class="col-lg-4 col-md-6 col-sm-6">
                    <div class="footer-widget fotter-col2 wow fadeInUp mb-40" data-wow-delay=".3s">
                       <div class="footer-logo mb-25">
-                         <a href="#"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
+                         <a href="{% url 'products:index' %}"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
                       </div>
-                      <p class="pb-30">Consequat lacinia into gravida nisie facils porto lorem ultricies vivamus maecenas one iaculis</p>
+                      <p class="pb-30">
+                         Fister-fitness center provides best fitness classes with best trainers. Our main goal is to
+                         provide best fitness plans to our customers with 100% satisfaction rate. We also sell top quality 
+                         fitness and sports products.
+                      </p>
                       <div class="footer-social">
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                             <a href="#"><i class="fab fa-twitter"></i></a>
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
                       </div>
                    </div>
                 </div>
                  
                 <div class="col-lg-4 col-md-6 col-sm-6">
                    <div class="footer-widget wow fadeInUp mb-40" data-wow-delay="1.3s">
-                      <h5 class="fotter_widget-title mb-35">Recent Post</h5>
+                      <h5 class="fotter_widget-title mb-35">Quick Links</h5>
                       <div class="footer__blog">
                          <ul class="mb-25 pt-5">
                             <li>
                                <div class="footer__blog-sm d-flex align-items-center">
                                   <div class="footer__blog-sm-thumb mr-25">
-                                     <a href="#">
-                                        <img src="#" alt="">
-                                     </a>
-                                  </div>
-                                  <div class="footer__blog-sm-content">
-                                     <h6 class="footer__blog-sm-title">
-                                        <a href="#">Malesuada bagittis introc dolor curabitur</a>
-                                     </h6>
-                                     <div class="footer__blog-sm-meta">
-                                        <p><span>25 nov 2021</span></p>
-                                     </div>
+                                     <h4 class="text-secondary" style="font-family:'roboto';">
+                                        <a href="{% url 'products:store' %}">Fitster Shop</a>
+                                     </h4>
+                                     <h4 class="text-secondary" style="font-family:'roboto';">
+                                        <a href="{% url 'classes:index' %}">Fitness Classes</a>
+                                     </h4>
+                                     <h4 class="text-secondary" style="font-family:'roboto';">
+                                        <a href="{% url 'classes:team' %}">Fitness Trainers</a>
+                                     </h4>
+                                     <h4 class="text-secondary" style="font-family:'roboto';">
+                                        <a href="{% url 'classes:pricing' %}">Fitness Plans</a>
+                                     </h4>
+                                     <h4 class="text-secondary" style="font-family:'roboto';">
+                                        <a href="{% url 'blog:post_list' %}">Community Blog</a>
+                                     </h4>
                                   </div>
                                </div>
                             </li>
