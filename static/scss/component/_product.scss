@@ -33,7 +33,7 @@
 	left: 30px;
 	z-index: 99;
     & span {
-        background: $primary-color;
+        background: #ea1b6b;
         color: $white;
         text-transform: uppercase;
         font-weight: 600;
@@ -330,7 +330,7 @@
 .product_rating{
     & a{
         font-size: 15px;
-        color: $primary-color;
+        color: #ea1b6b;
         margin-right: 5px;
     }
 }
@@ -415,13 +415,13 @@
     letter-spacing: 0;
     border-radius: 50px;
     font-size: 14px;
-    background: $primary-color;
+    background: #ea1b6b;
     & i{
         margin-right: 10px;
         font-size: 15px;
     }
     &:hover{
-        color: $primary-color;
+        color: #ed0e49;
     }
 }
 
