@@ -3327,9 +3327,6 @@ textarea:focus {
   background-color: #252525;
 }
 
-/*----------------------------------------*/
-/*  10. Blog CSS
-/*----------------------------------------*/
 .blog-area {
   position: relative;
 }
@@ -5009,32 +5006,6 @@ p.checkout-coupon input[type=text]::placeholder {
   }
   50% {
     color: rgba(121, 193, 66, 0.6117647059);
-  }
-}
-.htmx-indicator {
-  display: none;
-  transition: display 0.5s ease;
-  animation: display 2s ease-in-out;
-}
-
-.htmx-request .htmx-indicator {
-  display: block;
-  transition: display 0.5s ease;
-}
-
-.htmx-request.htmx-indicator {
-  display: block;
-  transition: display 0.5s ease;
-}
-
-@keyframes display {
-  100% {
-    opacity: 0;
-    display: none;
-  }
-  50% {
-    opacity: 0.4;
-    display: block;
   }
 }
 @media (prefers-color-scheme: light) {
