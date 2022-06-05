@@ -1,6 +1,9 @@
 .error-content {
   padding: 0 0 70px;
 }
+.etext {
+  color: #30cac8;
+}
 .error-text {
   text-align: center;
 }
