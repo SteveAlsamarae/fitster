@@ -99,6 +99,18 @@ User Stories are used to describe the user's goals and requirements. All the use
 
 These user stories are documented on fitster repo project page using github's agile tool. The name of the project is `USER STORIES` and can be found in this link: [USER STORIES](https://github.com/SteveAlsamarae/fitster/projects/3). All the user stories are mapped to issues and pull requests to fulfill the project's goals.
 
+## Create Subscription Plans
+
+To create subscription plans and integrate with Stripe, go to the stripe dashboard and create a product and plans for the product.
+
+    - Create a product.
+    - Create a plan.
+    - Create a subscription.
+
+Now copy the price_id of the plan you created and paste it into the `price_id` field of the `Subscription` model from the admin panel.
+
+Following the above steps, you will be able to create subscriptions and pay for them using Stripe.
+
 ## Features & Scopes
 
 All the features are documented in [FEATURES](readme/features.md) readme.
