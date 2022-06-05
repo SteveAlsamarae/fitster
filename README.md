@@ -87,7 +87,43 @@ Dot file for the database schema: [db_schema.dot](readme/db_schema.dot)
 
 ## Fitster Facebook Page
 
-Here is the link of `Fitster` Facebook Page Mockup: [Fitster Facebook Page Mockup](readme/fitster_mockup.md).
+Here is the link of `Fitster` Facebook Page Mockup: [Fitster Facebook Page Mockup](readme/fitster_mockup.md)
+
+## User Stories
+
+User Stories are used to describe the user's goals and requirements. All the user stories are devided into three parts:
+
+1. Guest User Story
+2. Customer Story
+3. Admin User Story
+
+These user stories are documented on fitster repo project page using github's agile tool. The name of the project is `USER STORIES` and can be found in this link: [USER STORIES](https://github.com/SteveAlsamarae/fitster/projects/3). All the user stories are mapped to issues and pull requests to fulfill the project's goals.
+
+## Features & Scopes
+
+All the features are documented in [FEATURES](readme/features.md) readme.
+
+## SEO
+
+For the SEO of the application, the following steps are taken:
+
+- Created sitemap for the public pages of the application using the django sitemap module.
+- Created a robots.txt file to index the public pages of the application and to disallow crawling of the application's admin pages.
+- Run Lighthouse to test the SEO of the application.
+
+Below are some SEO results from Lighthouse:
+
+> Lighthouse resutls for **Shop page**
+
+![SHOP](readme/src/images/shop.png)
+
+> Lighthouse resutls for **Classes page**
+
+![CLASSES](readme/src/images/classes.png)
+
+> Lighthouse resutls for **Blog page**
+
+![BLOG](readme/src/images/blog.png)
 
 ## Local Development
 
@@ -162,6 +198,36 @@ Now we can just run the following commands to start the development server
 ```bash
 env; mrun
 ```
+
+> To use scss files make sure to have `SCSS` installed in the machine.
+
+To install scss run
+
+```bash
+npm install -g node-sass
+```
+
+> Then run the following command to compile the scss files
+
+```bash
+sass static/scss/main.scss static/css/main.css
+```
+
+## Production
+
+We have chosen to deploy the project on Heroku. To make the deployment process easier we have created a script to automate the process. This script is located in the `utils/scripts` folder. Before running the script make sure to assign the correct environment variables in the `utils/envs/env.sh` file. The following command will run the script:
+
+```bash
+source ./utils/scripts/deploy.sh
+
+heroku_deploy
+```
+
+> Make sure to have installed the heroku cli tool and to have a heroku account.
+> Make sure have a AWS account and create a S3 bucket and a user for the bucket. Then get the credentials for the bucket.
+> Make sure to have a gmail account with two factor authentication enabled.
+
+All the above steps is documented on the following link: [Details Deployment](readme/deployment.md)
 
 ## Error Handling
 
