@@ -7,7 +7,7 @@ from .base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["0.0.0.0", "*.herokuapp.com"]
+ALLOWED_HOSTS = ["0.0.0.0", "fitster.herokuapp.com"]
 
 INSTALLED_APPS += [
     "storages",
