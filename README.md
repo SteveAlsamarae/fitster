@@ -80,7 +80,14 @@ The following diagram shows the database models and the relationship between the
 ![DB Schema](readme/db_schema.png)
 
 Dot file for the database schema: [db_schema.dot](readme/db_schema.dot)
+
 > Dot file generated using Graphviz.
+
+---
+
+## Fitster Facebook Page
+
+Here is the link of `Fitster` Facebook Page Mockup: [Fitster Facebook Page Mockup](readme/fitster_mockup.md).
 
 ## Local Development
 
@@ -210,6 +217,8 @@ pytest contact -rP
 
 ![tests](readme/src/images/contact_tests_results.png)
 </details>
+
+---
 
 ## Tools & Technologies
 
