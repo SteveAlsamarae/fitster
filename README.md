@@ -54,10 +54,25 @@ The main purpose of Fitster is to build such a platform for a fitness/gym center
 - Create a customer dashboard to allow customers to manage their accounts, orders, and subscriptions.
 - Create an admin dashboard to allow admins and business owners to manage the business and the customers.
 - Store user contact information in the database and send emails to the business owner and admins.
+- Implement AWS S3 to store static files and media files.
 - Create a site map for the public pages of the application using the django sitemap module.
 - Test backend of the application using pytest, pytest-django, pytest-factoryboy, and pytest-html.
 - Handle errors in such a way that other developers can easily understand the issue.
 
+## Database Schema
+
+A SQL(relational) database is used to store and access any associated data. SQlite is used in the development and PostgreSQL in production.
+
+The following diagram shows the database models and the relationship between them with grouping and nesting.
+
+![DB Schema](readme/db_schema_group.png)
+
+ The following diagram shows the database models and the relationship between them without grouping and nesting.
+
+![DB Schema](readme/db_schema.png)
+
+Dot file for the database schema: [db_schema.dot](readme/db_schema.dot)
+> Dot file generated using Graphviz.
 
 ## Testing
 
