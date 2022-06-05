@@ -19,3 +19,4 @@ sorl-thumbnail==12.8.0
 django-markdownx==3.0.1
 django-storages
 boto3
+django-admin-interface==0.19.1
