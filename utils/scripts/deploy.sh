@@ -15,7 +15,7 @@ function heroku_deploy(){
     #     - Restart the app.
 
     heroku login
-    echo -p "Enter the name of the Heroku app: "
+    echo "Enter the name of the Heroku app: "
     read app_name
     echo "Creating a new Heroku app..."
     heroku apps:create $app_name
@@ -47,6 +47,12 @@ function heroku_deploy(){
     heroku config:set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     heroku config:set AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
     heroku config:set AWS_S3_REGION_NAME=$AWS_S3_REGION_NAME
+
+    echo "Before proceeding, please check the Heroku app URL is in allowed hosts "
+    echo "If the app URL is not in allowed hosts, please add it to allowed hosts of settings/prod.py allowed_hosts list."
+    echo "Commit the changes and proceed."
+    echo "If the app URL is in allowed hosts, please press enter to continue."
+    read press_enter
 
     echo "Pushing code to Heroku..."
     git push heroku master

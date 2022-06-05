@@ -1,5 +1,5 @@
 #! /bin/bash
-echo "Export the environment variables..."
+echo "Exporting the environment variables..."
 
 export EMAIL_HOST_USER=
 export EMAIL_HOST_PASSWORD=
