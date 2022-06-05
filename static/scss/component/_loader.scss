@@ -1,12 +1,15 @@
 .htmx-indicator{
     display:none;
+    transition: display 0.5s ease;
     animation: display 2s ease-in-out;
 }
 .htmx-request .htmx-indicator{
     display:block;
+    transition: display 0.5s ease;
 }
 .htmx-request.htmx-indicator{
     display:block;
+    transition: display 0.5s ease;
 }
 
 @keyframes display {
