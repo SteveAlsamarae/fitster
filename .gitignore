@@ -12,8 +12,8 @@ Project_Idea.md
 !**/migrations/0001_initial.py
 
 #project specefic
-media/avatars/**
-media/menu_images/**
+media/**
+!media/.gitkeep
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
