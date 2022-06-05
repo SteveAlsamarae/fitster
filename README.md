@@ -59,6 +59,14 @@ The main purpose of Fitster is to build such a platform for a fitness/gym center
 - Test backend of the application using pytest, pytest-django, pytest-factoryboy, and pytest-html.
 - Handle errors in such a way that other developers can easily understand the issue.
 
+## Diagrams Used in Development
+
+This diagram was created at the beginning of the development process and is used to help the developer understand the application architecture.
+
+![Diagram](readme/src/fitster_diagram.png)
+
+> The diagram is created from [app.diagram.net](https://app.diagrams.net/)
+
 ## Database Schema
 
 A SQL(relational) database is used to store and access any associated data. SQlite is used in the development and PostgreSQL in production.
@@ -74,6 +82,92 @@ The following diagram shows the database models and the relationship between the
 Dot file for the database schema: [db_schema.dot](readme/db_schema.dot)
 > Dot file generated using Graphviz.
 
+## Local Development
+
+>❗ Make sure python3 and pip installed on the machine.
+
+- Create a folder where to clone the project and cd into it.
+
+Install a virtual environment manager if not installed. We use [Pipenv](https://pipenv.readthedocs.io/en/latest/).
+
+For installing pipenv run
+
+```bash
+pip install pipenv
+```
+
+- Now clone the project and navigate to `fitster` folder.
+
+```bash
+git clone https://github.com/SteveAlsamarae/fitster.git
+```
+
+- Activate the virtual environment
+
+```bash
+pipenv shell
+```
+
+- Install all the local dependencies for the project
+
+```bash
+pip install -r requirements/local.txt
+```
+
+- Make sure in `manage.py` and `core/wsgi.py` to use `core.settings.local` for local development and `core.settings.prod` for production.
+
+- Make sure to be in the project's root directory and run the following command
+
+```bash
+python ./utils/scripts/autoenv.py
+```
+
+- Now run the following command
+
+```bash
+python manage.py makemigrations
+
+python manage.py migrate
+```
+
+- Now create a superuser
+
+```bash
+python manage.py createsuperuser
+```
+
+1. If all gone well you can now start the server
+
+```bash
+python manage.py runserver
+```
+
+> We have created some scripts to automate the process and some aliases to make the development process easier. These scripts are located in the `utils/scripts` folder.
+
+To use the aliases and scripts run the following command
+
+```bash
+source ./utils/scripts/main.sh
+```
+
+Now we can just run the following commands to start the development server
+
+```bash
+env; mrun
+```
+
+## Error Handling
+
+Errors are handled during the development process.
+
+- Unit tested each app to handle unexpected errors.
+- Manually tested frontend pages to avoid client-side errors.
+- Tested templet syntax error to handle template syntax errors.
+- Used pytest to handle errors.
+- Used terminal logging to handle errors.
+- Used console to handle known errors.
+- Used Chrome DevTools.
+  
 ## Testing
 
 This project contains unit tests for each app as well as tests for templates. We have tested each view, model, and form of each app using the following tools and technologies:
@@ -83,7 +177,6 @@ This project contains unit tests for each app as well as tests for templates. We
 - factory-boy
 - pytest-factoryboy
 - faker
-- coverage
 - django's default test module
 
 The front end is tested manually from the user end and admin end. We've also used chrome dev tools for front-end testing.
@@ -117,3 +210,76 @@ pytest contact -rP
 
 ![tests](readme/src/images/contact_tests_results.png)
 </details>
+
+## Tools & Technologies
+
+#### Languages
+
+- [Python](https://www.python.org/)
+- [Javascript](https://www.javascript.com/)
+- [Bash](https://www.gnu.org/software/bash/)
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+
+#### Libraries and Frameworks
+
+- [Django](https://www.djangoproject.com/)
+- [Django allauth](https://django-allauth.readthedocs.io/)
+- [Django-htmx](https://django-htmx.readthedocs.io/)
+- [Dj-stripe](https://dj-stripe.readthedocs.io/)
+- [Django-crispy-forms](https://django-crispy-forms.readthedocs.io/)
+- [Sorl-thumbnail](https://pypi.org/project/sorl-thumbnail/)
+- [Markdownx](https://django-markdownx.readthedocs.io/)
+- [Pytest](https://docs.pytest.org/en/latest/)
+- [Factoryboy](https://factoryboy.readthedocs.io/)
+- [Faker](https://faker.readthedocs.io/)
+- [HTMX](https://htmx.org/)
+- [Jquery](https://jquery.com/)
+- [Isotope.js](https://isotope.metafizzy.co/)
+- [Nice-select.js](https://jqueryniceselect.hernansartorio.com/)
+- [Swiper.js](https://swiperjs.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [SCSS](https://sass-lang.com/)
+
+#### Databases and Storage
+
+- [SQLite](https://www.sqlite.org/index.html): Used in local development
+- [PostgresSQL](https://www.postgresql.org/): Used in production
+- [AWS S3](https://aws.amazon.com/s3/): Used in production
+- [Django local storage](https://docs.djangoproject.com/en/4.0/ref/files/storage/): Used in local development
+
+#### Development Tools
+
+- Git: Version controlling
+- Github: Repository hosting
+- Git Pod: For Continuous integration
+- Code Institute GitPod Template
+- Djhtml: For refactoring templates
+- Debug toolbar: For debugging
+- Django extentions: For boosting development speed.
+- Black: Python code formatter
+- Pylint: Python code linter
+- Flake8: Tool for style guide enforcement
+- JSlint: Javascript code linter
+- JSHint: JavaScript Code Quality Tool
+- Prettier: JavaScript code formatter
+- Neovim: Vim-like editor for development
+- VS Code: Main editor for development
+- Iterm2: Terminal for development
+- Chrome Dev Tools
+- Lighthouse
+- Drawio: For creating diagrams
+
+## CREDITS
+
+- Code institute
+- Code Institute Slack Channel
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/django)
+- [Django Documentation](https://docs.djangoproject.com)
+- Udemy
+- CS Dojo
+- Telusko
+- [Pexels](https://www.pexels.com/)
+- [Pixabay](https://www.pixabay.com/)
+- [Unslapsh](https://www.unsplash.com/)
+- [Unslapsh](https://id.heroku.com/login/)
