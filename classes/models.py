@@ -50,7 +50,7 @@ class Trainer(models.Model):
                 try:
                     slug_exits = Trainer.objects.get(slug=slug)
                     if slug_exits:
-                        slug = self.slug + '_' + str(counter)
+                        slug = self.slug + "_" + str(counter)
                         counter += 1
                 except Trainer.DoesNotExist:
                     self.slug = slug
@@ -122,7 +122,7 @@ class FitnessClass(models.Model):
                 try:
                     slug_exits = FitnessClass.objects.get(slug=slug)
                     if slug_exits:
-                        slug = self.slug + '_' + str(counter)
+                        slug = self.slug + "_" + str(counter)
                         counter += 1
                 except FitnessClass.DoesNotExist:
                     self.slug = slug
@@ -216,7 +216,10 @@ class FintnessSubscription(models.Model):
         related_name="fitness_subscriptions",
     )
     customer = models.ForeignKey(
-        User, verbose_name=_("Customer"), on_delete=models.CASCADE
+        User,
+        verbose_name=_("Customer"),
+        on_delete=models.CASCADE,
+        related_name="subscriptions",
     )
     stripe_sub_key = models.CharField(
         max_length=150, verbose_name=_("Stripe subscription key")
