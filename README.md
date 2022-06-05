@@ -35,6 +35,30 @@ The main purpose of Fitster is to build such a platform for a fitness/gym center
 - Build a user-friendly and intuitive user interface to make the application more user-friendly.
 - Retain customers by providing a better user experience from online shopping.
 
+## Strategies
+
+- Construct a secure and comprehensive backend structure following the MVC design pattern.
+- Include a SQL(relational) database to store the necessary data.
+- Use Python3 & Django to develop the backend of the application.
+- Implement django-allauth to handle all the authentication processes.
+- Use HTML5, SCSS, CSS3, Javascript, JQuery, and Bootstrap to design the front-end of the application.
+- Handle ajax requests with HTMX to make the application more user-friendly.
+- Give users the ability to create an account and log in to the application.
+- Handle all the user interaction and user input through the front-end of the application.
+- Implement Django forms to validate and handle user input, and django-crispy-forms to make the forms more user-friendly.
+- Build user-friendly, responsive, and intuitive UI using Bootstrap and HTMX.
+- Implement thumbnailer to resize images to fit the screen using sorl-thumbnail.
+- Add markdown support for blog posts using django markdownx.
+- Implement Django-Stripe and Stripe API to allow customers to pay for their fitness subscriptions and products.
+- Build a monthly subscription model using Stripe to allow customers to pay for their fitness subscriptions recurringly.
+- Create a customer dashboard to allow customers to manage their accounts, orders, and subscriptions.
+- Create an admin dashboard to allow admins and business owners to manage the business and the customers.
+- Store user contact information in the database and send emails to the business owner and admins.
+- Create a site map for the public pages of the application using the django sitemap module.
+- Test backend of the application using pytest, pytest-django, pytest-factoryboy, and pytest-html.
+- Handle errors in such a way that other developers can easily understand the issue.
+
+
 ## Testing
 
 This project contains unit tests for each app as well as tests for templates. We have tested each view, model, and form of each app using the following tools and technologies:
