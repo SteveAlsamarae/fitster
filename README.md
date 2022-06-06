@@ -282,10 +282,10 @@ or
 pytest -rP
 ```
 
-- To test contact app models, forms and views, run
+- To test an app individually, run
 
 ```bash
-pytest contact -rP
+pytest <APP_NAME> -rP
 ```
 
 > -rP is optional
@@ -336,6 +336,12 @@ To test all the templates using correct syntax, run
 <summary>Last test results for cart app</summary>
 
 ![tests](readme/src/images/cart_test_results.png)
+</details>
+
+<details>
+<summary>Last test results for orders app</summary>
+
+![tests](readme/src/images/orders_test_results.png)
 </details>
 
 ---
