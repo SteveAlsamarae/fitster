@@ -13,7 +13,6 @@ Demo: <a href="https://fitster.herokuapp.com/" target="_blank">https://fitster.h
 ![Closed Issue](https://img.shields.io/github/issues-closed-raw/SteveAlsamarae/fitster)
 ![Closed Pull Request](https://img.shields.io/github/issues-pr-closed-raw/SteveAlsamarae/fitster)
 
-
 ## Purpose
 
 Fitster is designed and developed to sell fitness subscriptions and fitness products to customers so that customers can enjoy the benefits of a subscription and purchase products while the business owner can focus on growing the business.
