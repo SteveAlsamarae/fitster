@@ -282,6 +282,8 @@ or
 pytest -rP
 ```
 
+### Test Apps
+
 - To test an app individually, run
 
 ```bash
@@ -289,24 +291,6 @@ pytest <APP_NAME> -rP
 ```
 
 > -rP is optional
-
-<details>
-<summary>Last test results for contact app</summary>
-
-![tests](readme/src/images/contact_tests_results.png)
-</details>
-
-To test all the templates using correct syntax, run
-
-    ```bash
-    pytest tests/test_templates.py
-    ```
-
-<details>
-<summary>Last test results for templates</summary>
-
-![tests](readme/src/images/templates_tests_results.png)
-</details>
 
 <details>
 <summary>Last test results for classes app</summary>
@@ -342,6 +326,26 @@ To test all the templates using correct syntax, run
 <summary>Last test results for orders app</summary>
 
 ![tests](readme/src/images/orders_test_results.png)
+</details>
+
+<details>
+<summary>Last test results for contact app</summary>
+
+![tests](readme/src/images/contact_tests_results.png)
+</details>
+
+### Test templates
+
+- To test all the templates using correct syntax, run
+
+```bash
+pytest tests/test_templates.py
+```
+
+<details>
+<summary>Last test results for templates</summary>
+
+![tests](readme/src/images/templates_tests_results.png)
 </details>
 
 ---
