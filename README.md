@@ -2,6 +2,18 @@
 
 Fitster is a fitness subscription & e-commerce application built to sell subscriptions and fitness products to customers in a simple, easy, and secure way and grow the business by increasing sales.
 
+![Fitster](readme/fitster.png)
+
+<p class="text-center">
+Demo: <a href="https://fitster.herokuapp.com/" target="_blank">https://fitster.herokuapp.com/</a>
+</p>
+
+![Python](https://img.shields.io/pypi/pyversions/django)
+![Fitster CI](https://github.com/SteveAlsamarae/fitster/actions/workflows/tests_ci.yml/badge.svg) &nbsp;
+![Closed Issue](https://img.shields.io/github/issues-closed-raw/SteveAlsamarae/fitster)
+![Closed Pull Request](https://img.shields.io/github/issues-pr-closed-raw/SteveAlsamarae/fitster)
+
+
 ## Purpose
 
 Fitster is designed and developed to sell fitness subscriptions and fitness products to customers so that customers can enjoy the benefits of a subscription and purchase products while the business owner can focus on growing the business.
