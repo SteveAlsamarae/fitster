@@ -296,6 +296,24 @@ pytest contact -rP
 ![tests](readme/src/images/contact_tests_results.png)
 </details>
 
+To test all the templates using correct syntax, run
+
+    ```bash
+    pytest tests/test_templates.py
+    ```
+
+<details>
+<summary>Last test results for templates</summary>
+
+![tests](readme/src/images/templates_tests_results.png)
+</details>
+
+<details>
+<summary>Last test results for classes app</summary>
+
+![tests](readme/src/images/classes_tests_results.png)
+</details>
+
 ---
 
 ## Tools & Technologies
