@@ -5,7 +5,7 @@
       <div class="row align-items-center">
         <div class="col-xxl-7 col-xl-5 col-lg-4 col-md-3">
           <div class="top-logo">
-            <a href="#"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
+            <a href="{% url 'products:store' %}"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
           </div>
         </div>
         <div class="col-xxl-5 col-xl-7 col-lg-8 col-md-9">
@@ -42,18 +42,48 @@
         <div class="col-xxl-12 col-xl-12 col-lg-12">
           <div class="menu-content">
             <div class="top-logo d-lg-none">
-              <a href="#"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
+              <a href="{% url 'products:store' %}"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
             </div>
             <div class="main-menu">
               <nav id="mobile-menu">
+                {% with request.resolver_match.url_name as view_url %}
                 <ul>
-                  <li><a href="{% url 'products:store' %}" class="active">Home </a></li>
-                  <li><a href="{% url 'products:store' %}">Shop </a></li>
-                  <li><a href="{% url 'classes:index' %}">Classes </a></li>
-                  <li><a href="{% url 'classes:team' %}">Team</a></li>
-                  <li><a href="{% url 'classes:pricing' %}">Pricing </a></li>
-                  <li><a href="{% url 'blog:post_list' %}">Blog </a></li>
-                  <li><a href="{% url 'contact_us' %}">Contact </a></li>
+                  <li>
+                    <a href="{% url 'products:store' %}" {% if view_url == "index" %}class="active"{% endif %}>
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'products:store' %}" {% if view_url == "store" %}class="active"{% endif %}>
+                      Shop
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'classes:class_list' %}" {% if view_url == "class_list" %}class="active"{% endif %}>
+                      Classes
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'classes:team' %}" {% if view_url == "team" %}class="active"{% endif %}>
+                      Team
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'classes:pricing' %}" {% if view_url == "pricing" %}class="active"{% endif %}>
+                      Pricing 
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'blog:post_list' %}" {% if view_url == "blog:post_list" %}class="active"{% endif %}>
+                      Blog
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'contact_us' %}" {% if view_url == "contact_us" %}class="active"{% endif %}>
+                      Contact
+                    </a>
+                  </li>
+                  {% endwith %}
                 </ul>
               </nav>
             </div>
@@ -93,9 +123,11 @@
                       {% endwith %}
                     </a>
                     <li>
-                      <a href="#" class="main-menu"><i class="fas fa-user-circle"></i> Profile</a>
+                      <a href="#" class="main-menu"><i class="fas fa-user-circle" style="font-size: 20px;"></i></a>
                       <ul class="sub-menu">
                         {% if user.is_authenticated %}
+                          <li><a href="{% url 'admin_dashboard:active_orders' %}">Admin
+                            Dashboard</a></li>
                           <li><a href="{% url 'users:dashboard' %}">My
                             Profile</a></li>
                           <li><a href="{% url 'account_logout' %}">Logout</a></li>
