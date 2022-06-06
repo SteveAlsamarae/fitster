@@ -299,6 +299,12 @@ pytest <APP_NAME> -rP
 </details>
 
 <details>
+<summary>Last test results for users app</summary>
+
+![tests](readme/src/images/users_tests_results.png)
+</details>
+
+<details>
 <summary>Last test results for products app</summary>
 
 ![tests](readme/src/images/products_tests_results.png)
