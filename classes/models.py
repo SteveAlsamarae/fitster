@@ -36,6 +36,9 @@ class Trainer(models.Model):
         verbose_name=_("Phone Number"),
     )
     address = models.CharField(max_length=150, verbose_name=_("Address"))
+    facebook = models.CharField(max_length=100, verbose_name=_("Facebook Link"), blank=True, null=True)
+    twitter = models.CharField(max_length=100, verbose_name=_("Twitter Link"), blank=True, null=True)
+    instagram = models.CharField(max_length=100, verbose_name=_("Instagram Link"), blank=True, null=True)
 
     def __str__(self) -> str:
         return self.name
