@@ -197,18 +197,5 @@ LOGGING = {
     },
 }
 
-# Stripe settings
-try:
-    STRIPE_LIVE_SECRET_KEY = env("STRIPE_LIVE_SECRET_KEY")
-    STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
-    STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
-    DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
-    STRIPE_LIVE_MODE = bool(env("STRIPE_LIVE_MODE"))
-    DJSTRIPE_FOREIGN_KEY_TO_FIELD = env("DJSTRIPE_FOREIGN_KEY_TO_FIELD")
-    DJSTRIPE_USE_NATIVE_JSONFIELD = True
-
-except Exception as excep:
-    raise ImproperlyConfigured("Stripe settings are not configured properly", excep)
-
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
