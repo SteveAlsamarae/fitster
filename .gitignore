@@ -14,7 +14,7 @@ Project_Idea.md
 #project specefic
 media/**
 !media/.gitkeep
-
+!0002_auto_20220606_1548.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
