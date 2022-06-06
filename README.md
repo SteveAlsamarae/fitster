@@ -314,6 +314,12 @@ To test all the templates using correct syntax, run
 ![tests](readme/src/images/classes_tests_results.png)
 </details>
 
+<details>
+<summary>Last test results for products app</summary>
+
+![tests](readme/src/images/products_tests_results.png)
+</details>
+
 ---
 
 ## Tools & Technologies
