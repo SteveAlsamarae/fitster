@@ -145,7 +145,9 @@ class FitnessClass(models.Model):
     def get_all_trainers(self) -> list[object]:
         """Get all trainers in class."""
 
-        return [class_sch.trainer for class_sch in self.class_schedules.all()]
+        trainers = [class_sch.trainer for class_sch in self.class_schedules.all()]
+
+        return set(trainers)
 
 
 class ClassSchedule(models.Model):
