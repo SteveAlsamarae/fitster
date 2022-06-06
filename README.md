@@ -282,6 +282,11 @@ or
 pytest -rP
 ```
 
+Last **unit tests** results on the project
+
+![UNIT TESTS](readme/src/images/unit_tests.png)
+![UNIT TESTS](readme/src/images/unit_tests2.png)
+
 ### Test Apps
 
 - To test an app individually, run
@@ -338,6 +343,12 @@ pytest <APP_NAME> -rP
 <summary>Last test results for contact app</summary>
 
 ![tests](readme/src/images/contact_tests_results.png)
+</details>
+
+<details>
+<summary>Last test results for blog app</summary>
+
+![tests](readme/src/images/blog_tests_results.png)
 </details>
 
 ### Test templates
