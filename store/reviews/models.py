@@ -34,7 +34,7 @@ class Review(models.Model):
         verbose_name_plural = _("Reviews")
 
     def __str__(self):
-        return f"{self.user} - {self.product}"
+        return f"{self.customer} - {self.product}"
 
     def get_rating_range(self) -> range:
         return range(self.rating)
