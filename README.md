@@ -320,6 +320,12 @@ To test all the templates using correct syntax, run
 ![tests](readme/src/images/products_tests_results.png)
 </details>
 
+<details>
+<summary>Last test results for reviews app</summary>
+
+![tests](readme/src/images/reviews_test_results.png)
+</details>
+
 ---
 
 ## Tools & Technologies
