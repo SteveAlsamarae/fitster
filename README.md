@@ -326,6 +326,12 @@ To test all the templates using correct syntax, run
 ![tests](readme/src/images/reviews_test_results.png)
 </details>
 
+<details>
+<summary>Last test results for wishlist app</summary>
+
+![tests](readme/src/images/wishlist_test_results.png)
+</details>
+
 ---
 
 ## Tools & Technologies
