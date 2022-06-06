@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DJANGO_SECRET_KEY: django-insecure-@o-)qrym-cn6_*mx8dnmy#m4*$j%8wyy+l=)va&pe)9e7@o4i)
+      SECRET_KEY: django-insecure-@o-)qrym-cn6_*mx8dnmy#m4*$j%8wyy+l=)va&pe)9e7@o4i)
       DJANGO_SETTINGS_MODULE: core.settings.local
       STRIPE_LIVE_SECRET_KEY: sk_live_YOUR_STRIPE_LIVE_SECRET_KEY
       STRIPE_TEST_SECRET_KEY: test_xxx
