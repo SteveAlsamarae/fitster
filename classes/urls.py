@@ -13,7 +13,7 @@ from .views import (
 app_name = "classes"
 
 urlpatterns = [
-    path("", class_list_view, name="index"),
+    path("", class_list_view, name="class_list"),
     path("<str:slug>/", class_details_view, name="details"),
     path("fitness/team/", fitster_team_view, name="team"),
     path("fitness/team/<str:slug>/", trainer_details_view, name="trainer"),

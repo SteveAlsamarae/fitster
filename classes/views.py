@@ -116,12 +116,12 @@ def fitness_subscription_checkout(request: HttpRequest) -> HttpResponse:
     )
 
     if customer_subscription.exists() and customer_subscription.first().is_active:
-        return redirect("classes:index")
+        return redirect("classes:class_list")
 
     success_url: str = request.build_absolute_uri(
         reverse("classes:subscription_success")
     )
-    cancel_url: str = request.build_absolute_uri(reverse("classes:index"))
+    cancel_url: str = request.build_absolute_uri(reverse("classes:class_list"))
 
     if request.method == "POST":
         price_id: str = request.POST.get("price_id")
@@ -169,7 +169,7 @@ def subscription_success(request: HttpRequest) -> HttpResponse:
     )
 
     if stripe_ses_id_in_db.exists():
-        return redirect("classes:index")
+        return redirect("classes:class_list")
 
     customer_subscription: list[object] = FintnessSubscription.objects.filter(
         customer=request.user
@@ -177,7 +177,7 @@ def subscription_success(request: HttpRequest) -> HttpResponse:
 
     if customer_subscription.exists():
         if customer_subscription.first().is_active:
-            return redirect("classes:index")
+            return redirect("classes:class_list")
 
     if payment_status == "paid":
         sub: object = stripe.SubscriptionItem.list(subscription=data["subscription"])
