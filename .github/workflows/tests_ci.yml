@@ -1,0 +1,53 @@
+name: Fitster
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      DJANGO_SECRET_KEY: django-insecure-@o-)qrym-cn6_*mx8dnmy#m4*$j%8wyy+l=)va&pe)9e7@o4i)
+      DJANGO_SETTINGS_MODULE: core.settings.local
+      STRIPE_LIVE_SECRET_KEY: sk_live_YOUR_STRIPE_LIVE_SECRET_KEY
+      STRIPE_TEST_SECRET_KEY: test_xxx
+      STRIPE_PUBLIC_KEY: public_xxx
+      DJSTRIPE_WEBHOOK_SECRET: whsec_xxx
+      STRIPE_LIVE_MODE: false
+      DJSTRIPE_FOREIGN_KEY_TO_FIELD: id
+      DEBUG: false
+
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.9.6
+
+    # install packages via poetry and cache result so future CI runs are fast
+    # the result is only cached if the build is successful
+    - name: Install poetry
+      uses: snok/install-poetry@v1.2.0
+      with:
+        version: 1.1.8
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+    - name: Load cached venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v2
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+    - name: Install dependencies
+      run: poetry install
+      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+
+    - name: Run Tests
+      run: |
+        source .venv/bin/activate
+        pytest
