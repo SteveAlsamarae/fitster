@@ -1,5 +1,9 @@
+{% load static %}
 <div id="profile_dashboard_body" class="card-body">
   <div class="row">
+    <div class="text-center htmx-indicator">
+      <img src="{% static 'img/loader.svg' %}" alt="searching...." height="120px">
+    </div>
     <div class="col-md-12">
       <h4>Subscription Details</h4>
       <hr>
@@ -82,6 +86,7 @@
   hx-target="#profile_dashboard_body"
   hx-push-url="true"
   hx-swap="outerHTML swap:.3s"
+  hx-indicator=".htmx-indicator"
   hx-swap-oob="true"
 >
   Dashboard
@@ -93,6 +98,7 @@
   hx-swap="outerHTML swap:.3s"
   hx-class="active"
   hx-push-url="true"
+  hx-indicator=".htmx-indicator"
   hx-swap-oob="true"
   class="list-group-item list-group-item-action"
 >
@@ -104,6 +110,7 @@
   hx-target="#profile_dashboard_body"
   hx-swap="outerHTML swap:.3s"
   hx-push-url="true"
+  hx-indicator=".htmx-indicator"
   class="list-group-item list-group-item-action"
   hx-swap-oob="true"
 >
@@ -115,6 +122,7 @@
   hx-target="#profile_dashboard_body"
   hx-swap="outerHTML swap:.3s"
   hx-push-url="true"
+  hx-indicator=".htmx-indicator"
   hx-swap-oob="true"
   class="list-group-item list-group-item-action active"
 >
@@ -126,6 +134,7 @@
   hx-target="#profile_dashboard_body"
   hx-swap="outerHTML swap:.3s"
   hx-push-url="true"
+  hx-indicator=".htmx-indicator"
   hx-swap-oob="true"
   class="list-group-item list-group-item-action"
 >
@@ -137,6 +146,7 @@
   hx-target="#profile_dashboard_body"
   hx-swap="outerHTML swap:.3s"
   hx-push-url="true"
+  hx-indicator=".htmx-indicator"
   hx-swap-oob="true"
   class="list-group-item list-group-item-action"
 >

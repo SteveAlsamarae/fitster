@@ -16,6 +16,7 @@
               hx-target="#profile_dashboard_body"
               hx-swap="outerHTML swap:.3s"
               hx-push-url="true"
+              hx-indicator=".htmx-indicator"
             >
               Dashboard
             </a>
@@ -25,6 +26,7 @@
               hx-target="#profile_dashboard_body"
               hx-swap="outerHTML swap:.3s"
               hx-push-url="true"
+              hx-indicator=".htmx-indicator"
               class="list-group-item list-group-item-action"
             >
               My Orders
@@ -35,6 +37,7 @@
               hx-target="#profile_dashboard_body"
               hx-swap="outerHTML swap:.3s"
               hx-push-url="true"
+              hx-indicator=".htmx-indicator"
               class="list-group-item list-group-item-action"
             >
               My Reviews
@@ -45,6 +48,7 @@
               hx-target="#profile_dashboard_body"
               hx-swap="outerHTML swap:.3s"
               hx-push-url="true"
+              hx-indicator=".htmx-indicator"
               class="list-group-item list-group-item-action"
             >
               My Subscription
@@ -55,6 +59,7 @@
               hx-target="#profile_dashboard_body"
               hx-swap="outerHTML swap:.3s"
               hx-push-url="true"
+              hx-indicator=".htmx-indicator"
               class="list-group-item list-group-item-action"
             >
               Manage Addresses
@@ -65,6 +70,7 @@
               hx-target="#profile_dashboard_body"
               hx-swap="outerHTML swap:.3s"
               hx-push-url="true"
+              hx-indicator=".htmx-indicator"
               class="list-group-item list-group-item-action"
             >
               Settings
@@ -75,12 +81,16 @@
           <div class="card">
             <div id="profile_dashboard_body" class="card-body">
               <div class="row">
+                <div class="text-center htmx-indicator">
+                  <img src="{% static 'img/loader.svg' %}" alt="searching...." height="120px">
+                </div>
                 <div class="col-md-12">
                   <div class="d-flex justify-content-between align-items-center">
                     <h4>My Profile</h4>
                     <a  href="#" class="text-dark mr-20"
                       hx-target="#profile_dashboard_body"
                       hx-get="{% url 'users:update_profile' %}"
+                      hx-indicator=".htmx-indicator"
                       hx-swap="outerHTML"
                     >
                       <i class="fas fa-pen"></i>

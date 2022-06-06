@@ -1,6 +1,10 @@
+{% load static %}
 {% load crispy_forms_tags %}
 <div id="profile_dashboard_body" class="card-body">
   <div class="row">
+    <div class="text-center htmx-indicator">
+      <img src="{% static 'img/loader.svg' %}" alt="searching...." height="120px">
+    </div>
     <div class="col-md-12">
       <h4>Update Shipping Address</h4>
       <hr>

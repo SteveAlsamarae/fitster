@@ -1,5 +1,9 @@
+{% load static %}
 <div id="profile_dashboard_body" class="card-body">
   <div class="row">
+    <div class="text-center htmx-indicator">
+      <img src="{% static 'img/loader.svg' %}" alt="searching...." height="120px">
+    </div>
     <div class="col-md-12">
       <div class="d-flex justify-content-between align-items-center">
         <h4>My Profile</h4>
@@ -9,6 +13,7 @@
           hx-get="{% url 'users:update_profile' %}"
           hx-swap="outerHTML"
           hx-push-url="true"
+          hx-indicator=".htmx-indicator"
         >
           <i class="fas fa-pen"></i>
         </a>
@@ -72,6 +77,7 @@
   hx-get="{% url 'users:dashboard' %}"
   hx-target="#profile_dashboard_body"
   hx-push-url="true"
+  hx-indicator=".htmx-indicator"
   hx-swap="outerHTML swap:.3s"
   hx-swap-oob="true"
 >
@@ -84,6 +90,7 @@
   hx-swap="outerHTML swap:.3s"
   hx-class="active"
   hx-push-url="true"
+  hx-indicator=".htmx-indicator"
   hx-swap-oob="true"
   class="list-group-item list-group-item-action"
 >
@@ -95,6 +102,7 @@
   hx-target="#profile_dashboard_body"
   hx-swap="outerHTML swap:.3s"
   hx-push-url="true"
+  hx-indicator=".htmx-indicator"
   class="list-group-item list-group-item-action"
   hx-swap-oob="true"
 >
@@ -106,6 +114,7 @@
   hx-target="#profile_dashboard_body"
   hx-swap="outerHTML swap:.3s"
   hx-push-url="true"
+  hx-indicator=".htmx-indicator"
   hx-swap-oob="true"
   class="list-group-item list-group-item-action"
 >
@@ -117,6 +126,7 @@
   hx-target="#profile_dashboard_body"
   hx-swap="outerHTML swap:.3s"
   hx-push-url="true"
+  hx-indicator=".htmx-indicator"
   hx-swap-oob="true"
   class="list-group-item list-group-item-action"
 >
@@ -128,6 +138,7 @@
   hx-target="#profile_dashboard_body"
   hx-swap="outerHTML swap:.3s"
   hx-push-url="true"
+  hx-indicator=".htmx-indicator"
   hx-swap-oob="true"
   class="list-group-item list-group-item-action"
 >
