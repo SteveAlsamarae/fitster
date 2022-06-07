@@ -247,3 +247,9 @@
 .choose-icon:hover i{
     animation: scale-up-one infinite 1.5s linear;
 }
+
+@media (max-width: 600px) {
+    #remove_padding_sm {
+      padding-top: 35px !important;
+    }
+  }

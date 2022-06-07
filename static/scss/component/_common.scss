@@ -902,3 +902,8 @@ textarea:focus {
 }
 }
 
+@media(max-width:860px){
+	#remove_padding_sm{
+		padding-top: 55px !important;
+	}
+}
