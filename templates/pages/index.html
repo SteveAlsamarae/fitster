@@ -1,0 +1,491 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %} {{ fitness_class.name }} {% endblock title %}
+
+
+{% block content %}
+<main>
+    <div class="hero-area fix">
+       <div class="hero-slider slider__active swiper-container swiper-container-fade">
+          <div class="swiper-wrapper p-relative">
+             <div class="hero-pagination"></div>
+             <div class="item-slider swiper-slide">
+                <div class="slide-bg" data-background="{% static 'img/home.webp' %}"></div>
+                <div class="container">
+                   <div class="row ">
+                      <div class="col-lg-12">
+                         <div class="slider-all-text">
+                            <span data-animation="fadeInUp" data-delay=".2s">Fitster Fitness</span>
+                            <h2 class="hero-title" data-animation="fadeInUp" data-delay=".4s">be storong</h2>
+                            <p class="description mt-10 mb-50" data-animation="fadeInUp" data-delay=".6s">Hardest part is walking out in the front door</p>
+                            <div class="play-option" data-animation="fadeInUp" data-delay=".8s">
+                               <a href="{% url 'classes:class_list' %}" class="tp-btn">explore More <i class="fal fa-chevron-double-right"></i></a>
+                                  <a class="video-play-button hero-play popup-video ml-30" href="https://www.youtube.com/watch?v=ZoZSp-wy8h8">
+                                     <i class="fas fa-play"></i>
+                                  </a>
+                            </div>
+                         </div>
+                         <div class="hero-social-icon">
+                            <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+                            <a href="https:www.instagram.com"><i class="fab fa-instagram"></i></a>
+                         </div>
+                      </div>
+                </div>
+                </div>
+             </div>
+             <div class="item-slider swiper-slide">
+                <div class="slide-bg" data-background="{% static 'img/home.webp' %}"></div>
+                <div class="container">
+                   <div class="row ">
+                      <div class="col-lg-12">
+                         <div class="slider-all-text">
+                            <span data-animation="fadeInUp" data-delay=".2s">Fitster Fitness</span>
+                            <h2 class="hero-title" data-animation="fadeInUp" data-delay=".4s">Be Smarter</h2>
+                            <p class="description mt-10 mb-50" data-animation="fadeInUp" data-delay=".6s">Let's start your fitness journey with us!</p>
+                            <div class="play-option" data-animation="fadeInUp" data-delay=".8s">
+                               <a href="{% url 'classes:class_list' %}" class="tp-btn">explore More <i class="fal fa-chevron-double-right"></i></a>
+                                  <a class="video-play-button hero-play popup-video ml-30" href="https://www.youtube.com/watch?v=ZoZSp-wy8h8">
+                                     <i class="fas fa-play"></i>
+                                  </a>
+                            </div>
+                         </div>
+                         <div class="hero-social-icon">
+                            <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+                            <a href="https:www.instagram.com"><i class="fab fa-instagram"></i></a>
+                         </div>
+                      </div>
+                </div>
+                </div>
+             </div> 
+          </div>
+       </div>
+    </div>
+
+    <div class="tpfeatures-lists">
+       <div class="container">
+          <div class="row g-0">
+             <div class="col-lg-3 col-md-3">
+                <div class="tp-features-item tp-features-item-border text-center mb-30 wow fadeInUp"  data-wow-delay=".2s">
+                   <div class="tpfeatures-icon mb-25">
+                      <i class="flaticon-muscle"></i>
+                   </div>
+                   <span>Dedicated Services</span>
+                </div>
+             </div>
+             <div class="col-lg-3 col-md-3">
+                <div class="tp-features-item tp-features-item-border item-active text-center mb-30 wow fadeInUp" data-wow-delay=".5s">
+                   <div class="tpfeatures-icon mb-25">
+                      <i class="flaticon-customer"></i>
+                   </div>
+                   <span>Qualified Instructor</span>
+                </div>
+             </div>
+             <div class="col-lg-3 col-md-3">
+                <div class="tp-features-item tp-features-item-border text-center mb-30 wow fadeInUp" data-wow-delay=".8s">
+                   <div class="tpfeatures-icon mb-25">
+                      <i class="flaticon-apple"></i>
+                   </div>
+                   <span>World Class Goodies</span>
+                </div>
+             </div>
+             <div class="col-lg-3 col-md-3">
+                <div class="tp-features-item text-center mb-30 wow fadeInUp" data-wow-delay=".10s">
+                   <div class="tpfeatures-icon mb-25">
+                      <i class="flaticon-lawn-mower"></i>
+                   </div>
+                   <span>Best Program On Market</span>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+
+    <div class="services-list" data-background="{% static 'img/no-excuses.jpeg' %}">
+       <div class="container custome-container">
+          <div class="section-wrap-two text-center wow fadeInUp" data-wow-delay=".2s">
+             <span class="tpsub-title-two mb-15"><i class="far fa-circle"></i>Our services<i class="far fa-circle"></i></span>
+             <h3 class="section-title-two  mb-30 white-color">Solutions for moving better and feeling a healthier</h3>
+          </div>
+          <div class="row mt-60">
+             <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="services-item text-center wow fadeInUp mb-30" data-wow-delay=".6s">
+                   <div class="sv-inner sv-inner2">
+                      <div class="services-icon">
+                         <i class="flaticon-dumbbell"></i>
+                      </div>
+                   </div>
+                   <h4 class="services-item-title services-item-title-2 mb-20"><a href="{% url 'classes:class_list' %}">Weight Lifting</a></h4>
+                      <a href="{% url 'classes:class_list' %}" class="services-item-btn">See More class <i class="fal fa-chevron-double-right"></i></a>
+                </div>
+             </div>
+             <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="services-item text-center wow fadeInUp mb-30" data-wow-delay=".9s">
+                   <div class="sv-inner sv-inner2">
+                      <div class="services-icon">
+                         <i class="flaticon-muscle"></i>
+                      </div>
+                   </div>
+                   <h4 class="services-item-title services-item-title-2 mb-20"><a href="{% url 'classes:class_list' %}">Power Yoga</a></h4>
+                      <a href="{% url 'classes:class_list' %}" class="services-item-btn">See More class <i class="fal fa-chevron-double-right"></i></a>
+                </div>
+             </div>
+             <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="services-item text-center wow fadeInUp mb-30" data-wow-delay="1s">
+                   <div class="sv-inner sv-inner2">
+                      <div class="services-icon">
+                         <i class="flaticon-customer"></i>
+                      </div>
+                   </div>
+                   <h4 class="services-item-title services-item-title-2 mb-20"><a href="{% url 'classes:class_list' %}">Crosfit Tools</a></h4>
+                      <a href="{% url 'classes:class_list' %}" class="services-item-btn">See More class <i class="fal fa-chevron-double-right"></i></a>
+                </div>
+             </div>
+             <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="services-item text-center wow fadeInUp mb-30" data-wow-delay="1.4s">
+                   <div class="sv-inner sv-inner2">
+                      <div class="services-icon">
+                         <i class="flaticon-lawn-mower"></i>
+                      </div>
+                   </div>
+                   <h4 class="services-item-title services-item-title-2 mb-20"><a href="{% url 'classes:class_list' %}">Body Building</a></h4>
+                      <a href="{% url 'classes:class_list' %}" class="services-item-btn">See More class <i class="fal fa-chevron-double-right"></i></a>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <!-- services-list-end -->
+
+    <!-- tpcounter-area -->
+    <div class="tpcounter-area mb-100 pb-120">
+       <div class="container">
+          <div class="row">
+             <div class="col-lg-12">
+                <div class="counter-lists">
+                   <div class="row g-0">
+                      <div class="col-lg-3 col-md-6">
+                         <div class="counter-item counter-item-border">
+                            <div class="counter-number">
+                               <h4><span class="counter">110</span></h4>
+                            </div>
+                            <div class="counterinfo">
+                               <i class="flaticon-support"></i>
+                               <span>Expert Trainer</span>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                         <div class="counter-item counter-item-border">
+                            <div class="counter-number">
+                               <h4><span class="counter">430</span></h4>
+                            </div>
+                            <div class="counterinfo">
+                               <i class="flaticon-feedback"></i>
+                               <span>Client Feedback</span>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                         <div class="counter-item counter-item-border">
+                            <div class="counter-number">
+                               <h4><span class="counter">30</span></h4>
+                            </div>
+                            <div class="counterinfo">
+                               <i class="flaticon-kettlebells"></i>
+                               <span>Total Branches</span>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                         <div class="counter-item">
+                            <div class="counter-number">
+                               <h4><span class="counter">20</span></h4>
+                            </div>
+                            <div class="counterinfo">
+                               <i class="flaticon-medal"></i>
+                               <span>Award Winning</span>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+
+    
+    <div class="choose-us-area pt-120 pb-65 mt-120">
+       <div class="container">
+          <div class="row justify-content-center">
+             <div class="col-xl-6 col-lg-6">
+                <div class="choose-iamge mb-30">
+                   <img src="{% static 'img/no-excuse.jpeg' %}" alt="choose-img">
+                </div>
+             </div>
+             <div class="col-xl-6 col-lg-6">
+                <div class="choose-info">
+                   <div class="section-wrap mb-35">
+                      <span class="tpsub-title mb-15">Why choose us</span>
+                      <h3 class="section-title mb-20">Make yourself stronger than your best excuses</h3>
+                      <span class="section-border mb-30"><i class="far fa-circle"></i></span>
+                   </div>
+                   <div class="choose-list mb-40">
+                      <div class="choose-icon-wrap">
+                         <div class="choose-icon">
+                            <i class="flaticon-dumbbell"></i>
+                         </div>
+                      </div>
+                      <div class="choose-content">
+                         <h5>Cardio Exercise</h5>
+                         <p>We provide best cardio exercise and we have the best Instructors.</p>
+                      </div>
+                   </div>
+                   <div class="choose-list mb-40">
+                      <div class="choose-icon-wrap">
+                         <div class="choose-icon">
+                            <i class="flaticon-hand-grip"></i>
+                         </div>
+                      </div>
+                      <div class="choose-content">
+                         <h5>Muscle Gaining Exercise</h5>
+                         <p>We provide best muscle gaining exercise and we have the best Instructors.</p>
+                      </div>
+                   </div>
+                   <div class="choose-list mb-40">
+                      <div class="choose-icon-wrap">
+                         <div class="choose-icon">
+                            <i class="flaticon-shirt"></i>
+                         </div>
+                      </div>
+                      <div class="choose-content">
+                         <h5>Yoga Exercise</h5>
+                         <p>We have top yoga master to train you.</p>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+
+    <div class="trainer-area">
+       <div class="container">
+          <div class="row justify-content-center">
+             <div class="col-lg-10">
+                <div class="section-wrap-two text-center wow fadeInUp" data-wow-delay=".2s">
+                   <span class="tpsub-title-two mb-15"><i class="far fa-circle"></i>Best Trainer<i class="far fa-circle"></i></span>
+                   <h3 class="section-title-two  mb-30">Dedicated and professional trainer ready to Support</h3>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="container">
+          <div class="row mt-35">
+            {% for trainer in trainers %}
+            <div class="col-xxl-3 col-lg-4 col-md-6">
+              <div class="trainer-single mb-60">
+                <div class="trainer-image">
+                  <a href="{{ trainer.get_absolute_url }}">
+                    {% thumbnail trainer.avatar "330x400" crop="center" as img %}
+                      <img
+                        src="{{ img.url }}"
+                        width="{{ img.width }}"
+                        height="{{ img.height }}"
+                        alt="{{ trainer.name }}"
+                      />
+                    {% endthumbnail %}
+                  </a>
+                </div>
+                <div class="trainer-info">
+                  <h5 class="trainer-name">
+                    <a href="{{ trainer.get_absolute_url }}">{{ trainer.name }}</a>
+                  </h5>
+                  <p class="mb-20">{{ trainer.title }}</p>
+                  <div class="trainer-soicial-icon">
+                    <a href="{{ trainer.facebook }}#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="{{ trainer.twitter }}#"><i class="fab fa-twitter"></i></a>
+                    <a href="{{ trainer.instagram }}#"><i class="fab fa-instagram"></i></a>
+                  </div>
+                </div>
+                <div class="trainer-btn">
+                  <a href="{{ trainer.get_absolute_url }}" class="tp-btn-square"
+                  ><i class="fal fa-chevron-double-right"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+          {% endfor %}
+          </div>
+       </div>
+    </div>
+
+    <div class="priceing-area pt-100 pb-90">
+       <div class="container custome-container">
+          <div class="row justify-content-center">
+             <div class="col-lg-12">
+                <div class="section-wrap-two text-center wow fadeInUp" data-wow-delay=".3s">
+                   <span class="tpsub-title-two mb-15"><i class="far fa-circle"></i>Pricing plan<i class="far fa-circle"></i></span>
+                   <h3 class="section-title-two  mb-30">Comportable Pricing package and choose your best plan</h3>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="tp_priceing">
+        <div class="container custome-container mt-35">
+          <div class="row justify-content-center">
+            <div class="row">
+              {% for plan in fitness_plans %}
+                <div class="col-lg-4 col-md-6">
+                  <div class="price_item mb-30 wow fadeInUp" data-wow-delay=".6s">
+                    {% if forloop.counter == 2 %}
+                      <div class="priceing_image priceing_image-active mb-10 ">
+                        {% thumbnail plan.thumbnail "350x220" crop="center" as img %}
+                          <img
+                            src="{{ img.url }}"
+                            width="{{ img.width }}"
+                            height="{{ img.height }}"
+                            alt="{{ plan.name }}"
+                          />
+                        {% endthumbnail %}
+                        <div class="price__popular">
+                          <span>popular</span>
+                        </div>
+                      </div>
+                    {% else %}
+                      <div class="priceing_image mb-10">
+                        {% thumbnail plan.thumbnail "350x220" crop="center" as img %}
+                          <img
+                            src="{{ img.url }}"
+                            width="{{ img.width }}"
+                            height="{{ img.height }}"
+                            alt="{{ plan.name }}"
+                          />
+                        {% endthumbnail %}
+                      </div>
+                    {% endif %}
+                    {% if forloop.counter == 2 %}
+                      <div class="price_info price_info2 pt-80">
+                    {% else %}
+                      <div class="price_info pt-80">
+                    {% endif %}
+                    <div class="price text-center">
+                      <div class="inner">
+                        <h5>${{ plan.price }}</h5>
+                        <p>Monthly</p>
+                      </div>
+                    </div>
+                    {% if forloop.counter == 2 %}
+                      <h5 class="price_type mb-20 text-center">{{ plan.name }}</h5>
+                      <div class="tp_pricing-list pb-45">
+                    {% else %}
+                      <h5 class="price_type mb-20 text-center">{{ plan.name }}</h5>
+                      <div class="tp_pricing-list pb-45">
+                    {% endif %}
+                    <ul>
+                      {% for feature in plan.get_lines_from_description %}
+                        <li><i class="fal fa-check"></i> {{ feature }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  <div class="price-btn text-center pb-30">
+                    <form action="{% url 'classes:subscription_checkout' %}" method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="price_id" value="{{ plan.stripe_price_id }}" />
+                      <button type="submit" class="tp-btn-round">join today <i class="fal fa-chevron-double-right"></i></button>
+                    </form>
+                  </div>
+                </div>
+                </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-area pt-115 pb-80" data-background="{% static 'img/product-bg.jpg' %}">
+       <div class="container custome-container">
+          <div class="row justify-content-center align-items-center">
+             <div class="row align-items-center">
+                <div class="col-lg-6">
+                   <div class="section-wrap">
+                      <span class="tpsub-title mb-15">our goods</span>
+                      <h3 class="section-title mb-20">Quality products buying our online gym store</h3>
+                      <span class="section-border mb-30"><i class="far fa-circle"></i></span>
+                   </div>
+                </div>
+                <div class="col-lg-6">
+                   <div class="shop_button text-lg-end"><a href="{% url 'products:store' %}" class="tp-btn-round">All products <i class="fal fa-chevron-double-right"></i></a></div>
+                </div>
+             </div>
+          </div>
+       </div>
+       {% for product in products %}
+       <div class="container custome-container mt-30">
+          <div class="row">
+             <div class="col-lg-4 col-md-6">
+                <div class="product-item mb-30 wow fadeInUp" data-wow-delay=".3s">
+                   <div class="prouct-wrapper">
+                      <div class="product_thum product_thum-new mb-30">
+                         <div class="fix">
+                            <a href="{{ get_absolute_url }}">
+                                {% thumbnail product.get_first_product_img "360x400" crop="center" as img %}
+                                    <img
+                                    src="{{ img.url }}"
+                                    class="img-fluid"
+                                    width="{{ img.width }}"
+                                    height="{{ img.height }}"
+                                    alt="{{ product.title }}"
+                                    />
+                                {% endthumbnail %}
+                            </a>
+                         </div>
+                         <div class="sale-tag">
+                            {% if product.sale_tag %}
+                                <div class="sale-tag">
+                                <span class="{{ product.sale_tag |lower }}">{{ product.sale_tag }}</span>
+                                </div>
+                            {% endif %}
+                         </div>
+                      </div>
+                      <div class="product-content">
+                         <div class="product-info">
+                            <h5 class="product_name">
+                                <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                            </h5>
+                            <div class="d-flex">
+                                {% if product.discount_price %}
+                                  <s>
+                                    <span class="product_price product_discount">${{ product.regular_price }}</span>
+                                  </s>
+                                {% endif %}
+                                <span class="product_price"
+                                >${{ product.get_product_price }}</span
+                                  >
+                                </div>
+                         </div>
+                         <div class="product-button">
+                            <a
+                                href="{{ product.get_absolute_url }}"
+                                class="tp-btn-round-product"
+                            >
+                                buy now
+                                <i class="fal fa-chevron-double-right"></i>
+                            </a>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       {% endfor %}
+    </div>
+ </main>
+{% endblock %}
