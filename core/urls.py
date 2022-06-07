@@ -5,6 +5,7 @@ from django.urls import include, path
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic.base import TemplateView
 
+from admin_dashboard.views import terms_and_conditions
 from store.products.views import store_view
 from store.products.sitemap import ProductSitemap
 from classes.sitemap import FitnessClassSitemap, FitnessPlanSitemap, TrainerSitemap
@@ -50,6 +51,7 @@ urlpatterns = [
     path("blog/", include("blog.urls")),
     path("contact/", include("contact.urls")),
     path("dashboard/admin/", include("admin_dashboard.urls")),
+    path("terms-and-conditions/", terms_and_conditions, name="terms_and_conditions"),
 ]
 
 
