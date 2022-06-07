@@ -1,0 +1,249 @@
+@use '../abstract' as *;
+
+.tp-about-area{
+    position: relative;
+}
+
+.about-bg-shape {
+    position: absolute;
+    top: 75px;
+    left: 0;
+    right: 125px;
+    margin: 0 auto;
+    text-align: center;
+    z-index: -2;
+}
+
+.about-image{
+    position: relative;
+    @media #{$md,$sm,$xs} {
+        margin-bottom: 50px;
+    }
+}
+
+.about-shape{
+    @media #{$xl} {
+        right: -30px;
+        bottom: -35%;
+    }
+    @media #{$md} {
+        right: -30px;
+        bottom: -5%;
+    }
+    @media #{$sm} {
+        right: 0px;
+        bottom: 0;
+    }
+    @media #{$xs} {
+        display: none;
+    }
+    position: absolute;
+    right: 22px;
+    bottom: -22%;
+    & .content{
+        position: absolute;
+        right: 32%;
+        top: 24%;
+        transform: rotate(-28deg);
+        & h4{
+            font-size: 55px;
+            color: $white;
+        }
+        & span{
+            font-size: 40px;
+            color: $white;
+            display: block;
+        }
+    }
+}
+
+.about-info{
+    @media #{$xxl} {
+        margin-left: 105px;
+    }
+    @media #{$xl} {
+        margin-left: 50px;
+    }
+    @media #{$lg} {
+        margin-left: 30px;
+    }
+    @media #{$md,$sm,$xs} {
+        margin-left: 0;
+    }
+    margin-left: 120px;
+    max-width: 560px;
+    .ab-bquote{
+        padding: 40px 60px;
+        padding-right: 90px;
+        background: #f7f7f7;
+        border-radius: 10px;
+        position: relative;
+        z-index: 1;
+        margin-bottom: 40px;
+
+        @media #{$xs}{
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        & span{
+            font-size: 30px;
+            line-height: 1.05;
+            display: block;
+            color: $heading-color;
+            font-weight: 500;
+            @media #{$xs}{
+                font-size: 26px;
+            }
+        }
+    }
+}
+
+.quote {
+	position: absolute;
+	right: 55px;
+	top: 30px;
+	z-index: -1;
+}
+
+.author-info{
+    @media #{$xs} {
+        display: inline-block;
+    }
+    display: flex;
+    align-items: center;
+    & .author-degination{
+        margin-left: 25px;
+        margin-right: 50px;
+        & h4 {
+            font-size: 30px;
+            line-height: 1.05;
+            margin-bottom: 0;
+        }
+        & span{
+            font-size: 16px;
+            line-height: 1.2;
+            font-family: $roboto;
+            display: block;
+        }
+    }
+}
+
+.author-data {
+	display: flex;
+}
+
+.about-btn{
+    overflow: hidden;
+}
+
+.about_play{
+    & span{
+        font-size: 22px;
+        font-weight: 500;
+        margin-left: 15px;
+        color: $heading-color;
+    }
+}
+
+.ab-play_btn{
+    background: $primary-color;
+    color: $white;
+    &:hover{
+        color: $white;
+    }
+    &::before{
+        background: #fbd1d4;
+    }
+}
+
+//choose-us css
+.choose-us-area{
+    @media #{$lg, $md,$sm,$xs} {
+        margin-right: 0;
+    }
+	margin-right: 7%;
+    margin-top: -185px;
+    position: relative;
+    background: $white;
+}
+
+.choose-info {
+    margin-left: 100px;
+    @media #{$xl} {
+        margin-left: 30px
+    }
+    @media #{$xxl} {
+        margin-left: 40px;
+    }
+    @media #{$lg,$md,$sm,$xs} {
+        margin-left: 0;
+    }
+}
+
+.choose-iamge{
+    & img{
+        width: 100%;
+    }
+}
+
+.choose-list{
+    position: relative;
+}
+
+.choose-icon{
+    position: relative;
+    height: 75px;
+    width: 75px;
+    border-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 30px;
+    line-height: 90px;
+    background: $primary-color;
+    text-align: center;
+    margin-right: 40px;
+    transition: all 0.3s ease-out 0s;
+    position: absolute;
+    top: 5px;
+    z-index: 2;
+    & i{
+        font-size: 35px;
+        color: $white;
+        transition: all 0.3s ease-out 0s;
+        display: inline-block;
+        z-index: 2;
+        position: relative;
+    }
+}
+
+.choose-icon-wrap{
+    position: relative;
+}
+
+.choose-icon-wrap::before{
+    position: absolute;
+    content: "";
+    height: 75px;
+    width: 75px;
+    border-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 30px;
+    background-color: #fcdddf;
+    top: -5px;
+    left: -10px;
+    z-index: 1;
+}
+
+.choose-content{
+    padding-left: 100px;
+    & h5{
+        font-size: 30px;
+        line-height: 1.2;
+    }
+    & p{
+        max-width: 450px;
+    }
+}
+
+.choose-icon:hover i{
+    animation: scale-up-one infinite 1.5s linear;
+}

@@ -1,0 +1,430 @@
+@use '../abstract' as *;
+
+.tpfeatures-lists{
+    margin-top: -100px;
+    position: relative;
+    z-index: 9;
+}
+
+.tp-features-item{
+    padding: 45px 30px 40px 30px;
+    box-shadow: 0px 10px 20px 0px rgba(130, 132, 134, 0.08);
+    background: $white;
+    transition: all 0.3s ease-out 0s;
+    border: 1px solid $border;
+    & .tpfeatures-icon{
+        height: 75px;
+        line-height: 94px;
+        width: 75px;
+        background: #ea1b29;
+        border-radius: 50%;
+        transition: all 0.3s ease-out 0s;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        & i{
+            font-size: 36px;
+            color: $white;
+            transition: all 0.3s ease-out 0s;
+            display: inline-block;
+        }
+    }
+    & span{
+        @media #{$lg} {
+            font-size: 22px;
+        }
+        font-size: 30px;
+        line-height: 1;
+        font-weight: 500;
+        display: block;
+        color: #242429;
+    }
+}
+
+.item-active{
+    background: $primary-color;
+    padding: 55px 30px 50px 30px;
+    transform: translateY(-10px);
+    border-color: $primary-color;
+    & span {
+        color: $white;
+        letter-spacing: 1px;
+    }
+    & .tpfeatures-icon {
+        background: $white;
+    }
+    & .tpfeatures-icon i {
+        color: $primary-color;
+    }
+    
+}
+
+.tp-features-item:hover {
+    background: $primary-color;
+    padding: 55px 30px 50px 30px;
+    transform: translateY(-10px);
+    border-color: $primary-color;
+}
+
+.tp-features-item:hover span {
+    color: $white;
+    letter-spacing: 1px;
+}
+
+.tp-features-item:hover .tpfeatures-icon {
+    background: $white;
+}
+
+.tp-features-item:hover .tpfeatures-icon i {
+    color: $primary-color;
+    animation: scale-up-one infinite 1.5s linear;
+}
+
+.schedule-area{
+    position: relative;
+}
+
+.schedule-shape-bg{
+    @media #{$md} {
+        top: -12%;
+    }
+    @media #{$sm} {
+        top: -3%;
+    }
+    @media #{$xs} {
+        display: none;
+    }
+    position: absolute;
+    z-index: -1;
+    top: -22%;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.schedule-shape-one{
+    @media #{$xs} {
+        display: none;
+    }
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    animation-duration: 2.10s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: dot-bounce;
+}
+
+.schedule-shape-two{
+    @media #{$xs} {
+        display: none;
+    }
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    top: 0;
+    animation-duration: 2.10s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: dot-bounce;
+}
+
+.tab-content.current {
+    text-align: center;
+}
+
+.futexo-tab-all {
+    max-width: 160px;
+    @media #{$xxl} {
+        width: 155px;
+    } 
+}
+
+.futexo-classes-tab{
+    & .tab-content.current{
+        display: flex;
+        @media #{$md, $sm, $xs}{
+            overflow-x: scroll;
+        }
+    }
+}
+
+.futexo-tab-all{
+    flex: 0 0 auto;
+    margin: 0 1px;
+}
+
+.futexo-tab-all h5,
+.futexo-tab-all .schedule-icon {
+	background-color: #000000;
+	color: #fff;
+	text-align: center;
+	padding: 50px 0;
+	text-transform: capitalize;
+	font-size: 30px;
+	line-height: 0;
+	font-weight: 500;
+}
+
+.futexo-tab-all ul li {
+    @media #{$xxl} {
+        padding: 25px 25px;
+    } 
+    @media #{$lg,$md,$sm,$xs} {
+        padding: 25px 15px;
+    }
+    @media #{$xs} {
+        padding: 25px 10px;
+    }
+	height: 100px;
+	border: 1px solid $border;
+	text-align: center;
+	width: 100%;
+	overflow: hidden;
+	transition: all .4s;
+    padding: 25px 30px;
+    border-top: 0;
+    font-size: 16px;
+    font-family: $roboto;
+    color: $body-text;
+    background: $white;
+    &:first-child{
+        border-top: 1px solid $border;
+    }
+}
+
+.futexo-tab-all ul li span {
+	text-transform: capitalize;
+	color: $heading-color;
+	font-weight: 500;
+    font-family: $teko;
+    font-size: 30px;
+	display: block;
+}
+
+.futexo-tab-d{
+    & .schedule-icon{
+        padding: 30px 0;
+        display: block;
+        margin-bottom: 8px;
+        & i{
+            font-size: 40px;
+        }
+    }
+    & ul li{
+        background: $primary-color;
+        & .time{
+            color: $white;
+            position: relative;
+            top: 15px;
+        }
+    }
+}  
+
+.video-area{
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    padding-top: 155px;
+    padding-bottom: 310px;
+    mix-blend-mode: multiply;
+    &::before{
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(2, 0, 9, .7);
+    }
+}
+
+.video-content{
+    max-width: 750px;
+    margin: 0 auto;
+    z-index: 0;
+    position: relative;
+}
+
+.video-title{
+    @media #{$xs,$sm} {
+        font-size: 40px;
+    }
+    font-size: 60px;
+    line-height: 1;
+    color: $white;
+}
+
+.company-static-area{
+    padding-top: 110px;
+    padding-bottom: 285px;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+.tp-skill--content{
+    max-width: 550px;
+}
+
+.tp-skill--title__wrapper {
+	margin-bottom: 13px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+
+.tp-skill--title__wrapper span {
+	color: $heading-color;
+	position: absolute;
+	top: 0;
+    font-family: $roboto;
+}
+
+.tp-skill--title {
+    font-size: 16px;
+    display: inline-block;
+    margin-bottom: 0px;
+    font-weight: 400;
+    font-family: $roboto;
+}
+
+.progress {
+	height: 12px;
+	border-radius: 0px;
+	background-color: #e9ecef;
+    overflow: hidden;
+    padding: 2px;
+    border: 1px solid $heading-color;
+}
+
+.progress-two{
+    border: 1px solid $primary-color;
+}
+
+.progress-bar {
+	background: $heading-color;
+	position: relative;
+	overflow: inherit;
+}
+
+.progress-bar-two {
+	background: $primary-color;
+}
+
+.tp-calculate{
+    @media #{$lg,$md,$sm,$xs} {
+        margin-top: 0;
+    } 
+    margin-top: -170px;
+}
+
+.calculate-form-wrapper{
+    @media #{$xs} {
+        padding: 30px;
+    }
+    width: 100%;
+    padding: 50px 50px 55px 50px;
+    background: $primary-color;
+    display: inline-block;
+    border-radius: 3px;
+    & input{
+        color: $heading-color;
+        font-size: 15px;
+        font-family: "Roboto", sans-serif;
+        display: block;
+        font-weight: 500;
+        height: 65px;
+        padding: 0px 20px;
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        background: #f5f5f5;
+        width: 100%;
+    }
+    & .nice-select{
+        & .list{
+            width: 100%;
+            margin-top: 0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    }
+}
+
+.calculate-form-wrapper input::placeholder {
+	color: $body-text;
+	font-size: 16px;
+	opacity: 1;
+}
+
+.input-field .nice-select{
+    color: $body-text;
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+    display: block;
+    font-weight: 500;
+    height: 65px;
+    padding: 0px 20px;
+    border: none;
+    outline: none;
+    background: #f5f5f5;
+    width: 100%;
+    margin-bottom: 15px;
+    & .current {
+        top: 12px;
+        position: relative;
+    }
+    &::after{
+        height: 8px;
+        width: 8px;
+        right: 20px;
+    }
+}
+
+.tp-calculate-form-title{ 
+    font-size: 36px;
+    color: $white;
+}
+
+//sponsor css
+.sponsor-area{
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    padding: 120px 0;
+}
+
+.sponsor_slider-active{
+    & .swiper-wrapper{
+        align-items: center;
+    }
+}
+
+.tp-skill__wrapper{
+    & .progress{
+        height: 12px;
+        overflow: visible;
+        & .progress-bar{
+            & span{
+                color: #010101;
+                font-size: 15px;
+                font-weight: 700;
+                z-index: 1;
+                display: inline-block;
+                height: 24px;
+                padding: 0 6px;
+                margin-bottom: 62px;
+                font-weight: 400;
+                text-align: right;
+                font-family: $roboto;
+            }
+        }
+    }
+    &-s{
+        & .progress{
+            height: 14px;
+        }
+    }
+}
