@@ -8,6 +8,9 @@
 {% block content %}
 <main>
     <div class="hero-area fix">
+        <div style="display:none">
+            {% include "_includes/message.html" %}
+        </div>
        <div class="hero-slider slider__active swiper-container swiper-container-fade">
           <div class="swiper-wrapper p-relative">
              <div class="hero-pagination"></div>
@@ -16,9 +19,6 @@
                 <div class="container">
                    <div class="row ">
                       <div class="col-lg-12">
-                        <div style="display:none">
-                            {% include "_includes/message.html" %}
-                        </div>
                          <div class="slider-all-text">
                             <span data-animation="fadeInUp" data-delay=".2s">Fitster Fitness</span>
                             <h2 class="hero-title" data-animation="fadeInUp" data-delay=".4s">be storong</h2>
@@ -29,11 +29,6 @@
                                      <i class="fas fa-play"></i>
                                   </a>
                             </div>
-                         </div>
-                         <div class="hero-social-icon">
-                            <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
-                            <a href="https:www.instagram.com"><i class="fab fa-instagram"></i></a>
                          </div>
                       </div>
                 </div>
@@ -55,11 +50,6 @@
                                   </a>
                             </div>
                          </div>
-                         <div class="hero-social-icon">
-                            <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
-                            <a href="https:www.instagram.com"><i class="fab fa-instagram"></i></a>
-                         </div>
                       </div>
                 </div>
                 </div>
@@ -76,15 +66,19 @@
                    <div class="tpfeatures-icon mb-25">
                       <i class="flaticon-muscle"></i>
                    </div>
-                   <span>Dedicated Services</span>
+                   <a href="{% url 'classes:pricing' %}">
+                    <span>Dedicated Services</span>
+                   </a>
                 </div>
              </div>
              <div class="col-lg-3 col-md-3">
-                <div class="tp-features-item tp-features-item-border item-active text-center mb-30 wow fadeInUp" data-wow-delay=".5s">
+                <div class="tp-features-item tp-features-item-border text-center mb-30 wow fadeInUp" data-wow-delay=".5s">
                    <div class="tpfeatures-icon mb-25">
                       <i class="flaticon-customer"></i>
                    </div>
-                   <span>Qualified Instructor</span>
+                   <a href="{% url 'classes:team' %}">
+                    <span>Qualified Instructor</span>
+                   </a>
                 </div>
              </div>
              <div class="col-lg-3 col-md-3">
@@ -92,7 +86,9 @@
                    <div class="tpfeatures-icon mb-25">
                       <i class="flaticon-apple"></i>
                    </div>
-                   <span>World Class Goodies</span>
+                   <a href="{% url 'products:store' %}">
+                    <span>World Class Goodies</span>
+                   </a>
                 </div>
              </div>
              <div class="col-lg-3 col-md-3">
@@ -100,7 +96,9 @@
                    <div class="tpfeatures-icon mb-25">
                       <i class="flaticon-lawn-mower"></i>
                    </div>
-                   <span>Best Program On Market</span>
+                   <a href="{% url 'classes:class_list' %}">
+                       <span>Best Program On Market</span>
+                   </a>
                 </div>
              </div>
           </div>
@@ -218,8 +216,6 @@
           </div>
        </div>
     </div>
-
-    
     <div class="choose-us-area pt-120 pb-65 mt-120">
        <div class="container">
           <div class="row justify-content-center">
@@ -273,7 +269,6 @@
           </div>
        </div>
     </div>
-
     <div class="trainer-area">
        <div class="container">
           <div class="row justify-content-center">
@@ -324,7 +319,6 @@
           </div>
        </div>
     </div>
-
     <div class="priceing-area pt-100 pb-90">
        <div class="container custome-container">
           <div class="row justify-content-center">
@@ -409,7 +403,6 @@
         </div>
       </div>
     </div>
-
     <div class="product-area pt-115 pb-80" data-background="{% static 'img/product-bg.jpg' %}">
        <div class="container custome-container">
           <div class="row justify-content-center align-items-center">
