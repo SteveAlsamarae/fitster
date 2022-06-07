@@ -923,6 +923,11 @@ textarea:focus {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
 }
+@media (max-width: 860px) {
+  #remove_padding_sm {
+    padding-top: 55px !important;
+  }
+}
 /*  Header Style */
 .top-nav {
   position: absolute;
@@ -6991,6 +6996,12 @@ p.checkout-coupon input[type=text]::placeholder {
 
 .choose-icon:hover i {
   animation: scale-up-one infinite 1.5s linear;
+}
+
+@media (max-width: 600px) {
+  #remove_padding_sm {
+    padding-top: 35px !important;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
