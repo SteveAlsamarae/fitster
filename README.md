@@ -94,6 +94,40 @@ Dot file for the database schema: [db_schema.dot](readme/db_schema.dot)
 
 > Dot file generated using Graphviz.
 
+## Wireframes
+
+We have used the following wireframes while designing, developing, and testing the application.
+
+<details>
+<summary>Shop Page Wireframe</summary>
+
+![Shop](readme/src/wireframes/wireframe-2.png)
+</details>
+
+<details>
+<summary>Product Page Wireframe</summary>
+
+![Product](readme/src/wireframes/wireframe-5.png)
+</details>
+
+<details>
+<summary>Fitness Classes Page Wireframe</summary>
+
+![FitnessClass](readme/src/wireframes/wireframe-4.png)
+</details>
+
+<details>
+<summary>Home Page Wireframe(Mobile)</summary>
+
+![Home](readme/src/wireframes/wireframe-3.png)
+</details>
+
+<details>
+<summary>Contact Us Page Wireframe</summary>
+
+![ContactUs](readme/src/wireframes/wireframe-1.png)
+</details>
+
 ---
 
 ## Fitster Facebook Page
