@@ -5,33 +5,48 @@
       <div class="row align-items-center">
         <div class="col-xxl-7 col-xl-5 col-lg-4 col-md-3">
           <div class="top-logo">
-            <a href="{% url 'products:store' %}"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
+            <a href="{% url 'index' %}"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
           </div>
         </div>
         <div class="col-xxl-5 col-xl-7 col-lg-8 col-md-9">
+        {% with request.resolver_match.url_name as view_url %}
           <div class="topbar-info">
             <div class="contact-item">
               <i class="flaticon-pin"></i>
               <div class="content">
+                {% if view_url == "index" or view_url == "home" %}
+                <p style="color: #31cac8;">Our Location</p>
+                <span style="color:#fff">25/7 Flen, Sweden</span>
+                {% else %}
                 <p>Our Location</p>
                 <span>25/7 Flen, Sweden</span>
+                {% endif %}
               </div>
             </div>
             <div class="contact-item">
               <i class="flaticon-email"></i>
               <div class="content">
+              {% if view_url == "index" or view_url == "home" %}
+              <p style="color: #31cac8;">Online Support</p>
+              {% else %}
                 <p>Online Support</p>
+              {% endif %}
                 <a href="mailto:info.fitster@gmail.com">info.fitster@gmail.com</a>
               </div>
             </div>
             <div class="contact-item">
               <i class="flaticon-contact"></i>
               <div class="content">
+                {% if view_url == "index" or view_url == "home" %}
+                <p style="color: #31cac8;">Free Contact</p>
+                {% else %}
                 <p>Free Contact</p>
+                {% endif %}
                 <a href="tel:01-234-567-8901">01-234-567-8901</a>
               </div>
             </div>
           </div>
+        {% endwith %}
         </div>
       </div>
     </div>
@@ -42,14 +57,14 @@
         <div class="col-xxl-12 col-xl-12 col-lg-12">
           <div class="menu-content">
             <div class="top-logo d-lg-none">
-              <a href="{% url 'products:store' %}"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
+              <a href="{% url 'index' %}"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
             </div>
             <div class="main-menu">
               <nav id="mobile-menu">
                 {% with request.resolver_match.url_name as view_url %}
                 <ul>
                   <li>
-                    <a href="{% url 'products:store' %}" {% if view_url == "index" %}class="active"{% endif %}>
+                    <a href="{% url 'index' %}" {% if view_url == "index" or view_url == "home" %}class="active"{% endif %}>
                       Home
                     </a>
                   </li>

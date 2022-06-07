@@ -5,7 +5,7 @@
       <div class="row align-items-center">
         <div class="col-xxl-7 col-xl-5 col-lg-4 col-md-3">
           <div class="top-logo">
-            <a href="{% url 'products:store' %}"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
+            <a href="{% url 'index' %}"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
           </div>
         </div>
         <div class="col-xxl-5 col-xl-7 col-lg-8 col-md-9">
@@ -42,14 +42,14 @@
         <div class="col-xxl-12 col-xl-12 col-lg-12">
           <div class="menu-content">
             <div class="top-logo d-lg-none">
-              <a href="{% url 'products:store' %}"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
+              <a href="{% url 'index' %}"><img src="{% static 'img/fitster.png' %}" alt="fitster-logo"></a>
             </div>
             <div class="main-menu">
               <nav id="mobile-menu">
                 {% with request.resolver_match.url_name as view_url %}
                 <ul>
                   <li>
-                    <a href="{% url 'products:store' %}" {% if view_url == "index" %}class="active"{% endif %}>
+                    <a href="{% url 'index' %}" {% if view_url == "index" %}class="active"{% endif %}>
                       Home
                     </a>
                   </li>
