@@ -12,7 +12,6 @@ def index_view(request: HttpRequest) -> HttpResponse:
     products = Product.objects.prefetch_related("product_images").filter(is_active=True)
     plans: list[object] = FitnessSubscriptionPlan.objects.all()
     trainers = Trainer.objects.all()
-    print(plans)
 
     context = {
         "products": products[:3],
