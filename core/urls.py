@@ -6,7 +6,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.views.generic.base import TemplateView
 
 from admin_dashboard.views import terms_and_conditions
-from store.products.views import store_view
+from store.products.views import index_view
 from store.products.sitemap import ProductSitemap
 from classes.sitemap import FitnessClassSitemap, FitnessPlanSitemap, TrainerSitemap
 from blog.sitemap import PostSitemap
@@ -39,7 +39,8 @@ urlpatterns = [
     path("stripe/", include("djstripe.urls", namespace="djstripe")),
     path("markdownx/", include("markdownx.urls")),
     # local
-    path("", store_view, name="index"),
+    path("", index_view, name="index"),
+    path("home/", index_view, name="home"),
     path("customers/", include("users.urls")),
     path("shop/", include("store.products.urls")),
     path("shop/wishlist/", include("store.wishlist.urls")),

@@ -4,10 +4,22 @@ from django.shortcuts import get_object_or_404, render
 from utils import paginate
 
 from .models import Product, ProductCategory
+from classes.models import FitnessSubscriptionPlan, Trainer
 
 
-def index(request):
-    return render(request, "store/shoptest.html")
+
+def index_view(request: HttpRequest) -> HttpResponse:
+    products = Product.objects.prefetch_related("product_images").filter(is_active=True)
+    plans: list[object] = FitnessSubscriptionPlan.objects.all()
+    trainers = Trainer.objects.all()
+    print(plans)
+
+    context = {
+        "products": products[:3],
+        "fitness_plans": plans,
+        "trainers": trainers,
+    }
+    return render(request, "pages/index.html", context=context)
 
 
 def store_view(request: HttpRequest) -> HttpResponse:
