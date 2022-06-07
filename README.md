@@ -412,6 +412,15 @@ pytest tests/test_templates.py
 
 ---
 
+## Limitation
+
+- Because of time constraints, we have not implemented the following features:
+  
+  - Nutrition subscription plans view, urls and template but implemented the models.
+  - Please check the issue [#13](https://github.com/SteveAlsamarae/fitster/issues/13) for more details.
+
+ > Subscription plans for nutrition also can be created and mapped from fitness plan. Just change the name, title and features.
+
 ## Tools & Technologies
 
 #### Languages
