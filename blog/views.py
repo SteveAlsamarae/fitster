@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -181,6 +182,7 @@ def add_post_view(request: HttpRequest) -> HttpResponse:
             post = form.save(commit=False)
             post.author = request.user
             post.save()
+            messages.success(request, "Post added successfully")
             return redirect(reverse("blog:post_detail", args=[post.slug]))
 
     return render(request, "blog/posts/post_add.html", {"form": form})
@@ -207,7 +209,7 @@ def update_post_view(request: HttpRequest, post_id: str) -> HttpResponse:
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-
+            messages.success(request, "Post updated successfully")
             return redirect(reverse("blog:post_detail", args=[post.slug]))
 
     return render(request, "blog/posts/post_update.html", {"post": post, "form": form})
@@ -229,6 +231,7 @@ def delete_post_view(request: HttpRequest, post_id: str) -> HttpResponse:
         post = get_object_or_404(Post, id=post_id)
         if request.user == post.author:
             post.delete()
+            messages.success(request, "Post deleted successfully")
             return redirect(reverse("blog:user_posts", args=[request.user.username]))
 
     return redirect(reverse("blog:post_list"))
