@@ -165,6 +165,178 @@ $(document).ready(function () {
       },
     });
   }
+  if (jQuery(".slider__active").length > 0) {
+    let sliderActive1 = ".slider__active";
+    let sliderInit1 = new Swiper(sliderActive1, {
+      slidesPerView: 1,
+      slidesPerColumn: 1,
+      loop: true,
+      effect: "fade",
+      autoplay: {
+        delay: 6000,
+      },
+
+      pagination: {
+        el: ".hero-pagination",
+        clickable: true,
+      },
+
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+
+      a11y: false,
+    });
+
+    function animated_swiper(selector, init) {
+      let animated = function animated() {
+        $(selector + " [data-animation]").each(function () {
+          let anim = $(this).data("animation");
+          let delay = $(this).data("delay");
+          let duration = $(this).data("duration");
+
+          $(this)
+            .removeClass("anim" + anim)
+            .addClass(anim + " animated")
+            .css({
+              webkitAnimationDelay: delay,
+              animationDelay: delay,
+              webkitAnimationDuration: duration,
+              animationDuration: duration,
+            })
+            .one(
+              "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",
+              function () {
+                $(this).removeClass(anim + " animated");
+              }
+            );
+        });
+      };
+      animated();
+      // Make animated when slide change
+      init.on("slideChange", function () {
+        $(sliderActive1 + " [data-animation]").removeClass("animated");
+      });
+      init.on("slideChange", animated);
+    }
+
+    animated_swiper(sliderActive1, sliderInit1);
+  }
+  $(".fitness-slider_active").owlCarousel({
+    loop: true,
+    center: true,
+    margin: 0,
+    autoplay: true,
+    autoplayTimeout: 5000,
+    smartSpeed: 500,
+    items: 6,
+    navText: [
+      '<button><i class="fal fa-angle-left"></i></button>',
+      '<button><i class="fal fa-angle-right"></i></button>',
+    ],
+    nav: false,
+    dots: false,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      576: {
+        items: 1,
+      },
+      767: {
+        items: 2,
+      },
+      992: {
+        items: 2,
+      },
+      1200: {
+        items: 3,
+      },
+      1600: {
+        items: 3,
+      },
+    },
+  });
+
+  $(".popup-video").magnificPopup({
+    type: "iframe",
+  });
+
+  if (jQuery(".client-feedback_active").length > 0) {
+    let testimonialTwo = new Swiper(".client-feedback_active", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: {
+        delay: 6000,
+      },
+
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: false,
+      },
+      navigation: {
+        nextEl: ".ts-button-next",
+        prevEl: ".ts-button-prev",
+      },
+
+      scrollbar: {
+        el: ".swiper-scrollbar",
+      },
+      breakpoints: {
+        550: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 1,
+        },
+        1200: {
+          slidesPerView: 1,
+        },
+        1400: {
+          slidesPerView: 1,
+        },
+      },
+    });
+  }
+
+  if (jQuery(".sponsor_slider-active").length > 0) {
+    let testimonialTwo = new Swiper(".sponsor_slider-active", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: {
+        delay: 6000,
+      },
+
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: false,
+      },
+
+      scrollbar: {
+        el: ".swiper-scrollbar",
+      },
+      breakpoints: {
+        400: {
+          slidesPerView: 2,
+        },
+        550: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1200: {
+          slidesPerView: 4,
+        },
+        1400: {
+          slidesPerView: 4,
+        },
+      },
+    });
+  }
 
   $(document).on("change", ".sort-select", function (e) {
     e.target.dispatchEvent(new Event("change"));
