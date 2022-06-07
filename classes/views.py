@@ -1,4 +1,5 @@
 import stripe
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -116,6 +117,7 @@ def fitness_subscription_checkout(request: HttpRequest) -> HttpResponse:
     )
 
     if customer_subscription.exists() and customer_subscription.first().is_active:
+        messages.error(request, "You already have an active subscription.")
         return redirect("classes:class_list")
 
     success_url: str = request.build_absolute_uri(
