@@ -66,6 +66,7 @@ def add_default_address(request: HttpRequest) -> HttpResponse:
         customer=request.user, is_default=True
     )
     if user_address.exists():
+        messages.info(request, "You have already added a default address.")
         return redirect("users:address")
 
     if request.method == "POST":
@@ -88,7 +89,7 @@ def add_default_address(request: HttpRequest) -> HttpResponse:
                     is_default=False,
                     is_shipping_address=True,
                 )
-
+            messages.success(request, "Address added successfully.")
             return redirect("users:address")
         else:
             return HttpResponse("<h1>Invalid form input</h1>", status=400)
@@ -121,7 +122,7 @@ def edit_default_address(request: HttpRequest) -> HttpResponse:
             address = form.save(commit=False)
             address.customer = request.user
             address.save()
-
+            messages.success(request, "Address updated successfully.")
             return redirect("users:address")
         else:
             return HttpResponse("<h1>Invalid form input</h1>", status=400)
@@ -448,7 +449,7 @@ def cancel_subscription(request: HttpRequest, key: str) -> HttpResponse:
             HttpResponse(
                 "<h1>Some errors occured while canceling the subscription! Please try again in a moment.</h1>"
             )
-
+    messages.success(request, "Your subscription has been cancelled successfully!")
     return redirect("users:dashboard")
 
 
