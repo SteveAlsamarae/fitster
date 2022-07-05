@@ -44,14 +44,15 @@ def newsletter_email_list(request: HttpRequest) -> HttpResponse:
     Returns:
         HttpResponse: Django response object
     """
-
     if request.method == "POST":
-        email: str = request.POST.get('email', None)
+        email: str = request.POST.get("customer_email", None)
         email_query: QuerySet = NewsleterAccount.objects.filter(email=email)
 
         if email:
             if email_query.exists():
-                return render(request, "newsletter/_error.html")
+                exists: bool = True
+
+                return render(request, "newsletter/_error.html", {"exists": exists})
             else:
                 try:
                     subscribe_email(email)
