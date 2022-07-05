@@ -28,7 +28,7 @@ class UserProfile(models.Model):
     )
     name = models.CharField(max_length=100, validators=[NAME_VALIDATOR])
     phone = models.CharField(max_length=11, validators=[PHONE_NUMBER_VALIDATOR])
-    email = models.EmailField(_("email address"), unique=True)
+    email = models.EmailField(_("email address"))
 
     def __str__(self):
         return f"{self.user.username}'s profile"
