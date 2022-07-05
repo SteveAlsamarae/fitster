@@ -4819,6 +4819,67 @@ p.checkout-coupon input[type=text]::placeholder {
 
 .footer_top-info {
   border-bottom: 1px solid #373738;
+  background: rgba(49, 202, 200, 0.6588235294);
+}
+
+.news-letter-title {
+  font-size: 60px;
+  line-height: 1;
+  color: #ffffff;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .news-letter-title {
+    font-size: 45px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .news-letter-title {
+    margin-bottom: 50px;
+  }
+}
+@media (max-width: 575px) {
+  .news-letter-title {
+    font-size: 40px;
+  }
+}
+
+.news_letter_search input {
+  width: 400px;
+  height: 70px;
+  background: #ffffff;
+  color: #6a6b71;
+  border: none;
+  outline: none;
+  padding: 0 30px;
+  border-radius: 50px;
+  font-family: "Roboto", sans-serif;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .news_letter_search input {
+    width: 300px;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
+  .news_letter_search input {
+    width: 100%;
+  }
+}
+.news_letter_search input::placeholder {
+  color: #6a6b71;
+  font-size: 15px;
+  opacity: 1;
+  font-family: "Roboto", sans-serif;
+}
+
+.news_letter-info {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 575px) {
+  .news_letter-info {
+    display: block;
+  }
 }
 
 .footer-widget p {

@@ -12,6 +12,56 @@
 
 .footer_top-info{
     border-bottom: 1px solid #373738;
+    background: #31cac8a8;
+}
+.news-letter-title{
+    @media #{$lg} {
+        font-size: 45px;
+    }
+    @media #{$md} {
+        margin-bottom: 50px;
+    }
+    @media #{$xs} {
+        font-size: 40px;
+    }
+    font-size: 60px;
+    line-height: 1;
+    color: $white;
+}
+
+.news_letter_search{
+    & input{
+        @media #{$lg} {
+            width: 300px;
+        }
+        @media #{$sm,$xs} {
+            width: 100%;
+        }
+        width: 400px;
+        height: 70px;
+        background: $white;
+        color: $body-text;
+        border: none;
+        outline: none;
+        padding: 0 30px;
+        border-radius: 50px;
+        font-family: $roboto;
+    }
+    & input::placeholder {
+        color: $body-text;
+        font-size: 15px;
+        opacity: 1;
+        font-family: $roboto;
+    }
+}
+
+.news_letter-info{
+    @media #{$xs} {
+        display: block;
+    }
+    position: relative;
+    display: flex;
+    justify-content: space-between;
 }
 
 .footer-widget{
