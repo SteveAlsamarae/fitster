@@ -35,7 +35,7 @@ def subscribe_email(email: str) -> tuple:
     return req.status_code, req.json()
 
 
-def newsleter_email_list(request: HttpRequest) -> HttpResponse:
+def newsletter_email_list(request: HttpRequest) -> HttpResponse:
     """View for newsletter subscription
 
     Args:
