@@ -9,11 +9,11 @@
                   <h5 class="news-letter-title mb-30">Subscribe Newsletter</h5>
                </div>
                <div class="col-lg-7">
-                  <form action="{% url '' %}" method="post">
+                  <form action="{% url 'newsletter_subscribe' %}" method="post">
                      {% csrf_token %}
                      <div class="news_letter-info">
                         <div class="news_letter_search mb-30">
-                           <input type="text" placeholder="Email Address">
+                           <input name="customer_email" type="email" placeholder="Email Address">
                         </div>
                         <div class="subscrive-button mb-30">
                            <button type="submit" class="tp-btn-round-newsletter">Subscribe now <i class="fal fa-chevron-double-right"></i></button>

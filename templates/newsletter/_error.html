@@ -25,7 +25,7 @@
           font-size:20px;
           margin: 0;
         }
-      i {
+      .checkmark {
         color: #B04555;
         font-size: 100px;
         line-height: 200px;
@@ -66,12 +66,18 @@
     <div class="centered">
       <div class="card">
       <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
-        <i class="checkmark">✓</i>
+        <span class="checkmark">!</span>
       </div>
         <h1>Error!</h1> 
+        {% if exists %}
+        <p>
+            Your email is already exists in out database! Please try with another one.
+        </p>
+        {% else %}
         <p>
             Some error occurred while subscribing to the newsletter! Please try again.
         </p>
+        {% endif %}
         <br>
         <p class="btn-m">
             <a href="{% url 'index' %}" class="btn" >Back to home</a>
