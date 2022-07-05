@@ -57,6 +57,10 @@ except Exception as excep:
 
     raise ImproperlyConfigured("Stripe settings are not configured properly", excep)
 
+MAILCHIMP_API_KEY = "test_api_key"
+MAILCHIMP_DATA_CENTER = "test_data_center"
+MAILCHIMP_EMAIL_LIST_ID = "test_id"
+
 LOGGING["loggers"] = {
     "werkzeug": {
         "handlers": ["console"],
