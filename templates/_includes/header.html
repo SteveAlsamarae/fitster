@@ -9,44 +9,29 @@
           </div>
         </div>
         <div class="col-xxl-5 col-xl-7 col-lg-8 col-md-9">
-        {% with request.resolver_match.url_name as view_url %}
           <div class="topbar-info">
             <div class="contact-item">
               <i class="flaticon-pin"></i>
               <div class="content">
-                {% if view_url == "index" or view_url == "home" %}
-                <p style="color: #31cac8;">Our Location</p>
-                <span style="color:#fff">25/7 Flen, Sweden</span>
-                {% else %}
                 <p>Our Location</p>
                 <span>25/7 Flen, Sweden</span>
-                {% endif %}
               </div>
             </div>
             <div class="contact-item">
               <i class="flaticon-email"></i>
               <div class="content">
-              {% if view_url == "index" or view_url == "home" %}
-              <p style="color: #31cac8;">Online Support</p>
-              {% else %}
                 <p>Online Support</p>
-              {% endif %}
                 <a href="mailto:info.fitster@gmail.com">info.fitster@gmail.com</a>
               </div>
             </div>
             <div class="contact-item">
               <i class="flaticon-contact"></i>
               <div class="content">
-                {% if view_url == "index" or view_url == "home" %}
-                <p style="color: #31cac8;">Free Contact</p>
-                {% else %}
                 <p>Free Contact</p>
-                {% endif %}
                 <a href="tel:01-234-567-8901">01-234-567-8901</a>
               </div>
             </div>
           </div>
-        {% endwith %}
         </div>
       </div>
     </div>
