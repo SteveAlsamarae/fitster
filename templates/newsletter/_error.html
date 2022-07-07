@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>There was an error while subscribing to newsletter</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+  </head>
+    <style>
+      body {
+        text-align: center;
+        background: #EBF0F5;
+      }
+        h1 {
+          color: #B04555;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-weight: 900;
+          font-size: 40px;
+          margin-bottom: 10px;
+        }
+        p {
+          color: #404F5E;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-size:20px;
+          margin: 0;
+        }
+      .checkmark {
+        color: #B04555;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left:-15px;
+      }
+      .card {
+        display:flex;
+        background: white;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+      }
+      .centered{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 98vh;
+
+      }
+      .btn-m{
+          margin-top:45px ;
+      }
+      .btn{
+        background: #B04555;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        color: white;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-size:20px;
+        text-decoration: none;
+
+      }
+    </style>
+    <body>
+    <div class="centered">
+      <div class="card">
+      <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+        <span class="checkmark">!</span>
+      </div>
+        <h1>Error!</h1> 
+        {% if exists %}
+        <p>
+            Your email is already exists in out database! Please try with another one.
+        </p>
+        {% else %}
+        <p>
+            Some error occurred while subscribing to the newsletter! Please try again.
+        </p>
+        {% endif %}
+        <br>
+        <p class="btn-m">
+            <a href="{% url 'index' %}" class="btn" >Back to home</a>
+        </p>
+      </div>
+    </div>
+    </body>
+</html>

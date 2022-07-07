@@ -4817,10 +4817,6 @@ p.checkout-coupon input[type=text]::placeholder {
   z-index: 1;
 }
 
-.footer_top-info {
-  border-bottom: 1px solid #373738;
-}
-
 .footer-widget p {
   color: #ffffff;
   font-size: 15px;

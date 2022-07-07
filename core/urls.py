@@ -10,7 +10,7 @@ from store.products.views import index_view
 from store.products.sitemap import ProductSitemap
 from classes.sitemap import FitnessClassSitemap, FitnessPlanSitemap, TrainerSitemap
 from blog.sitemap import PostSitemap
-
+from newsletter.views import newsletter_email_list
 
 sitemaps = {
     "products": ProductSitemap,
@@ -52,6 +52,7 @@ urlpatterns = [
     path("blog/", include("blog.urls")),
     path("contact/", include("contact.urls")),
     path("dashboard/admin/", include("admin_dashboard.urls")),
+    path("newsletter/subscribe/", newsletter_email_list, name="newsletter_subscribe"),
     path("terms-and-conditions/", terms_and_conditions, name="terms_and_conditions"),
 ]
 
