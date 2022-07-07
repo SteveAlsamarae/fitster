@@ -15,6 +15,7 @@ Project_Idea.md
 media/**
 !media/.gitkeep
 !0002_auto_20220606_1548.py
+!0002_alter_userprofile_email.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
