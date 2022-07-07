@@ -1,7 +1,30 @@
 {% load static %}
 <footer>
   <div class="footer-area bg-dark">
-
+    <div class="footer_top-info">
+      <div class="container custome-container">
+         <div class="news-letter-area pt-100 pb-20">
+            <div class="row align-items-center">
+               <div class="col-lg-5">
+                  <h5 class="news-letter-title mb-30">Subscribe Newsletter</h5>
+               </div>
+               <div class="col-lg-7">
+                  <form action="{% url 'newsletter_subscribe' %}" method="post">
+                     {% csrf_token %}
+                     <div class="news_letter-info">
+                        <div class="news_letter_search mb-30">
+                           <input name="customer_email" type="email" placeholder="Email Address">
+                        </div>
+                        <div class="subscrive-button mb-30">
+                           <button type="submit" class="tp-btn-round-newsletter">Subscribe now <i class="fal fa-chevron-double-right"></i></button>
+                        </div>
+                  </div>
+               </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
     <div class="footer-content pt-80 pb-45">
       <div class="container custome-container">
         <div class="row g-0">
