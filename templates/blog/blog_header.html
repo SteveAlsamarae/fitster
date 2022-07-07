@@ -104,8 +104,13 @@
                       <a href="#" class="main-menu"><i class="fas fa-user-circle" style="font-size: 20px;"></i></a>
                       <ul class="sub-menu">
                         {% if user.is_authenticated %}
-                          <li><a href="{% url 'admin_dashboard:active_orders' %}">Admin
-                            Dashboard</a></li>
+                          {% if user.is_superuser %}
+                            <li>
+                              <a href="{% url 'admin_dashboard:active_orders' %}">
+                              Admin Dashboard
+                              </a>
+                            </li>
+                          { % endif %
                           <li><a href="{% url 'users:dashboard' %}">My
                             Profile</a></li>
                           <li><a href="{% url 'blog:user_posts' username=user.username %}">My
