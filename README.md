@@ -483,6 +483,16 @@ pytest tests/test_templates.py
 ## Code Changes and Fixes
 
 - Fixed internal server errors that occurs when user tries to create a new account [(#30)](https://github.com/SteveAlsamarae/fitster/issues/30)
+- Added newsletter feature to enable users to subscribe to fitster newsletter ([#31](https://github.com/SteveAlsamarae/fitster/issues/31))
+- Implemented mailchimp for users subscription to fitster newsletter.
+- Added unit tests for newsletter app.
+- Updated Readme for new code changes.
+
+<details>
+<summary>View newly added newsletter section</summary>
+
+![newsletter](readme/src/images/newsletter.png)
+</details>
 
 ## CREDITS
 
