@@ -77,6 +77,12 @@ STRIPE_LIVE_MODE = os.environ.get("STRIPE_LIVE_MODE", False)
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = os.environ.get("DJSTRIPE_FOREIGN_KEY_TO_FIELD", "id")
 DJSTRIPE_USE_NATIVE_JSONFIELD = True
 
+# ========================
+# Mailchimp Configuration
+# ========================
+MAILCHIMP_API_KEY = os.environ.get("MAILCHIMP_API_KEY")
+MAILCHIMP_DATA_CENTER = os.environ.get("MAILCHIMP_DATA_CENTER")
+MAILCHIMP_EMAIL_LIST_ID = os.environ.get("MAILCHIMP_EMAIL_LIST_ID")
 
 # This is just for test purpose to avoid sending emails
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
