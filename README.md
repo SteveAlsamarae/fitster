@@ -480,6 +480,10 @@ pytest tests/test_templates.py
 - Lighthouse
 - Drawio: For creating diagrams
 
+## Code Changes and Fixes
+
+- Fixed internal server errors that occurs when user tries to create a new account [(#30)](https://github.com/SteveAlsamarae/fitster/issues/30)
+
 ## CREDITS
 
 - Code institute
