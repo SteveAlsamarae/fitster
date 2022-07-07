@@ -487,7 +487,7 @@ pytest tests/test_templates.py
 - Implemented mailchimp for users subscription to fitster newsletter.
 - Added unit tests for newsletter app.
 - Updated Readme for new code changes.
-- Created pull request and merged feat/newletter branch with main branch
+- Created pull request and merged feat/newletter branch with main branch ([PR #33](https://github.com/SteveAlsamarae/fitster/pull/33))
 
 <details>
 <summary>View newly added newsletter section</summary>
