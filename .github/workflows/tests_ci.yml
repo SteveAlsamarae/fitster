@@ -32,7 +32,7 @@ jobs:
     # install packages via poetry and cache result so future CI runs are fast
     # the result is only cached if the build is successful
     - name: Install poetry
-      uses: snok/install-poetry@v1.2.0
+      uses: snok/install-poetry@v1.3.1
       with:
         version: 1.1.8
         virtualenvs-create: true
