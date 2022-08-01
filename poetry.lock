@@ -147,7 +147,7 @@ django = ">=2.2"
 django-crispy-forms = ">=1.13.0"
 
 [package.extras]
-test = ["pytest", "pytest-django"]
+test = ["pytest-django", "pytest"]
 
 [[package]]
 name = "cryptography"
@@ -289,9 +289,9 @@ optional = false
 python-versions = ">=3.4,<4"
 
 [package.extras]
-develop = ["coverage[toml] (>=5.0a4)", "pytest (>=4.6.11)", "furo (>=2021.8.17b43,<2021.9.0)", "sphinx (>=3.5.0)", "sphinx-notfound-page"]
-docs = ["furo (>=2021.8.17b43,<2021.9.0)", "sphinx (>=3.5.0)", "sphinx-notfound-page"]
-testing = ["coverage[toml] (>=5.0a4)", "pytest (>=4.6.11)"]
+testing = ["pytest (>=4.6.11)", "coverage[toml] (>=5.0a4)"]
+docs = ["sphinx-notfound-page", "sphinx (>=3.5.0)", "furo (>=2021.8.17b43,<2021.9.0)"]
+develop = ["sphinx-notfound-page", "sphinx (>=3.5.0)", "furo (>=2021.8.17b43,<2021.9.0)", "pytest (>=4.6.11)", "coverage[toml] (>=5.0a4)"]
 
 [[package]]
 name = "django-extensions"
@@ -322,7 +322,7 @@ python-versions = "*"
 
 [[package]]
 name = "django-htmx"
-version = "1.11.0"
+version = "1.12.1"
 description = "Extensions for using Django with htmx."
 category = "main"
 optional = false
@@ -504,9 +504,9 @@ python-versions = ">=3.7"
 MarkupSafe = ">=0.9.2"
 
 [package.extras]
-babel = ["babel"]
-lingua = ["lingua"]
 testing = ["pytest"]
+lingua = ["lingua"]
+babel = ["babel"]
 
 [[package]]
 name = "markdown"
@@ -611,8 +611,8 @@ optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-dev = ["pre-commit", "tox"]
-testing = ["pytest", "pytest-benchmark"]
+testing = ["pytest-benchmark", "pytest"]
+dev = ["tox", "pre-commit"]
 
 [[package]]
 name = "py"
@@ -658,10 +658,10 @@ python-versions = ">=3.6"
 cryptography = {version = ">=3.3.1", optional = true, markers = "extra == \"crypto\""}
 
 [package.extras]
+tests = ["coverage[toml] (==5.0.4)", "pytest (>=6.0.0,<7.0.0)"]
+docs = ["zope.interface", "sphinx-rtd-theme", "sphinx"]
+dev = ["pre-commit", "mypy", "coverage[toml] (==5.0.4)", "pytest (>=6.0.0,<7.0.0)", "cryptography (>=3.3.1)", "zope.interface", "sphinx-rtd-theme", "sphinx"]
 crypto = ["cryptography (>=3.3.1)"]
-dev = ["sphinx", "sphinx-rtd-theme", "zope.interface", "cryptography (>=3.3.1)", "pytest (>=6.0.0,<7.0.0)", "coverage[toml] (==5.0.4)", "mypy", "pre-commit"]
-docs = ["sphinx", "sphinx-rtd-theme", "zope.interface"]
-tests = ["pytest (>=6.0.0,<7.0.0)", "coverage[toml] (==5.0.4)"]
 
 [[package]]
 name = "pylint"
@@ -949,7 +949,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "d42cfcdd478aba40994f09664f1160bacf3b665cdc7c939a9e5ce00efca8be30"
+content-hash = "cd65939e9daa346c3cc9876d400d8a8dfdd462a9f4ae35efafc4cb1577c3eddf"
 
 [metadata.files]
 appdirs = [
@@ -1186,8 +1186,8 @@ django-flat-theme = [
     {file = "django-flat-theme-1.1.4.tar.gz", hash = "sha256:6b522d8c2b5a8228b30947fb002eff2868da076e9beacf3e798410e5c1a2d849"},
 ]
 django-htmx = [
-    {file = "django-htmx-1.11.0.tar.gz", hash = "sha256:aab226778ba409d0cf019c549b9fc6881b8a7b10555cd535fba6499c2cef707c"},
-    {file = "django_htmx-1.11.0-py3-none-any.whl", hash = "sha256:9e6403869f41d3a86d356a01aee852e0de03ccfe64c8dab836324d473fb3caf8"},
+    {file = "django-htmx-1.12.1.tar.gz", hash = "sha256:52b170e80ef54757f622a3af5f6087af395cda932531c0d3a65fb08d60457c0a"},
+    {file = "django_htmx-1.12.1-py3-none-any.whl", hash = "sha256:ff378eddec0a8e592d0b33f9848f6a050fe93e404a6e99cec354d67aab16c765"},
 ]
 django-js-asset = [
     {file = "django_js_asset-2.0.0-py3-none-any.whl", hash = "sha256:86f9f300d682537ddaf0487dc2ab356581b8f50c069bdba91d334a46e449f923"},
